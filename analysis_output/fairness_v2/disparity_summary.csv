@@ -1,0 +1,19 @@
+model,attribute,lowest_group,lowest_approval_pct,highest_group,highest_approval_pct,approval_ratio_low_high,good_payer_approval_gap_pts,max_calibration_gap_pts
+lgbm_v2_combo_with_gender,gender,M,79.05,F,88.09,0.897,7.57,0.23
+lgbm_v2_combo_with_gender,age band,<25,69.73,65+,97.7,0.714,24.19,0.29
+lgbm_v2_combo_with_gender,family status,Civil marriage,79.74,Widow,92.22,0.865,10.12,0.27
+lgbm_v2_combo_with_gender,children,3+,78.75,0,86.07,0.915,6.07,0.28
+lgbm_v2_combo_with_gender,education,Lower secondary,78.98,Higher education,92.55,0.853,11.19,0.66
+lgbm_v2_combo_with_gender,region rating,3,76.61,1,93.93,0.816,14.09,0.3
+lgbm_v2_combo,gender,M,80.64,F,87.26,0.924,5.35,0.79
+lgbm_v2_combo,age band,<25,69.64,65+,97.8,0.712,24.31,0.3
+lgbm_v2_combo,family status,Civil marriage,81.15,Widow,92.0,0.882,8.58,0.78
+lgbm_v2_combo,children,3+,78.03,0,86.21,0.905,6.78,0.31
+lgbm_v2_combo,education,Lower secondary,79.04,Higher education,92.57,0.854,11.05,0.75
+lgbm_v2_combo,region rating,3,76.57,1,93.95,0.815,14.15,0.3
+lgbm_v2_combo_lr02_x3,gender,M,80.6,F,87.28,0.923,5.41,0.81
+lgbm_v2_combo_lr02_x3,age band,<25,69.47,65+,97.89,0.71,24.5,0.3
+lgbm_v2_combo_lr02_x3,family status,Civil marriage,81.18,Widow,92.05,0.882,8.58,0.79
+lgbm_v2_combo_lr02_x3,children,3+,77.94,0,86.24,0.904,6.85,0.3
+lgbm_v2_combo_lr02_x3,education,Lower secondary,78.72,Higher education,92.65,0.85,11.41,0.76
+lgbm_v2_combo_lr02_x3,region rating,3,76.44,1,94.06,0.813,14.38,0.31

@@ -1,0 +1,37 @@
+model,attribute,lowest_group,lowest_approval_pct,highest_group,highest_approval_pct,approval_ratio_low_high,good_payer_approval_gap_pts,max_calibration_gap_pts
+lgbm_v1,gender,M,78.83,F,88.2,0.894,7.88,0.2
+lgbm_v1,age band,<25,69.68,65+,97.88,0.712,24.46,0.28
+lgbm_v1,family status,Civil marriage,79.68,Widow,92.36,0.863,10.33,0.23
+lgbm_v1,children,3+,78.26,0,86.12,0.909,6.62,0.21
+lgbm_v1,education,Lower secondary,78.66,Higher education,92.71,0.848,11.71,0.67
+lgbm_v1,region rating,3,76.36,1,93.97,0.813,14.49,0.26
+lgbm_v1_no_gender,gender,M,80.41,F,87.38,0.92,5.65,0.76
+lgbm_v1_no_gender,age band,<25,69.65,65+,98.01,0.711,24.57,0.28
+lgbm_v1_no_gender,family status,Civil marriage,79.7,Widow,92.14,0.865,10.1,0.24
+lgbm_v1_no_gender,children,3+,78.18,0,86.16,0.907,6.68,0.2
+lgbm_v1_no_gender,education,Lower secondary,78.89,Higher education,92.71,0.851,11.49,0.76
+lgbm_v1_no_gender,region rating,3,76.33,1,94.03,0.812,14.55,0.25
+lgbm_v1_no_gender_family,gender,M,80.44,F,87.37,0.921,5.65,0.76
+lgbm_v1_no_gender_family,age band,<25,69.65,65+,98.02,0.711,24.58,0.28
+lgbm_v1_no_gender_family,family status,Civil marriage,80.79,Widow,91.96,0.879,8.92,0.68
+lgbm_v1_no_gender_family,children,3+,77.68,0,86.27,0.9,7.27,0.33
+lgbm_v1_no_gender_family,education,Lower secondary,78.83,Higher education,92.7,0.85,11.56,0.73
+lgbm_v1_no_gender_family,region rating,3,76.32,1,94.08,0.811,14.61,0.25
+lgbm_v1_no_sensitive,gender,M,80.38,F,87.4,0.92,5.72,0.75
+lgbm_v1_no_sensitive,age band,<25,64.48,65+,98.18,0.657,29.79,1.72
+lgbm_v1_no_sensitive,family status,Single / not married,80.54,Widow,91.87,0.877,9.3,0.73
+lgbm_v1_no_sensitive,children,3+,78.8,0,86.09,0.915,6.03,0.27
+lgbm_v1_no_sensitive,education,Lower secondary,79.01,Higher education,92.69,0.852,11.24,0.78
+lgbm_v1_no_sensitive,region rating,3,76.35,1,94.08,0.812,14.63,0.26
+scorecard_full,gender,M,77.76,F,88.76,0.876,9.56,0.03
+scorecard_full,age band,<25,58.8,65+,97.55,0.603,35.34,2.83
+scorecard_full,family status,Single / not married,78.92,Widow,93.42,0.845,12.4,0.78
+scorecard_full,children,3+,78.44,0,86.24,0.91,6.76,0.29
+scorecard_full,education,Lower secondary,76.07,Higher education,93.57,0.813,15.29,1.62
+scorecard_full,region rating,3,74.88,1,95.11,0.787,17.16,0.21
+scorecard_full_no_gender,gender,M,81.27,F,86.93,0.935,4.57,1.02
+scorecard_full_no_gender,age band,<25,58.22,65+,97.71,0.596,36.07,2.85
+scorecard_full_no_gender,family status,Single / not married,78.72,Widow,93.01,0.846,12.23,0.6
+scorecard_full_no_gender,children,3+,78.33,0,86.31,0.908,6.91,0.31
+scorecard_full_no_gender,education,Lower secondary,76.83,Higher education,93.56,0.821,14.54,1.63
+scorecard_full_no_gender,region rating,3,74.79,1,95.22,0.785,17.33,0.22

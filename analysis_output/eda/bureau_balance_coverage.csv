@@ -1,0 +1,11 @@
+split,group,applicants,pct_of_split,default_rate_pct
+train,"bureau, all credits with history",92028.0,29.93,8.11
+train,"bureau, no balance history",171260.0,55.69,7.51
+train,"bureau, some credits with history",203.0,0.07,22.17
+train,no bureau rows,44020.0,14.31,10.12
+train,"(bureau credits with any balance history, % of credits)",,35.73,
+test,"bureau, all credits with history",42080.0,86.33,
+test,"bureau, no balance history",9.0,0.02,
+test,"bureau, some credits with history",231.0,0.47,
+test,no bureau rows,6424.0,13.18,
+test,"(bureau credits with any balance history, % of credits)",,99.89,

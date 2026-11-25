@@ -1,0 +1,10 @@
+child,key,parent,child_distinct_keys,child_match_pct,same_owner_as_prev_pct
+bureau,SK_ID_CURR,application_train+test,305811,100.0,
+previous_application,SK_ID_CURR,application_train+test,338857,100.0,
+POS_CASH_balance,SK_ID_CURR,application_train+test,337252,100.0,
+credit_card_balance,SK_ID_CURR,application_train+test,103558,100.0,
+installments_payments,SK_ID_CURR,application_train+test,339587,100.0,
+bureau_balance,SK_ID_BUREAU,bureau,817395,94.73,
+POS_CASH_balance,SK_ID_PREV,previous_application,936325,96.0,100.0
+credit_card_balance,SK_ID_PREV,previous_application,104307,89.1,100.0
+installments_payments,SK_ID_PREV,previous_application,997752,96.11,100.0

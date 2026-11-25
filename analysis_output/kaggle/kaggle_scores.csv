@@ -1,0 +1,12 @@
+model,private_auc,public_auc,source
+lgbm_v2_combo_with_gender,0.78794,0.78866,"Kaggle late-submission page, read 2026-11-25, typed by hand"
+lgbm_v2_combo_lr02_x3,0.78782,0.78971,"Kaggle late-submission page, read 2026-11-25, typed by hand"
+lgbm_v2_combo_lr02,0.78679,0.78940,"Kaggle late-submission page, read 2026-11-25, typed by hand"
+lgbm_v2_combo,0.78453,0.78803,"Kaggle late-submission page, read 2026-11-25, typed by hand"
+lgbm_v2_stk,0.78380,0.78638,"Kaggle late-submission page, read 2026-11-25, typed by hand"
+lgbm_v2_stk_nobb,0.78207,0.78394,"Kaggle late-submission page, read 2026-11-25, typed by hand"
+lgbm_v2_term,0.78084,0.78486,"Kaggle late-submission page, read 2026-11-25, typed by hand"
+lgbm_v1,0.77994,0.78497,"Kaggle late-submission page, read 2026-11-25, typed by hand"
+lgbm_v2_win,0.77922,0.78502,"Kaggle late-submission page, read 2026-11-25, typed by hand"
+lgbm_v1_no_gender,0.77846,0.78540,"Kaggle late-submission page, read 2026-11-25, typed by hand"
+lgbm_v1_no_gender_family,0.77772,0.78350,"Kaggle late-submission page, read 2026-11-25, typed by hand"

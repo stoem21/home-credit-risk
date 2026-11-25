@@ -1,0 +1,11 @@
+measure,value
+"out-of-fold AUC, logreg, seed 0",0.73728
+"bootstrap SE of OOF AUC, logreg (200 resamples)",0.00169
+"bootstrap SE of AUC, rule (200 resamples)",0.00171
+bootstrap SE of the difference logreg - rule,0.00088
+paired fold diff logreg - rule (all): mean,0.02083
+paired fold diff logreg - rule (cash): mean,0.01953
+paired fold diff logreg - rule (all): sd over 25 folds,0.00254
+paired fold diff logreg - rule (cash): sd over 25 folds,0.00266
+paired fold diff logreg - rule (all): folds won of 25,25.0
+paired fold diff logreg - rule (cash): folds won of 25,25.0

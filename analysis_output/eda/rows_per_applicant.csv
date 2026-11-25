@@ -1,0 +1,13 @@
+table,split,applicants,pct_with_none,mean,median,p90,p99,max
+bureau,train,307511,14.31,4.77,4.0,11.0,20.0,116
+bureau,test,48744,13.18,5.15,4.0,11.0,21.0,78
+bureau_balance (via bureau),train,307511,70.01,47.81,0.0,176.0,540.0,2657
+bureau_balance (via bureau),test,48744,13.2,194.45,132.0,472.0,913.5699999999997,2791
+previous_application,train,307511,5.35,4.6,3.0,10.0,20.0,73
+previous_application,test,48744,1.94,5.26,4.0,11.0,22.0,77
+POS_CASH_balance,train,307511,5.88,27.78,21.0,60.0,114.0,295
+POS_CASH_balance,test,48744,1.92,29.91,22.0,64.0,122.0,247
+credit_card_balance,train,307511,71.74,10.5,0.0,37.0,96.0,192
+credit_card_balance,test,48744,65.84,12.56,0.0,44.0,96.0,140
+installments_payments,train,307511,5.16,37.69,23.0,95.0,185.0,372
+installments_payments,test,48744,1.64,41.31,26.0,103.0,194.0,336

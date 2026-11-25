@@ -1,0 +1,20 @@
+signal,group,applicants,pct_of_train,default_rate_pct
+share of installments paid late,no history,15868,5.16,5.98
+share of installments paid late,0%,136644,44.44,6.8
+share of installments paid late,0-5%,40212,13.08,7.01
+share of installments paid late,5-20%,77325,25.15,9.4
+share of installments paid late,>20%,37462,12.18,11.99
+share of previous applications refused,no history,16454,5.35,5.96
+share of previous applications refused,0%,190763,62.03,7.07
+share of previous applications refused,0-25%,47397,15.41,8.11
+share of previous applications refused,25-50%,41739,13.57,11.33
+share of previous applications refused,>50%,11158,3.63,15.93
+any bureau credit overdue now,no history,44020,14.31,10.12
+any bureau credit overdue now,no,260094,84.58,7.62
+any bureau credit overdue now,yes,3397,1.1,15.9
+any POS month with DPD (tolerance applied),no history,18067,5.88,6.66
+any POS month with DPD (tolerance applied),no,249554,81.15,7.74
+any POS month with DPD (tolerance applied),yes,39890,12.97,10.8
+any credit-card month with DPD (tolerance applied),no history,220606,71.74,7.84
+any credit-card month with DPD (tolerance applied),no,72063,23.43,8.86
+any credit-card month with DPD (tolerance applied),yes,14842,4.83,7.75

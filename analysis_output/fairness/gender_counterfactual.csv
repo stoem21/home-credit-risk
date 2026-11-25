@@ -1,0 +1,5 @@
+model,gender,applicants,max_abs_diff_vs_saved_predictions,mean_risk_change_pts_if_switched,pct_decisions_changed,pct_approved_then_declined,pct_declined_then_approved
+lgbm_v1,F,202448,0.0,1.551,4.41,4.31,0.09
+lgbm_v1,M,105059,0.0,-1.393,4.49,0.15,4.34
+scorecard_full,F,202448,0.0,1.707,5.46,5.46,0.0
+scorecard_full,M,105059,0.0,-1.956,6.73,0.0,6.73

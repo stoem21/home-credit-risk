@@ -1,0 +1,2 @@
+base_points,factor,pdo,base_score,base_odds_good_to_bad,n_variables,dropped_for_sign
+557.43,28.8539,20,600,50,26,"AMT_GOODS_PRICE, DAYS_BIRTH, REGION_POPULATION_RELATIVE, REG_CITY_NOT_WORK_CITY"

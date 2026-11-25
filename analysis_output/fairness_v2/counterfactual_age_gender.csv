@@ -1,0 +1,11 @@
+change,group,applicants,declined_pct,declined_after_change_pct,decisions_changed_pct,mean_risk_change_pts,max_abs_diff_vs_saved_oof
+age (model without gender/family),all,307511,5.76,6.32,1.01,0.309,0.0
+age (model without gender/family),25-34,72429,9.65,10.55,1.73,0.395,0.0
+age (model without gender/family),35-44,84261,5.96,5.72,0.46,-0.177,0.0
+age (model without gender/family),45-54,70190,4.32,4.62,0.44,0.246,0.0
+age (model without gender/family),55-64,60522,1.99,2.49,0.58,0.523,0.0
+age (model without gender/family),65+,7876,0.52,0.53,0.19,0.152,0.0
+age (model without gender/family),<25,12233,11.67,17.71,6.37,2.541,0.0
+gender (model with gender/family),all,307511,5.76,6.18,1.97,0.557,0.0
+gender (model with gender/family),F,202448,4.35,6.07,1.82,1.601,0.0
+gender (model with gender/family),M,105059,8.48,6.4,2.27,-1.453,0.0

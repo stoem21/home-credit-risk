@@ -1,0 +1,3 @@
+a,b,scope,auc_a,auc_b,gain_b_minus_a,boot_se_gain,b_wins_of_25,verdict
+logreg_baseline,scorecard_full,all,0.7373,0.75647,0.01917,0.00076,25,B better (beats noise)
+logreg_baseline,scorecard_full,cash,0.73588,0.75544,0.01956,0.00084,25,B better (beats noise)

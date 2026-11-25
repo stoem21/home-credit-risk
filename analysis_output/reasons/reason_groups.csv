@@ -1,0 +1,150 @@
+column,reason_group
+NAME_CONTRACT_TYPE,Loan size and terms vs income
+CODE_GENDER,Gender [sensitive]
+FLAG_OWN_CAR,Car ownership
+FLAG_OWN_REALTY,Housing
+CNT_CHILDREN,Family [sensitive]
+AMT_INCOME_TOTAL,Loan size and terms vs income
+AMT_CREDIT,Loan size and terms vs income
+AMT_ANNUITY,Loan size and terms vs income
+AMT_GOODS_PRICE,Loan size and terms vs income
+NAME_TYPE_SUITE,"Application process (day, hour, companion)"
+NAME_INCOME_TYPE,Employment and income type
+NAME_EDUCATION_TYPE,Education
+NAME_FAMILY_STATUS,Family [sensitive]
+NAME_HOUSING_TYPE,Housing
+REGION_POPULATION_RELATIVE,Region and address
+DAYS_BIRTH,Age [sensitive]
+DAYS_EMPLOYED,Employment and income type
+DAYS_REGISTRATION,Documents and ID
+DAYS_ID_PUBLISH,Documents and ID
+OWN_CAR_AGE,Car ownership
+FLAG_MOBIL,Contact details
+FLAG_EMP_PHONE,Contact details
+FLAG_WORK_PHONE,Contact details
+FLAG_CONT_MOBILE,Contact details
+FLAG_PHONE,Contact details
+FLAG_EMAIL,Contact details
+OCCUPATION_TYPE,Employment and income type
+CNT_FAM_MEMBERS,Family [sensitive]
+REGION_RATING_CLIENT,Region and address
+REGION_RATING_CLIENT_W_CITY,Region and address
+WEEKDAY_APPR_PROCESS_START,"Application process (day, hour, companion)"
+HOUR_APPR_PROCESS_START,"Application process (day, hour, companion)"
+REG_REGION_NOT_LIVE_REGION,Region and address
+REG_REGION_NOT_WORK_REGION,Region and address
+LIVE_REGION_NOT_WORK_REGION,Region and address
+REG_CITY_NOT_LIVE_CITY,Region and address
+REG_CITY_NOT_WORK_CITY,Region and address
+LIVE_CITY_NOT_WORK_CITY,Region and address
+ORGANIZATION_TYPE,Employment and income type
+EXT_SOURCE_1,External credit scores
+EXT_SOURCE_2,External credit scores
+EXT_SOURCE_3,External credit scores
+APARTMENTS_AVG,Housing
+BASEMENTAREA_AVG,Housing
+YEARS_BEGINEXPLUATATION_AVG,Housing
+YEARS_BUILD_AVG,Housing
+COMMONAREA_AVG,Housing
+ELEVATORS_AVG,Housing
+ENTRANCES_AVG,Housing
+FLOORSMAX_AVG,Housing
+FLOORSMIN_AVG,Housing
+LANDAREA_AVG,Housing
+LIVINGAPARTMENTS_AVG,Housing
+LIVINGAREA_AVG,Housing
+NONLIVINGAPARTMENTS_AVG,Housing
+NONLIVINGAREA_AVG,Housing
+APARTMENTS_MODE,Housing
+BASEMENTAREA_MODE,Housing
+YEARS_BEGINEXPLUATATION_MODE,Housing
+YEARS_BUILD_MODE,Housing
+COMMONAREA_MODE,Housing
+ELEVATORS_MODE,Housing
+ENTRANCES_MODE,Housing
+FLOORSMAX_MODE,Housing
+FLOORSMIN_MODE,Housing
+LANDAREA_MODE,Housing
+LIVINGAPARTMENTS_MODE,Housing
+LIVINGAREA_MODE,Housing
+NONLIVINGAPARTMENTS_MODE,Housing
+NONLIVINGAREA_MODE,Housing
+APARTMENTS_MEDI,Housing
+BASEMENTAREA_MEDI,Housing
+YEARS_BEGINEXPLUATATION_MEDI,Housing
+YEARS_BUILD_MEDI,Housing
+COMMONAREA_MEDI,Housing
+ELEVATORS_MEDI,Housing
+ENTRANCES_MEDI,Housing
+FLOORSMAX_MEDI,Housing
+FLOORSMIN_MEDI,Housing
+LANDAREA_MEDI,Housing
+LIVINGAPARTMENTS_MEDI,Housing
+LIVINGAREA_MEDI,Housing
+NONLIVINGAPARTMENTS_MEDI,Housing
+NONLIVINGAREA_MEDI,Housing
+FONDKAPREMONT_MODE,Housing
+HOUSETYPE_MODE,Housing
+TOTALAREA_MODE,Housing
+WALLSMATERIAL_MODE,Housing
+EMERGENCYSTATE_MODE,Housing
+OBS_30_CNT_SOCIAL_CIRCLE,Defaults in social circle
+DEF_30_CNT_SOCIAL_CIRCLE,Defaults in social circle
+OBS_60_CNT_SOCIAL_CIRCLE,Defaults in social circle
+DEF_60_CNT_SOCIAL_CIRCLE,Defaults in social circle
+DAYS_LAST_PHONE_CHANGE,Contact details
+FLAG_DOCUMENT_2,Documents and ID
+FLAG_DOCUMENT_3,Documents and ID
+FLAG_DOCUMENT_4,Documents and ID
+FLAG_DOCUMENT_5,Documents and ID
+FLAG_DOCUMENT_6,Documents and ID
+FLAG_DOCUMENT_7,Documents and ID
+FLAG_DOCUMENT_8,Documents and ID
+FLAG_DOCUMENT_9,Documents and ID
+FLAG_DOCUMENT_10,Documents and ID
+FLAG_DOCUMENT_11,Documents and ID
+FLAG_DOCUMENT_12,Documents and ID
+FLAG_DOCUMENT_13,Documents and ID
+FLAG_DOCUMENT_14,Documents and ID
+FLAG_DOCUMENT_15,Documents and ID
+FLAG_DOCUMENT_16,Documents and ID
+FLAG_DOCUMENT_17,Documents and ID
+FLAG_DOCUMENT_18,Documents and ID
+FLAG_DOCUMENT_19,Documents and ID
+FLAG_DOCUMENT_20,Documents and ID
+FLAG_DOCUMENT_21,Documents and ID
+AMT_REQ_CREDIT_BUREAU_HOUR,Recent credit enquiries
+AMT_REQ_CREDIT_BUREAU_DAY,Recent credit enquiries
+AMT_REQ_CREDIT_BUREAU_WEEK,Recent credit enquiries
+AMT_REQ_CREDIT_BUREAU_MON,Recent credit enquiries
+AMT_REQ_CREDIT_BUREAU_QRT,Recent credit enquiries
+AMT_REQ_CREDIT_BUREAU_YEAR,Recent credit enquiries
+no_employment_code,Employment and income type
+age_years,Age [sensitive]
+employed_years,Employment and income type
+credit_to_income,Loan size and terms vs income
+annuity_to_income,Loan size and terms vs income
+credit_to_goods,Loan size and terms vs income
+annuity_to_credit,Loan size and terms vs income
+bureau_n,Loans with other lenders
+bureau_active_n,Loans with other lenders
+bureau_overdue_any,Loans with other lenders
+bureau_overdue_days_max,Loans with other lenders
+bureau_days_since_last_credit,Loans with other lenders
+bureau_active_debt,Loans with other lenders
+bureau_active_debt_to_credit,Loans with other lenders
+prev_n,Earlier Home Credit applications
+prev_approved_n,Earlier Home Credit applications
+prev_refused_share,Earlier Home Credit applications
+prev_days_since_last_decision,Earlier Home Credit applications
+inst_n,Repayment of earlier Home Credit loans
+inst_late_share,Repayment of earlier Home Credit loans
+inst_days_late_mean,Repayment of earlier Home Credit loans
+inst_days_late_max,Repayment of earlier Home Credit loans
+inst_underpaid_share,Repayment of earlier Home Credit loans
+inst_late_share_last_year,Repayment of earlier Home Credit loans
+pos_months_n,Repayment of earlier Home Credit loans
+pos_dpd_any,Repayment of earlier Home Credit loans
+cc_has_card,Credit card use
+cc_util_mean,Credit card use
+cc_dpd_any,Credit card use

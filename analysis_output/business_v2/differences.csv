@@ -1,0 +1,7 @@
+policy_a,policy_b,profit_diff_per_applicant,ci95_low,ci95_high
+lgbm_v2_combo_lr02_x3 / break-even rule,(no model) / approve everyone,2568.7,2381.2,2744.0
+lgbm_v2_combo_lr02_x3 / break-even rule,scorecard_full_no_gender / break-even rule,1180.7,1050.1,1327.6
+lgbm_v1_no_gender_family / break-even rule,scorecard_full_no_gender / break-even rule,811.4,693.0,944.6
+lgbm_v2_combo_lr02_x3 / break-even rule,lgbm_v1_no_gender_family / break-even rule,369.4,292.6,446.3
+lgbm_v2_combo_lr02_x3 / break-even rule,lgbm_v1 / break-even rule,295.8,218.3,381.6
+lgbm_v2_combo_lr02_x3 / cross-fitted best cut-off,lgbm_v2_combo_lr02_x3 / break-even rule,-10.6,-23.2,1.8

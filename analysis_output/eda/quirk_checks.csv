@@ -1,0 +1,19 @@
+check,group,applicants,pct_of_train,default_rate_pct
+DAYS_EMPLOYED,= 365243,55374,18.01,5.4
+DAYS_EMPLOYED,real value,252137,81.99,8.66
+"DAYS_EMPLOYED = 365243, by income type",Pensioner,55352,18.0,5.39
+"DAYS_EMPLOYED = 365243, by income type",Unemployed,22,0.01,36.36
+Pensioners with DAYS_EMPLOYED = 365243,55352 of 55362 pensioners,55352,18.0,
+CODE_GENDER,XNA,4,0.0,0.0
+AMT_INCOME_TOTAL quantile,"q0.5: 147,150",153751,50.0,
+AMT_INCOME_TOTAL quantile,"q0.99: 472,500",3014,0.98,
+AMT_INCOME_TOTAL quantile,"q0.999: 900,000",278,0.09,
+AMT_INCOME_TOTAL max,"117,000,000",1,0.0,100.0
+enquiry count missing x has bureau rows,"enquiry_missing=True, has_bureau=True",0,0.0,
+enquiry count missing x has bureau rows,"enquiry_missing=True, has_bureau=False",41519,13.5,10.34
+enquiry count missing x has bureau rows,"enquiry_missing=False, has_bureau=True",263491,85.69,7.73
+enquiry count missing x has bureau rows,"enquiry_missing=False, has_bureau=False",2501,0.81,6.6
+"OCCUPATION_TYPE missing, by income type",Pensioner,55357,18.0,5.39
+"OCCUPATION_TYPE missing, by income type",Working,24920,8.1,9.06
+"OCCUPATION_TYPE missing, by income type",Commercial associate,12297,4.0,6.69
+"OCCUPATION_TYPE missing, by income type",State servant,3787,1.23,5.47

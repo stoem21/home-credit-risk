@@ -1,0 +1,8 @@
+model,policy,approval_pct,bad_rate_approved_pct,profit_per_applicant,profit_sd_seeds,profit_vs_approve_all
+(no model),approve everyone,100.0,8.073,83782.2,,0.0
+lgbm_v2_combo_lr02_x3,break-even rule,93.86,6.281,86350.874,27.52,2568.7
+lgbm_v2_combo_lr02_x3,cross-fitted best cut-off,94.078,6.328,86338.535,36.1,2556.3
+scorecard_full_no_gender,break-even rule,95.157,6.844,85170.144,18.15,1387.9
+scorecard_full_no_gender,cross-fitted best cut-off,94.783,6.779,85148.66,40.55,1366.5
+lgbm_v1,break-even rule,94.188,6.418,86055.081,43.08,2272.9
+lgbm_v1,cross-fitted best cut-off,94.39,6.466,86020.777,51.23,2238.6

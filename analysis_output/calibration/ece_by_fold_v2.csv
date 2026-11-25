@@ -1,0 +1,13 @@
+model,version,scope,ece_by_fold_pts,floor_pts
+lgbm_v1,raw,all,0.4954,0.3344
+lgbm_v1,raw,cash,0.5039,0.3694
+lgbm_v1,platt,all,0.4752,0.3374
+lgbm_v1,platt,cash,0.4832,0.3707
+lgbm_v1,isotonic,all,0.3752,0.3368
+lgbm_v1,isotonic,cash,0.3933,0.3669
+lgbm_v2_combo_lr02_x3,raw,all,0.4831,0.3451
+lgbm_v2_combo_lr02_x3,raw,cash,0.5032,0.3571
+lgbm_v2_combo_lr02_x3,platt,all,0.476,0.3467
+lgbm_v2_combo_lr02_x3,platt,cash,0.4917,0.359
+lgbm_v2_combo_lr02_x3,isotonic,all,0.3581,0.3422
+lgbm_v2_combo_lr02_x3,isotonic,cash,0.3722,0.3573

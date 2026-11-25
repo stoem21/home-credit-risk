@@ -1,0 +1,21 @@
+model,family,features,sensitive_columns_used,folds,cv_auc_all,cv_auc_cash,kaggle_file,note
+rule,"rule, no training",1 - mean of EXT_SOURCE_1/2/3,no,25,0.71647,0.71635,submission/rule.csv,baseline
+logreg_baseline,logistic regression,15 hand-picked application columns,gender,25,0.7373,0.73588,submission/logreg_baseline.csv,baseline
+scorecard_app,WOE scorecard,application form only,gender + family,25,0.74327,0.74159,submission/scorecard_app.csv,
+scorecard_full_no_gender,WOE scorecard,v1,no,25,0.75528,0.7542,submission/scorecard_full_no_gender.csv,explainable comparison
+scorecard_full,WOE scorecard,v1: form + 22 history summaries,gender,25,0.75647,0.75544,submission/scorecard_full.csv,
+mlp_v2_combo_s0,neural net (MLP),v2,no,5,0.76811,0.76739,,seed 0 only (exploratory)
+lgbm_v1_no_sensitive,LightGBM,v1 without age too,no (no age),25,0.77588,0.77537,submission/lgbm_v1_no_sensitive.csv,fairness test
+lgbm_v1_no_gender_family,LightGBM,v1,no,25,0.77732,0.77697,submission/lgbm_v1_no_gender_family.csv,fairness test; v2 reference
+lgbm_v2_ext,LightGBM,v1 + external-score combinations,no,25,0.77754,0.77709,submission/lgbm_v2_ext.csv,feature test (no gain)
+lgbm_v1_no_gender,LightGBM,v1,family,25,0.77773,0.77726,submission/lgbm_v1_no_gender.csv,fairness test
+lgbm_v1,LightGBM,v1 (149 columns),gender + family,25,0.77921,0.77879,submission/lgbm_v1.csv,
+lgbm_v2_win,LightGBM,v1 + recent-behaviour group,no,25,0.78014,0.77959,submission/lgbm_v2_win.csv,feature test
+lgbm_v2_term,LightGBM,v1 + loan-terms group,no,25,0.78079,0.78023,submission/lgbm_v2_term.csv,feature test
+lgbm_v2_stk_nobb,LightGBM,v1 + stacking group without bureau_balance,no,25,0.78111,0.78063,submission/lgbm_v2_stk_nobb.csv,feature test
+lgbm_v2_stk,LightGBM,v1 + stacking group incl. bureau_balance,no,25,0.78134,0.78085,submission/lgbm_v2_stk.csv,feature test
+lgbm_v2_combo,LightGBM,v2: v1 + win + stk (no bb) + term (186 columns),no,25,0.78502,0.78451,submission/lgbm_v2_combo.csv,
+xgb_v2_combo_s0,XGBoost,v2,no,5,0.78506,0.78456,,seed 0 only (exploratory)
+lgbm_v2_combo_with_gender,LightGBM,v2 + gender and family,gender + family,25,0.78662,0.78614,submission/lgbm_v2_combo_with_gender.csv,fairness reference
+lgbm_v2_combo_lr02,LightGBM,"v2, learning rate 0.02",no,25,0.78678,0.78625,submission/lgbm_v2_combo_lr02.csv,
+lgbm_v2_combo_lr02_x3,LightGBM,"v2, learning rate 0.02, average of 3 fits",no,25,0.78823,0.78771,submission/lgbm_v2_combo_lr02_x3.csv,CHOSEN MODEL

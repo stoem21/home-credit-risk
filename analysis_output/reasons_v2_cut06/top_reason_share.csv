@@ -1,0 +1,40 @@
+model,reason_group,pct_declines_top1,pct_declines_in_top3
+lightgbm (SHAP),External credit scores,81.23,94.85
+lightgbm (SHAP),Repayment of earlier Home Credit loans,6.45,37.91
+lightgbm (SHAP),Loan size and terms vs income,4.84,46.94
+lightgbm (SHAP),Credit card use,3.8,19.57
+lightgbm (SHAP),Earlier Home Credit applications,1.32,31.22
+lightgbm (SHAP),Loans still running at Home Credit,0.85,8.97
+lightgbm (SHAP),Employment and income type,0.8,32.89
+lightgbm (SHAP),Loans with other lenders,0.68,22.19
+lightgbm (SHAP),Defaults in social circle,0.01,1.6
+lightgbm (SHAP),Documents and ID,0.01,1.45
+lightgbm (SHAP),Age [sensitive],0.0,0.1
+lightgbm (SHAP),"Application process (day, hour, companion)",0.0,0.01
+lightgbm (SHAP),Car ownership,0.0,0.08
+lightgbm (SHAP),Contact details,0.0,0.55
+lightgbm (SHAP),Education,0.0,0.02
+lightgbm (SHAP),Housing,0.0,0.25
+lightgbm (SHAP),Recent credit enquiries,0.0,0.01
+lightgbm (SHAP),Region and address,0.0,1.38
+scorecard (points below approved average),External credit scores,97.05,99.49
+scorecard (points below approved average),Repayment of earlier Home Credit loans,1.78,45.28
+scorecard (points below approved average),Credit card use,0.71,18.3
+scorecard (points below approved average),Loans with other lenders,0.3,38.62
+scorecard (points below approved average),Loan size and terms vs income,0.16,35.52
+scorecard (points below approved average),Car ownership,0.0,0.02
+scorecard (points below approved average),Contact details,0.0,0.08
+scorecard (points below approved average),Documents and ID,0.0,0.3
+scorecard (points below approved average),Earlier Home Credit applications,0.0,19.61
+scorecard (points below approved average),Education,0.0,0.52
+scorecard (points below approved average),Employment and income type,0.0,39.41
+scorecard (points below approved average),Region and address,0.0,2.84
+scorecard (points below max),External credit scores,100.0,100.0
+scorecard (points below max),Credit card use,0.0,4.64
+scorecard (points below max),Earlier Home Credit applications,0.0,0.16
+scorecard (points below max),Education,0.0,87.58
+scorecard (points below max),Employment and income type,0.0,52.77
+scorecard (points below max),Loan size and terms vs income,0.0,17.58
+scorecard (points below max),Loans with other lenders,0.0,11.51
+scorecard (points below max),Region and address,0.0,0.01
+scorecard (points below max),Repayment of earlier Home Credit loans,0.0,25.75

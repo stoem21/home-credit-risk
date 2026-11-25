@@ -1,0 +1,6 @@
+example,lightgbm_risk_pct,scorecard_risk_pct,lightgbm_reasons,scorecard_reasons_below_max,scorecard_reasons_below_avg
+1,38.6,26.8,External credit scores | Earlier Home Credit applications | Employment and income type,External credit scores | Education | Employment and income type,External credit scores | Earlier Home Credit applications | Employment and income type
+2,25.9,26.1,External credit scores | Employment and income type | Repayment of earlier Home Credit loans,External credit scores | Education | Employment and income type,External credit scores | Employment and income type | Gender [sensitive]
+3,15.1,28.1,External credit scores | Gender [sensitive] | Repayment of earlier Home Credit loans,External credit scores | Education | Loan size and terms vs income,External credit scores | Repayment of earlier Home Credit loans | Loan size and terms vs income
+4,31.5,23.3,External credit scores | Loan size and terms vs income | Documents and ID,External credit scores | Loan size and terms vs income | Education,External credit scores | Loan size and terms vs income | Repayment of earlier Home Credit loans
+5,25.9,18.3,External credit scores | Loan size and terms vs income | Employment and income type,External credit scores | Education | Employment and income type,External credit scores | Employment and income type | Loan size and terms vs income

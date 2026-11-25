@@ -1,0 +1,15 @@
+measure,value
+train rows in a repeated pseudo-person group,12411.0
+repeated groups,5991.0
+repeated groups split across seed-0 folds,4871.0
+"pairs where both defaulted, % (observed)",1.109
+"pairs where both defaulted, % (if independent)",0.453
+"AUC usual folds, all rows",0.78432
+"AUC grouped folds, all rows",0.78555
+"AUC grouped minus usual, all rows",0.00123
+"AUC usual folds, rows in a repeated group",0.7744
+"AUC grouped folds, rows in a repeated group",0.7748
+"AUC grouped minus usual, rows in a repeated group",0.0004
+"AUC usual folds, other rows",0.78455
+"AUC grouped folds, other rows",0.78581
+"AUC grouped minus usual, other rows",0.00125

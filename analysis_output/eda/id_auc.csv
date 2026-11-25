@@ -1,0 +1,3 @@
+what,auc
+SK_ID_CURR AUC for TARGET (train),0.4978
+SK_ID_CURR AUC for test vs train,0.4989

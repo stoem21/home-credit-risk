@@ -1,0 +1,28 @@
+attribute,group,train_applicants,pct_of_train,pct_of_test,default_rate_pct
+gender (CODE_GENDER),F,202448,65.83,67.04,7.0
+gender (CODE_GENDER),M,105059,34.16,32.96,10.14
+gender (CODE_GENDER),XNA,4,0.0,0.0,0.0
+age band (from DAYS_BIRTH),25-34,72429,23.55,23.16,10.66
+age band (from DAYS_BIRTH),35-44,84261,27.4,27.64,8.41
+age band (from DAYS_BIRTH),45-54,70190,22.83,23.23,7.05
+age band (from DAYS_BIRTH),55-64,60522,19.68,19.58,5.42
+age band (from DAYS_BIRTH),65+,7876,2.56,2.53,3.66
+age band (from DAYS_BIRTH),<25,12233,3.98,3.86,12.29
+family status (NAME_FAMILY_STATUS),Civil marriage,29775,9.68,8.74,9.94
+family status (NAME_FAMILY_STATUS),Married,196432,63.88,66.23,7.56
+family status (NAME_FAMILY_STATUS),Separated,19770,6.43,6.06,8.19
+family status (NAME_FAMILY_STATUS),Single / not married,45444,14.78,14.43,9.81
+family status (NAME_FAMILY_STATUS),Unknown,2,0.0,0.0,0.0
+family status (NAME_FAMILY_STATUS),Widow,16088,5.23,4.53,5.82
+children (CNT_CHILDREN),0,215371,70.04,71.16,7.71
+children (CNT_CHILDREN),1,61119,19.88,19.5,8.92
+children (CNT_CHILDREN),2,26749,8.7,8.1,8.72
+children (CNT_CHILDREN),3+,4272,1.39,1.24,10.04
+education (NAME_EDUCATION_TYPE),Academic degree,164,0.05,0.08,1.83
+education (NAME_EDUCATION_TYPE),Higher education,74863,24.34,25.68,5.36
+education (NAME_EDUCATION_TYPE),Incomplete higher,10277,3.34,3.54,8.48
+education (NAME_EDUCATION_TYPE),Lower secondary,3816,1.24,0.97,10.93
+education (NAME_EDUCATION_TYPE),Secondary / secondary special,218391,71.02,69.73,8.94
+region rating (REGION_RATING_CLIENT),1,32197,10.47,11.83,4.82
+region rating (REGION_RATING_CLIENT),2,226984,73.81,72.53,7.89
+region rating (REGION_RATING_CLIENT),3,48330,15.72,15.64,11.1

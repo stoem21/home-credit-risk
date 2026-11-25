@@ -1,0 +1,3 @@
+a,b,scope,auc_a,auc_b,gain_b_minus_a,boot_se_gain,b_wins_of_25,verdict
+lgbm_v2_combo_with_gender,lgbm_v2_combo,all,0.78662,0.78502,-0.00161,0.00038,0,A better (beats noise)
+lgbm_v2_combo_with_gender,lgbm_v2_combo,cash,0.78614,0.78451,-0.00164,0.00039,0,A better (beats noise)

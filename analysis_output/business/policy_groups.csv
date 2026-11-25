@@ -1,0 +1,25 @@
+model,attribute,group,applicants,default_rate_pct,approval_pct,approval_pct_good_payers
+lgbm_v2_combo_lr02_x3,gender,F,202448,7.0,94.98,96.46
+lgbm_v2_combo_lr02_x3,gender,M,105059,10.14,91.7,94.15
+lgbm_v2_combo_lr02_x3,age band,25-34,72429,10.66,89.7,92.58
+lgbm_v2_combo_lr02_x3,age band,35-44,84261,8.41,93.63,95.59
+lgbm_v2_combo_lr02_x3,age band,45-54,70190,7.05,95.47,96.84
+lgbm_v2_combo_lr02_x3,age band,55-64,60522,5.42,97.86,98.51
+lgbm_v2_combo_lr02_x3,age band,65+,7876,3.66,99.54,99.75
+lgbm_v2_combo_lr02_x3,age band,<25,12233,12.29,87.32,90.21
+scorecard_full_no_gender,gender,F,202448,7.0,95.94,97.01
+scorecard_full_no_gender,gender,M,105059,10.14,93.64,95.26
+scorecard_full_no_gender,age band,25-34,72429,10.66,91.14,93.24
+scorecard_full_no_gender,age band,35-44,84261,8.41,95.71,96.98
+scorecard_full_no_gender,age band,45-54,70190,7.05,96.9,97.78
+scorecard_full_no_gender,age band,55-64,60522,5.42,98.92,99.2
+scorecard_full_no_gender,age band,65+,7876,3.66,99.71,99.75
+scorecard_full_no_gender,age band,<25,12233,12.29,83.53,86.36
+lgbm_v1,gender,F,202448,7.0,95.69,96.96
+lgbm_v1,gender,M,105059,10.14,91.29,93.74
+lgbm_v1,age band,25-34,72429,10.66,90.2,92.89
+lgbm_v1,age band,35-44,84261,8.41,93.92,95.71
+lgbm_v1,age band,45-54,70190,7.05,95.74,97.02
+lgbm_v1,age band,55-64,60522,5.42,98.05,98.63
+lgbm_v1,age band,65+,7876,3.66,99.58,99.75
+lgbm_v1,age band,<25,12233,12.29,88.13,90.82

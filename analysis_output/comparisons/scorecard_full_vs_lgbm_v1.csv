@@ -1,0 +1,3 @@
+a,b,scope,auc_a,auc_b,gain_b_minus_a,boot_se_gain,b_wins_of_25,verdict
+scorecard_full,lgbm_v1,all,0.75647,0.77921,0.02274,0.00075,25,B better (beats noise)
+scorecard_full,lgbm_v1,cash,0.75544,0.77879,0.02335,0.00079,25,B better (beats noise)

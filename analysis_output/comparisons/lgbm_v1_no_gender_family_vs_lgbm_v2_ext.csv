@@ -1,0 +1,3 @@
+a,b,scope,auc_a,auc_b,gain_b_minus_a,boot_se_gain,b_wins_of_25,verdict
+lgbm_v1_no_gender_family,lgbm_v2_ext,all,0.77732,0.77754,0.00022,0.00043,13,no clear difference
+lgbm_v1_no_gender_family,lgbm_v2_ext,cash,0.77697,0.77709,0.00012,0.00042,13,no clear difference

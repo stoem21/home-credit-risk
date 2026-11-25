@@ -1,0 +1,17 @@
+# Python 3.11. Versions are the ones the results were produced with.
+# Setup: uv venv --python 3.11 .venv && uv pip install --python .venv/bin/python -r requirements.txt
+# macOS: LightGBM needs OpenMP ->  brew install libomp
+numpy==2.4.6
+pandas==3.1.1
+pyarrow==26.0.1
+scipy==1.17.1
+matplotlib==3.11.2
+scikit-learn==1.9.1
+joblib==1.6.0
+threadpoolctl==3.8.0
+lightgbm==4.7.0
+xgboost==3.2.0
+# Notebook (notebooks/build_notebook.py builds and runs it)
+nbformat==5.11.1
+nbclient==0.11.0
+ipykernel==7.4.0

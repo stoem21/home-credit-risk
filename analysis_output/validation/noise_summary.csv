@@ -1,0 +1,5 @@
+model,scope,mean_auc,fold_sd,seed_sd,seed_mean_min,seed_mean_max
+logreg,all,0.7373,0.00236,4e-05,0.73724,0.73733
+logreg,cash,0.73588,0.00236,4e-05,0.73581,0.73592
+rule,all,0.71647,0.00279,1e-05,0.71646,0.71648
+rule,cash,0.71635,0.00263,1e-05,0.71634,0.71635

@@ -1,0 +1,21 @@
+# Kaggle competition data: download it yourself (see README). Not redistributed here.
+*.csv
+*.csv.zip
+*.zip
+data/
+!analysis_output/**/*.csv
+
+# Generated data, models, submissions
+processed/
+submission/
+
+# Environments, caches, logs
+.venv*/
+__pycache__/
+.ipynb_checkpoints/
+*.log
+.DS_Store
+.claude/
+
+# Private notes
+CLAUDE.md

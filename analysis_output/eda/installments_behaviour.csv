@@ -1,0 +1,4 @@
+measure,pct_rows
+rows with no payment recorded,0.02
+paid after the due day,8.43
+paid less than the instalment (row level),9.52

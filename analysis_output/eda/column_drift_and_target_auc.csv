@@ -1,0 +1,121 @@
+column,kind,drift_auc,drift_tvd,target_auc,pct_missing_train,pct_missing_test,target_auc_direction
+NAME_CONTRACT_TYPE,text,,0.0862,,0.0,0.0,
+CODE_GENDER,text,,0.0121,,0.0,0.0,
+FLAG_OWN_CAR,text,,0.003,,0.0,0.0,
+FLAG_OWN_REALTY,text,,0.0032,,0.0,0.0,
+CNT_CHILDREN,numeric,0.5062,,0.5171,0.0,0.0,higher = more defaults
+AMT_INCOME_TOTAL,numeric,0.5386,,0.5191,0.0,0.0,higher = fewer defaults
+AMT_CREDIT,numeric,0.5612,,0.5186,0.0,0.0,higher = fewer defaults
+AMT_ANNUITY,numeric,0.539,,0.5001,0.0,0.05,higher = fewer defaults
+AMT_GOODS_PRICE,numeric,0.5642,,0.5333,0.09,0.0,higher = fewer defaults
+NAME_TYPE_SUITE,text,,0.0214,,0.42,1.87,
+NAME_INCOME_TYPE,text,,0.0131,,0.0,0.0,
+NAME_EDUCATION_TYPE,text,,0.0156,,0.0,0.0,
+NAME_FAMILY_STATUS,text,,0.0235,,0.0,0.0,
+NAME_HOUSING_TYPE,text,,0.008,,0.0,0.0,
+REGION_POPULATION_RELATIVE,numeric,0.5027,,0.5324,0.0,0.0,higher = fewer defaults
+DAYS_BIRTH,numeric,0.5022,,0.583,0.0,0.0,higher = more defaults
+DAYS_EMPLOYED,numeric,0.52,,0.5824,18.01,19.03,higher = more defaults
+DAYS_REGISTRATION,numeric,0.5023,,0.5426,0.0,0.0,higher = more defaults
+DAYS_ID_PUBLISH,numeric,0.5168,,0.5557,0.0,0.0,higher = more defaults
+OWN_CAR_AGE,numeric,0.5021,,0.5589,65.99,66.29,higher = more defaults
+FLAG_MOBIL,numeric,0.5,,0.5,0.0,0.0,higher = more defaults
+FLAG_EMP_PHONE,numeric,0.5051,,0.5324,0.0,0.0,higher = more defaults
+FLAG_WORK_PHONE,numeric,0.5027,,0.5209,0.0,0.0,higher = more defaults
+FLAG_CONT_MOBILE,numeric,0.5001,,0.5,0.0,0.0,higher = more defaults
+FLAG_PHONE,numeric,0.509,,0.5196,0.0,0.0,higher = fewer defaults
+FLAG_EMAIL,numeric,0.553,,0.5007,0.0,0.0,higher = fewer defaults
+OCCUPATION_TYPE,text,,0.0146,,31.35,32.01,
+CNT_FAM_MEMBERS,numeric,0.5001,,0.5068,0.0,0.0,higher = more defaults
+REGION_RATING_CLIENT,numeric,0.506,,0.5481,0.0,0.0,higher = more defaults
+REGION_RATING_CLIENT_W_CITY,numeric,0.5081,,0.5492,0.0,0.0,higher = more defaults
+WEEKDAY_APPR_PROCESS_START,text,,0.0451,,0.0,0.0,
+HOUR_APPR_PROCESS_START,numeric,0.5061,,0.5242,0.0,0.0,higher = fewer defaults
+REG_REGION_NOT_LIVE_REGION,numeric,0.5018,,0.5012,0.0,0.0,higher = more defaults
+REG_REGION_NOT_WORK_REGION,numeric,0.5022,,0.5028,0.0,0.0,higher = more defaults
+LIVE_REGION_NOT_WORK_REGION,numeric,0.5007,,0.501,0.0,0.0,higher = more defaults
+REG_CITY_NOT_LIVE_CITY,numeric,0.5004,,0.5219,0.0,0.0,higher = more defaults
+REG_CITY_NOT_WORK_CITY,numeric,0.5029,,0.5394,0.0,0.0,higher = more defaults
+LIVE_CITY_NOT_WORK_CITY,numeric,0.5027,,0.5229,0.0,0.0,higher = more defaults
+ORGANIZATION_TYPE,text,,0.0261,,0.0,0.0,
+EXT_SOURCE_1,numeric,0.5007,,0.6657,56.38,42.12,higher = fewer defaults
+EXT_SOURCE_2,numeric,0.5019,,0.6561,0.21,0.02,higher = fewer defaults
+EXT_SOURCE_3,numeric,0.5184,,0.6794,19.83,17.78,higher = fewer defaults
+APARTMENTS_AVG,numeric,0.5142,,0.5397,50.75,49.01,higher = fewer defaults
+BASEMENTAREA_AVG,numeric,0.5096,,0.5265,58.52,56.71,higher = fewer defaults
+YEARS_BEGINEXPLUATATION_AVG,numeric,0.5068,,0.531,48.78,46.89,higher = fewer defaults
+YEARS_BUILD_AVG,numeric,0.5068,,0.5265,66.5,65.28,higher = fewer defaults
+COMMONAREA_AVG,numeric,0.5108,,0.5215,69.87,68.72,higher = fewer defaults
+ELEVATORS_AVG,numeric,0.5136,,0.5393,53.3,51.68,higher = fewer defaults
+ENTRANCES_AVG,numeric,0.5079,,0.5272,50.35,48.37,higher = fewer defaults
+FLOORSMAX_AVG,numeric,0.5152,,0.5504,49.76,47.84,higher = fewer defaults
+FLOORSMIN_AVG,numeric,0.5111,,0.5356,67.85,66.61,higher = fewer defaults
+LANDAREA_AVG,numeric,0.5023,,0.5155,59.38,57.96,higher = fewer defaults
+LIVINGAPARTMENTS_AVG,numeric,0.5174,,0.5355,68.35,67.25,higher = fewer defaults
+LIVINGAREA_AVG,numeric,0.5146,,0.5471,50.19,48.32,higher = fewer defaults
+NONLIVINGAPARTMENTS_AVG,numeric,0.5041,,0.5064,69.43,68.41,higher = fewer defaults
+NONLIVINGAREA_AVG,numeric,0.5047,,0.5153,55.18,53.51,higher = fewer defaults
+APARTMENTS_MODE,numeric,0.5133,,0.5375,50.75,49.01,higher = fewer defaults
+BASEMENTAREA_MODE,numeric,0.5091,,0.5217,58.52,56.71,higher = fewer defaults
+YEARS_BEGINEXPLUATATION_MODE,numeric,0.5069,,0.5307,48.78,46.89,higher = fewer defaults
+YEARS_BUILD_MODE,numeric,0.5069,,0.5263,66.5,65.28,higher = fewer defaults
+COMMONAREA_MODE,numeric,0.5091,,0.5183,69.87,68.72,higher = fewer defaults
+ELEVATORS_MODE,numeric,0.5122,,0.5365,53.3,51.68,higher = fewer defaults
+ENTRANCES_MODE,numeric,0.5073,,0.5242,50.35,48.37,higher = fewer defaults
+FLOORSMAX_MODE,numeric,0.5141,,0.5491,49.76,47.84,higher = fewer defaults
+FLOORSMIN_MODE,numeric,0.5093,,0.5341,67.85,66.61,higher = fewer defaults
+LANDAREA_MODE,numeric,0.5017,,0.5131,59.38,57.96,higher = fewer defaults
+LIVINGAPARTMENTS_MODE,numeric,0.5163,,0.5333,68.35,67.25,higher = fewer defaults
+LIVINGAREA_MODE,numeric,0.5132,,0.5442,50.19,48.32,higher = fewer defaults
+NONLIVINGAPARTMENTS_MODE,numeric,0.5025,,0.5036,69.43,68.41,higher = fewer defaults
+NONLIVINGAREA_MODE,numeric,0.5032,,0.5134,55.18,53.51,higher = fewer defaults
+APARTMENTS_MEDI,numeric,0.5138,,0.5392,50.75,49.01,higher = fewer defaults
+BASEMENTAREA_MEDI,numeric,0.5096,,0.5258,58.52,56.71,higher = fewer defaults
+YEARS_BEGINEXPLUATATION_MEDI,numeric,0.507,,0.5312,48.78,46.89,higher = fewer defaults
+YEARS_BUILD_MEDI,numeric,0.507,,0.5267,66.5,65.28,higher = fewer defaults
+COMMONAREA_MEDI,numeric,0.5099,,0.5211,69.87,68.72,higher = fewer defaults
+ELEVATORS_MEDI,numeric,0.5127,,0.5386,53.3,51.68,higher = fewer defaults
+ENTRANCES_MEDI,numeric,0.5077,,0.527,50.35,48.37,higher = fewer defaults
+FLOORSMAX_MEDI,numeric,0.5147,,0.55,49.76,47.84,higher = fewer defaults
+FLOORSMIN_MEDI,numeric,0.5106,,0.5353,67.85,66.61,higher = fewer defaults
+LANDAREA_MEDI,numeric,0.5024,,0.5152,59.38,57.96,higher = fewer defaults
+LIVINGAPARTMENTS_MEDI,numeric,0.5167,,0.5351,68.35,67.25,higher = fewer defaults
+LIVINGAREA_MEDI,numeric,0.5141,,0.5466,50.19,48.32,higher = fewer defaults
+NONLIVINGAPARTMENTS_MEDI,numeric,0.5027,,0.5051,69.43,68.41,higher = fewer defaults
+NONLIVINGAREA_MEDI,numeric,0.5038,,0.5143,55.18,53.51,higher = fewer defaults
+FONDKAPREMONT_MODE,text,,0.011,,68.39,67.28,
+HOUSETYPE_MODE,text,,0.0172,,50.18,48.46,
+TOTALAREA_MODE,numeric,0.5141,,0.5454,48.27,46.41,higher = fewer defaults
+WALLSMATERIAL_MODE,text,,0.0204,,50.84,49.02,
+EMERGENCYSTATE_MODE,text,,0.0186,,47.4,45.56,
+OBS_30_CNT_SOCIAL_CIRCLE,numeric,0.5003,,0.5091,0.33,0.06,higher = more defaults
+DEF_30_CNT_SOCIAL_CIRCLE,numeric,0.5007,,0.5188,0.33,0.06,higher = more defaults
+OBS_60_CNT_SOCIAL_CIRCLE,numeric,0.5006,,0.5089,0.33,0.06,higher = more defaults
+DEF_60_CNT_SOCIAL_CIRCLE,numeric,0.5,,0.5157,0.33,0.06,higher = more defaults
+DAYS_LAST_PHONE_CHANGE,numeric,0.536,,0.5569,0.0,0.0,higher = more defaults
+FLAG_DOCUMENT_2,numeric,0.5,,0.5001,0.0,0.0,higher = more defaults
+FLAG_DOCUMENT_3,numeric,0.5383,,0.5369,0.0,0.0,higher = more defaults
+FLAG_DOCUMENT_4,numeric,0.5,,0.5,0.0,0.0,higher = fewer defaults
+FLAG_DOCUMENT_5,numeric,0.5002,,0.5001,0.0,0.0,higher = fewer defaults
+FLAG_DOCUMENT_6,numeric,0.5003,,0.5149,0.0,0.0,higher = fewer defaults
+FLAG_DOCUMENT_7,numeric,0.5001,,0.5,0.0,0.0,higher = fewer defaults
+FLAG_DOCUMENT_8,numeric,0.5035,,0.504,0.0,0.0,higher = fewer defaults
+FLAG_DOCUMENT_9,numeric,0.5003,,0.5005,0.0,0.0,higher = fewer defaults
+FLAG_DOCUMENT_10,numeric,0.5,,0.5,0.0,0.0,higher = fewer defaults
+FLAG_DOCUMENT_11,numeric,0.5014,,0.5005,0.0,0.0,higher = fewer defaults
+FLAG_DOCUMENT_12,numeric,0.5,,0.5,0.0,0.0,higher = fewer defaults
+FLAG_DOCUMENT_13,numeric,0.5018,,0.5013,0.0,0.0,higher = fewer defaults
+FLAG_DOCUMENT_14,numeric,0.5015,,0.5009,0.0,0.0,higher = fewer defaults
+FLAG_DOCUMENT_15,numeric,0.5006,,0.5004,0.0,0.0,higher = fewer defaults
+FLAG_DOCUMENT_16,numeric,0.505,,0.5021,0.0,0.0,higher = fewer defaults
+FLAG_DOCUMENT_17,numeric,0.5001,,0.5001,0.0,0.0,higher = fewer defaults
+FLAG_DOCUMENT_18,numeric,0.5033,,0.5013,0.0,0.0,higher = fewer defaults
+FLAG_DOCUMENT_19,numeric,0.5003,,0.5001,0.0,0.0,higher = fewer defaults
+FLAG_DOCUMENT_20,numeric,0.5003,,0.5,0.0,0.0,higher = more defaults
+FLAG_DOCUMENT_21,numeric,0.5002,,0.5001,0.0,0.0,higher = more defaults
+AMT_REQ_CREDIT_BUREAU_HOUR,numeric,0.502,,0.5001,13.5,12.41,higher = more defaults
+AMT_REQ_CREDIT_BUREAU_DAY,numeric,0.502,,0.5007,13.5,12.41,higher = more defaults
+AMT_REQ_CREDIT_BUREAU_WEEK,numeric,0.5147,,0.5002,13.5,12.41,higher = more defaults
+AMT_REQ_CREDIT_BUREAU_MON,numeric,0.5782,,0.5048,13.5,12.41,higher = fewer defaults
+AMT_REQ_CREDIT_BUREAU_QRT,numeric,0.6229,,0.5063,13.5,12.41,higher = fewer defaults
+AMT_REQ_CREDIT_BUREAU_YEAR,numeric,0.5177,,0.5206,13.5,12.41,higher = more defaults

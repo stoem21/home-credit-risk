@@ -1,0 +1,10 @@
+model,file,rows,pred_min,pred_mean,pred_max,cv_auc_all,cv_auc_cash
+rule,submission/rule.csv,48744,0.145,0.49303,0.99944,0.71647,0.71635
+logreg_baseline,submission/logreg_baseline.csv,48744,0.00298,0.0814,0.70821,0.7373,0.73588
+scorecard_app,submission/scorecard_app.csv,48744,0.00282,0.08322,0.64209,0.74327,0.74159
+scorecard_full_no_gender,submission/scorecard_full_no_gender.csv,48744,0.00168,0.08091,0.65262,0.75528,0.7542
+scorecard_full,submission/scorecard_full.csv,48744,0.00205,0.08097,0.63751,0.75647,0.75544
+lgbm_v1_no_sensitive,submission/lgbm_v1_no_sensitive.csv,48744,0.00258,0.07711,0.77886,0.77588,0.77537
+lgbm_v1_no_gender_family,submission/lgbm_v1_no_gender_family.csv,48744,0.00194,0.07707,0.82739,0.77732,0.77697
+lgbm_v1_no_gender,submission/lgbm_v1_no_gender.csv,48744,0.00289,0.07722,0.79469,0.77773,0.77726
+lgbm_v1,submission/lgbm_v1.csv,48744,0.00279,0.07665,0.77906,0.77921,0.77879

@@ -1,0 +1,7 @@
+table,column,unit,min,p01,median,max
+bureau,DAYS_CREDIT,days,-2922.0,-2867.0,-987.0,0.0
+bureau_balance,MONTHS_BALANCE,months,-96.0,-91.0,-25.0,0.0
+previous_application,DAYS_DECISION,days,-2922.0,-2835.0,-581.0,-1.0
+POS_CASH_balance,MONTHS_BALANCE,months,-96.0,-94.0,-28.0,-1.0
+credit_card_balance,MONTHS_BALANCE,months,-96.0,-93.0,-28.0,-1.0
+installments_payments,DAYS_INSTALMENT,days,-2922.0,-2832.0,-818.0,-1.0
