@@ -1,0 +1,17 @@
+{
+ "note": "Monotone constraints for LightGBM (EXPERIMENTS.md entry 34), fixed before any result: +1 = a higher value can only raise the predicted risk, -1 = can only lower it. Only columns with a clear business direction; sensitive attributes and loan amounts are left free.",
+ "method": "intermediate",
+ "columns": {
+  "EXT_SOURCE_1": -1, "EXT_SOURCE_2": -1, "EXT_SOURCE_3": -1,
+  "employed_years": -1,
+  "inst_late_share": 1, "inst_days_late_mean": 1, "inst_days_late_max": 1, "inst_late_share_last_year": 1,
+  "inst_underpaid_share": 1,
+  "win_inst_late_share_90d": 1, "win_inst_late_share_180d": 1, "win_inst_late_share_365d": 1,
+  "win_inst_days_late_mean_90d": 1, "win_inst_days_late_mean_180d": 1, "win_inst_days_late_mean_365d": 1,
+  "win_inst_late30_share": 1, "win_inst_underpaid_share_365d": 1,
+  "pos_dpd_any": 1, "cc_dpd_any": 1, "win_pos_dpd_share_12m": 1, "win_cc_dpd_share_12m": 1,
+  "bureau_overdue_any": 1, "bureau_overdue_days_max": 1,
+  "prev_refused_share": 1, "win_prev_refused_90d": 1, "win_prev_refused_365d": 1,
+  "annuity_to_income": 1, "stk_bureau_active_debt_to_income": 1
+ }
+}

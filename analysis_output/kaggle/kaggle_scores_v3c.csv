@@ -1,0 +1,2 @@
+model,private_auc,public_auc,source
+lgbm_v3c_sh90_lr02_x3_tuned,0.79479,0.79596,"Kaggle late-submission page (screenshot), 2026-11-25, typed by hand"

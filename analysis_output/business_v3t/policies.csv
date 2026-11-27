@@ -1,0 +1,14 @@
+model,policy,approval_pct,bad_rate_approved_pct,profit_per_applicant,profit_sd_seeds,profit_vs_approve_all
+(no model),approve everyone,100.0,8.073,83782.158,0.0,0.0
+lgbm_v3b_sh90_lr02_x3_tuned,break-even rule,92.828,6.01,86564.464,21.41,2782.3
+lgbm_v3b_sh90_lr02_x3_tuned,cross-fitted best cut-off,92.647,5.972,86566.748,16.03,2784.6
+lgbm_v3b_sh90_lr02_x3,break-even rule,93.579,6.173,86534.711,36.45,2752.6
+lgbm_v3b_sh90_lr02_x3,cross-fitted best cut-off,93.588,6.175,86524.228,57.06,2742.1
+lgbm_v2_combo_lr02_x3,break-even rule,93.86,6.281,86350.874,27.52,2568.7
+lgbm_v2_combo_lr02_x3,cross-fitted best cut-off,93.948,6.301,86340.269,36.46,2558.1
+scorecard_full_no_gender,break-even rule,95.157,6.844,85170.144,18.15,1388.0
+scorecard_full_no_gender,cross-fitted best cut-off,94.74,6.773,85141.964,38.47,1359.8
+lgbm_v1_no_gender_family,break-even rule,94.257,6.452,85981.508,45.0,2199.4
+lgbm_v1_no_gender_family,cross-fitted best cut-off,94.336,6.473,85964.457,75.64,2182.3
+lgbm_v1,break-even rule,94.188,6.418,86055.081,43.08,2272.9
+lgbm_v1,cross-fitted best cut-off,94.355,6.457,86028.504,46.02,2246.3

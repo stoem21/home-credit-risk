@@ -1,0 +1,12 @@
+what,psi
+model score,0.0017
+EXT_SOURCE_2,0.0151
+EXT_SOURCE_3,0.0078
+rate_total_cost,0.4469
+rate_yearly_pred,0.8404
+EXT_SOURCE_1,0.0846
+ORGANIZATION_TYPE,0.0055
+OCCUPATION_TYPE,0.002
+agg_bur_debt_ratio_max,0.005
+agg_bur_act_debt_ratio_max,0.0087
+DAYS_EMPLOYED,0.0078

@@ -1,0 +1,55 @@
+model,attribute,group,applicants,default_rate_pct,mean_pred_pct,approval_pct,approval_pct_sd_seeds,approval_pct_good_payers,approval_pct_defaulters,default_pct_among_approved
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,gender,F,202448,7.0,6.99,88.0,0.01,90.52,54.53,4.34
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,gender,M,105059,10.14,9.87,79.22,0.03,83.24,43.62,5.58
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,gender,XNA,4,0.0,8.18,90.0,13.69,90.0,,0.0
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,age band,25-34,72429,10.66,10.57,76.94,0.03,81.28,40.57,5.62
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,age band,35-44,84261,8.41,8.11,84.62,0.01,87.88,49.12,4.88
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,age band,45-54,70190,7.05,7.02,88.08,0.03,90.63,54.5,4.36
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,age band,55-64,60522,5.42,5.45,92.91,0.03,94.33,68.02,3.97
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,age band,65+,7876,3.66,3.4,97.82,0.05,98.23,87.08,3.26
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,age band,<25,12233,12.29,12.53,70.28,0.23,74.68,38.84,6.8
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,family status,Civil marriage,29775,9.94,9.71,79.97,0.03,83.99,43.49,5.41
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,family status,Married,196432,7.56,7.54,86.21,0.01,89.06,51.32,4.5
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,family status,Separated,19770,8.19,7.91,85.64,0.09,88.63,52.15,4.99
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,family status,Single / not married,45444,9.81,9.53,80.27,0.04,84.12,44.87,5.48
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,family status,Unknown,2,0.0,2.73,100.0,0.0,100.0,,0.0
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,family status,Widow,16088,5.82,5.72,92.16,0.07,93.75,66.3,4.19
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,children,0,215371,7.71,7.64,86.05,0.01,88.94,51.46,4.61
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,children,1,61119,8.92,8.63,82.94,0.07,86.43,47.32,5.09
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,children,2,26749,8.72,8.84,82.2,0.06,85.7,45.5,4.83
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,children,3+,4272,10.04,10.07,79.08,0.22,83.08,43.31,5.5
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,education,Academic degree,164,1.83,6.28,87.44,0.7,87.83,66.67,1.39
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,education,Higher education,74863,5.36,5.38,92.44,0.03,94.02,64.47,3.73
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,education,Incomplete higher,10277,8.48,8.46,83.67,0.18,86.81,49.86,5.06
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,education,Lower secondary,3816,10.93,10.38,78.35,0.25,82.35,45.8,6.39
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,education,Secondary / secondary special,218391,8.94,8.8,82.63,0.02,86.13,46.93,5.08
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,region rating,1,32197,4.82,4.87,93.66,0.03,94.91,68.89,3.55
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,region rating,2,226984,7.89,7.81,85.52,0.01,88.47,51.03,4.71
+lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender,region rating,3,48330,11.1,10.78,76.79,0.05,81.34,40.38,5.84
+lgbm_v3c_sh90_lr02_x3_tuned_mono,gender,F,202448,7.0,7.26,87.22,0.02,89.79,53.07,4.26
+lgbm_v3c_sh90_lr02_x3_tuned_mono,gender,M,105059,10.14,9.35,80.72,0.03,84.57,46.58,5.85
+lgbm_v3c_sh90_lr02_x3_tuned_mono,gender,XNA,4,0.0,8.05,85.0,13.69,85.0,,0.0
+lgbm_v3c_sh90_lr02_x3_tuned_mono,age band,25-34,72429,10.66,10.58,76.8,0.02,81.11,40.68,5.65
+lgbm_v3c_sh90_lr02_x3_tuned_mono,age band,35-44,84261,8.41,8.11,84.65,0.04,87.87,49.58,4.92
+lgbm_v3c_sh90_lr02_x3_tuned_mono,age band,45-54,70190,7.05,7.03,88.11,0.02,90.6,55.2,4.41
+lgbm_v3c_sh90_lr02_x3_tuned_mono,age band,55-64,60522,5.42,5.45,93.01,0.03,94.39,68.98,4.02
+lgbm_v3c_sh90_lr02_x3_tuned_mono,age band,65+,7876,3.66,3.41,97.92,0.03,98.32,87.5,3.27
+lgbm_v3c_sh90_lr02_x3_tuned_mono,age band,<25,12233,12.29,12.54,70.17,0.14,74.57,38.82,6.8
+lgbm_v3c_sh90_lr02_x3_tuned_mono,family status,Civil marriage,29775,9.94,9.15,81.42,0.06,85.3,46.32,5.66
+lgbm_v3c_sh90_lr02_x3_tuned_mono,family status,Married,196432,7.56,7.81,85.5,0.02,88.38,50.23,4.44
+lgbm_v3c_sh90_lr02_x3_tuned_mono,family status,Separated,19770,8.19,7.39,87.0,0.07,89.8,55.63,5.24
+lgbm_v3c_sh90_lr02_x3_tuned_mono,family status,Single / not married,45444,9.81,8.97,81.83,0.07,85.53,47.75,5.72
+lgbm_v3c_sh90_lr02_x3_tuned_mono,family status,Unknown,2,0.0,2.64,100.0,0.0,100.0,,0.0
+lgbm_v3c_sh90_lr02_x3_tuned_mono,family status,Widow,16088,5.82,5.76,92.07,0.06,93.65,66.4,4.2
+lgbm_v3c_sh90_lr02_x3_tuned_mono,children,0,215371,7.71,7.6,86.2,0.01,89.05,52.16,4.67
+lgbm_v3c_sh90_lr02_x3_tuned_mono,children,1,61119,8.92,8.7,82.71,0.05,86.17,47.46,5.12
+lgbm_v3c_sh90_lr02_x3_tuned_mono,children,2,26749,8.72,9.02,81.61,0.05,85.11,44.99,4.81
+lgbm_v3c_sh90_lr02_x3_tuned_mono,children,3+,4272,10.04,10.3,78.33,0.28,82.37,42.14,5.4
+lgbm_v3c_sh90_lr02_x3_tuned_mono,education,Academic degree,164,1.83,6.12,89.39,0.7,89.69,73.33,1.5
+lgbm_v3c_sh90_lr02_x3_tuned_mono,education,Higher education,74863,5.36,5.39,92.46,0.04,94.03,64.78,3.75
+lgbm_v3c_sh90_lr02_x3_tuned_mono,education,Incomplete higher,10277,8.48,8.43,83.72,0.15,86.8,50.55,5.12
+lgbm_v3c_sh90_lr02_x3_tuned_mono,education,Lower secondary,3816,10.93,10.26,78.67,0.35,82.72,45.66,6.34
+lgbm_v3c_sh90_lr02_x3_tuned_mono,education,Secondary / secondary special,218391,8.94,8.81,82.61,0.02,86.07,47.39,5.13
+lgbm_v3c_sh90_lr02_x3_tuned_mono,region rating,1,32197,4.82,4.88,93.68,0.05,94.91,69.3,3.57
+lgbm_v3c_sh90_lr02_x3_tuned_mono,region rating,2,226984,7.89,7.82,85.53,0.01,88.45,51.49,4.75
+lgbm_v3c_sh90_lr02_x3_tuned_mono,region rating,3,48330,11.1,10.79,76.71,0.04,81.2,40.74,5.9

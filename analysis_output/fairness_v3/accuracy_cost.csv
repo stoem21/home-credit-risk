@@ -1,0 +1,5 @@
+reference,variant,scope,auc_a,auc_b,gain_b_minus_a,boot_se_gain,b_wins_of_25,verdict
+lgbm_v3b_sh90_with_gender,lgbm_v3b_sh90,all,0.79201,0.79026,-0.00175,0.00043,1,A better (beats noise)
+lgbm_v3b_sh90_with_gender,lgbm_v3b_sh90,cash,0.7914,0.78963,-0.00177,0.00041,1,A better (beats noise)
+lgbm_v3b_sh90_with_gender,lgbm_v3b_sh90_lr02_x3,all,0.79201,0.79382,0.00181,0.00037,25,B better (beats noise)
+lgbm_v3b_sh90_with_gender,lgbm_v3b_sh90_lr02_x3,cash,0.7914,0.79313,0.00173,0.00037,25,B better (beats noise)

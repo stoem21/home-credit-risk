@@ -1,0 +1,3 @@
+a,b,scope,auc_a,auc_b,gain_b_minus_a,boot_se_gain,b_wins_of_5,verdict
+lgbm_v3b_sh90_s1,lgbm_v3b_sh95_s1,all,0.79016,0.7908,0.00064,0.00033,5,no clear difference [exploratory: 5 pairs]
+lgbm_v3b_sh90_s1,lgbm_v3b_sh95_s1,cash,0.78951,0.79025,0.00073,0.00041,5,no clear difference [exploratory: 5 pairs]

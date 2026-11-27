@@ -12,7 +12,9 @@ fully. The columns that help most show where the proxies are. No TARGET is used.
 
 Usage:
     .venv/bin/python -m analysis.proxy_check [--jobs 5] [--threads 2] [--out-root DIR]
-Output: analysis_output/fairness_v2/proxy_check.csv, proxy_top_columns.csv
+    v3: add --features v3b --add win,stk,term,agg,last,trend,load --exclude <v3 list> --tag v3
+        (all candidate columns of the v3 model, before its in-fold SHAP selection)
+Output: analysis_output/fairness_<tag>/proxy_check.csv, proxy_top_columns.csv (default tag v2)
 """
 
 import argparse
@@ -22,15 +24,18 @@ import pandas as pd
 from joblib import Parallel, delayed
 from sklearn.model_selection import StratifiedKFold
 
-from homecredit.data import SENSITIVE_COLS, drop_columns, load_features, select_groups
+from homecredit.data import SENSITIVE_COLS, drop_columns, exclude_prefixes, load_features, select_groups
 from homecredit.evaluate import auc
 from homecredit.models.lgbm import fit
 from homecredit.paths import Paths, add_out_root
 
 
-def setup(P):
-    tr, _, cols = load_features(P, "v2", categories=True)
-    cols = [c for c in drop_columns(select_groups(cols, "win,stk,term"), "gender,family") if not c.startswith("stk_bb_")]
+CFG = {"features": "v2", "add": "win,stk,term", "exclude": "stk_bb_"}  # defaults: the v2 model's candidate columns
+
+
+def setup(P, cfg=CFG):
+    tr, _, cols = load_features(P, cfg["features"], categories=True)
+    cols = exclude_prefixes(drop_columns(select_groups(cols, cfg["add"]), "gender,family"), cfg["exclude"])
     age = -tr.DAYS_BIRTH / 365.25
     married = tr.NAME_FAMILY_STATUS.astype(str).isin(["Married", "Civil marriage"])
     targets = {
@@ -45,8 +50,8 @@ def setup(P):
     return tr, targets
 
 
-def run_fold(out_root, name, trn, va, threads):
-    tr, targets = setup(Paths(out_root))
+def run_fold(out_root, name, trn, va, threads, cfg=CFG):
+    tr, targets = setup(Paths(out_root), cfg)
     t, keep, cols = targets[name]
     idx = np.where(keep)[0]
     X = tr[cols].iloc[idx]
@@ -59,18 +64,23 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--jobs", type=int, default=5)
     ap.add_argument("--threads", type=int, default=2)
+    ap.add_argument("--features", default=CFG["features"])
+    ap.add_argument("--add", default=CFG["add"])
+    ap.add_argument("--exclude", default=CFG["exclude"])
+    ap.add_argument("--tag", default="v2", help="output folder fairness_<tag>")
     add_out_root(ap)
     args = ap.parse_args()
+    cfg = {"features": args.features, "add": args.add, "exclude": args.exclude}
     P = Paths(args.out_root)
-    out = P.out("fairness_v2")
-    tr, targets = setup(P)
+    out = P.out(f"fairness_{args.tag}")
+    tr, targets = setup(P, cfg)
 
     tasks = []
     for name, (t, keep, cols) in targets.items():
         idx = np.where(keep)[0]
         for trn, va in StratifiedKFold(5, shuffle=True, random_state=0).split(idx, t[idx]):
             tasks.append((name, trn, va))
-    res = Parallel(n_jobs=args.jobs)(delayed(run_fold)(args.out_root, n, trn, va, args.threads)
+    res = Parallel(n_jobs=args.jobs)(delayed(run_fold)(args.out_root, n, trn, va, args.threads, cfg)
                                      for n, trn, va in tasks)
     rows, tops = [], []
     for name, (t, keep, cols) in targets.items():

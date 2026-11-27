@@ -1,0 +1,5 @@
+attribute,rows,share_positive_pct,columns_used,proxy_auc
+gender: men vs women,307507,34.16,721,0.9132
+family: married or civil marriage,307511,73.56,721,0.7584
+age: under 25,307511,3.98,719,0.9942
+age: 55 or over,307511,22.24,719,0.9726

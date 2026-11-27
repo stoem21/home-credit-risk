@@ -1,0 +1,3 @@
+scorecard_method,declined_by_lightgbm,declined_by_scorecard,declined_by_both,pct_same_top1,mean_shared_of_top3
+points below max,17329,18420,10590,88.0,1.61
+points below approved average,17329,18420,10590,89.14,2.19

@@ -22,8 +22,9 @@ Groups (prefix -> what):
 New numeric columns are stored as float32 to keep the table small enough for 5 parallel workers.
 
 Usage:
-    .venv/bin/python -m pipeline.make_features_v3 [--out-root DIR]
-Output: processed/features_v3.parquet (all v2 columns unchanged, plus the new groups)
+    .venv/bin/python -m pipeline.make_features_v3 [--fixed] [--out-root DIR]
+Output: processed/features_v3.parquet, or with --fixed processed/features_v3b.parquet (bureau corrections, see
+fix_bureau); all v2 columns unchanged, plus the new groups
 """
 
 import argparse
@@ -49,8 +50,30 @@ def shares(df: pd.DataFrame, col: str, prefix: str, top: int) -> pd.DataFrame:
     return d.groupby("SK_ID_CURR").mean()
 
 
+FIXED = False  # set by --fixed: the corrected table features_v3b (the original features_v3 stays reproducible)
+AMOUNTS = ["AMT_CREDIT_MAX_OVERDUE", "AMT_CREDIT_SUM", "AMT_CREDIT_SUM_DEBT", "AMT_CREDIT_SUM_LIMIT",
+           "AMT_CREDIT_SUM_OVERDUE", "AMT_ANNUITY"]
+
+
+def fix_bureau(b: pd.DataFrame) -> pd.DataFrame:
+    """Corrections found by an external code review (applied only with --fixed):
+    - DAYS_CREDIT_UPDATE above 0 (17 rows) would be information from after the application: clipped at 0;
+    - amounts in another currency than "currency 1" (1,408 of 1,716,428 rows) must not be added to the others:
+      set to missing (the currency code has no exchange rate to convert with)."""
+    if not FIXED:
+        return b
+    b = b.copy()
+    if "DAYS_CREDIT_UPDATE" in b:
+        b["DAYS_CREDIT_UPDATE"] = b.DAYS_CREDIT_UPDATE.clip(upper=0)
+    other = b.CREDIT_CURRENCY.ne("currency 1")
+    for c in AMOUNTS:
+        if c in b:
+            b.loc[other, c] = np.nan
+    return b
+
+
 def bureau_agg(P: Paths) -> pd.DataFrame:
-    b = read_raw(P, "bureau")
+    b = fix_bureau(read_raw(P, "bureau"))
     b["debt_ratio"] = b.AMT_CREDIT_SUM_DEBT / b.AMT_CREDIT_SUM.replace(0, np.nan)
     b["overdue_ratio"] = b.AMT_CREDIT_SUM_OVERDUE / b.AMT_CREDIT_SUM_DEBT.replace(0, np.nan)
     b["planned_days"] = b.DAYS_CREDIT_ENDDATE - b.DAYS_CREDIT
@@ -179,7 +202,8 @@ def bureau_trend(P: Paths) -> pd.DataFrame:
 
 def load_feats(P: Paths, app: pd.DataFrame) -> pd.DataFrame:
     a = app.set_index("SK_ID_CURR")
-    b = read_raw(P, "bureau", ["SK_ID_CURR", "CREDIT_ACTIVE", "AMT_ANNUITY", "AMT_CREDIT_SUM_DEBT"])
+    b = fix_bureau(read_raw(P, "bureau", ["SK_ID_CURR", "CREDIT_ACTIVE", "CREDIT_CURRENCY", "AMT_ANNUITY",
+                                          "AMT_CREDIT_SUM_DEBT"]))
     act = b[b.CREDIT_ACTIVE.eq("Active")]
     bur_ann = act.groupby("SK_ID_CURR").AMT_ANNUITY.sum().reindex(a.index).fillna(0)
     bur_n = act.groupby("SK_ID_CURR").size().reindex(a.index).fillna(0)
@@ -202,9 +226,12 @@ def load_feats(P: Paths, app: pd.DataFrame) -> pd.DataFrame:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
+    ap.add_argument("--fixed", action="store_true", help="apply the bureau corrections; writes features_v3b")
     add_out_root(ap)
     args = ap.parse_args()
     P = Paths(args.out_root)
+    global FIXED
+    FIXED = args.fixed
 
     v2 = pd.read_parquet(P.features("v2")).set_index("SK_ID_CURR")
     app = read_raw(P, "application_train")[["SK_ID_CURR", "AMT_ANNUITY", "AMT_CREDIT", "AMT_INCOME_TOTAL"]]
@@ -233,7 +260,7 @@ def main() -> None:
         counts[prefix] = g.shape[1]
         feats = feats.join(g)
     feats = feats.reset_index()
-    feats.to_parquet(P.features("v3"), index=False)
+    feats.to_parquet(P.features("v3b" if FIXED else "v3"), index=False)
     print(f"rows {len(feats):,}; columns {feats.shape[1]} (v2: {v2.shape[1] + 1}); new per group: {counts}")
 
 

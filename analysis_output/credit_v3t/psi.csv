@@ -1,0 +1,12 @@
+what,psi
+model score,0.0047
+EXT_SOURCE_2,0.0151
+EXT_SOURCE_3,0.0078
+EXT_SOURCE_1,0.0846
+ORGANIZATION_TYPE,0.0055
+annuity_to_credit,0.9986
+OCCUPATION_TYPE,0.002
+agg_bur_debt_ratio_max,0.005
+credit_to_goods,0.0444
+employed_years,0.0078
+DAYS_EMPLOYED,0.0078

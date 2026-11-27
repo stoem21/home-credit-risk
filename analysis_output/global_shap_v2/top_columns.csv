@@ -1,0 +1,16 @@
+column,group,mean_abs_shap,share_pct,direction_spearman
+EXT_SOURCE_2,External credit scores,0.3010344986737821,9.08,-0.99
+EXT_SOURCE_3,External credit scores,0.27308611180849446,8.24,-0.98
+EXT_SOURCE_1,External credit scores,0.1535828629034351,4.63,-0.97
+stk_hc_instalments_left,Loans still running at Home Credit,0.11825132189350368,3.57,0.54
+annuity_to_credit,Loan size and terms vs income,0.09947883135218225,3.0,0.23
+term_prev_granted_to_asked,Earlier Home Credit applications,0.09725369817307597,2.93,0.97
+ORGANIZATION_TYPE,Employment and income type,0.09191846663141069,2.77,
+pos_months_n,Repayment of earlier Home Credit loans,0.0811332617972123,2.45,-0.93
+OCCUPATION_TYPE,Employment and income type,0.0680731831766259,2.05,
+OWN_CAR_AGE,Car ownership,0.06606080830370711,1.99,0.87
+term_down_payment,Loan size and terms vs income,0.06461483037931644,1.95,-0.87
+bureau_active_debt_to_credit,Loans with other lenders,0.06274206511506764,1.89,0.59
+term_annuity_to_last_approved,Loan size and terms vs income,0.06220901583562878,1.88,0.92
+NAME_EDUCATION_TYPE,Education,0.06173237754391395,1.86,
+AMT_ANNUITY,Loan size and terms vs income,0.06021055819809434,1.82,0.9

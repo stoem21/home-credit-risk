@@ -14,6 +14,8 @@ says so). Kaggle scores are a check only: no model or setting is chosen from the
 
 Usage:
     .venv/bin/python -m experiments.kaggle_check [--tag v2] [--out-root DIR]
+    v3: --tag v3 --v3 (also reads the v3 scores, typed by hand into analysis_output/kaggle/kaggle_scores_v3.csv,
+        and the v3 model table analysis_output/model_summary_v3.csv)
 Output: analysis_output/kaggle/kaggle_vs_cv<_tag>.csv, kaggle_steps<_tag>.csv
 """
 
@@ -37,12 +39,23 @@ STEPS = [  # (reference, change), as adopted or tested on CV, with the compariso
     ("lgbm_v2_combo_with_gender", "lgbm_v2_combo"),
     ("lgbm_v2_combo", "lgbm_v2_combo_lr02"),
     ("lgbm_v2_combo_lr02", "lgbm_v2_combo_lr02_x3"),
+    ("lgbm_v2_combo_lr02_x3", "lgbm_v3b_sh90_lr02_x3"),
+    ("lgbm_v3b_sh90_with_gender", "lgbm_v3b_sh90"),
+    ("lgbm_v3b_sh90", "lgbm_v3b_sh90_lr02_x3"),
+    ("lgbm_v3b_sh90_lr02_x3", "lgbm_v3b_sh90_lr02_x3_tuned"),
+    ("lgbm_v3b_sh90_lr02_x3_tuned_with_gender", "lgbm_v3b_sh90_lr02_x3_tuned"),
+    ("lgbm_v3b_sh90_lr02_x3_tuned", "lgbm_v3c_sh90_lr02_x3_tuned"),
+    ("lgbm_v3c_sh90_lr02_x3_tuned", "lgbm_v3c_sh90_lr02_x3_tuned_mono"),
+    ("lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender", "lgbm_v3c_sh90_lr02_x3_tuned_mono"),
 ]
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--tag", default="", help="suffix for the output files, so earlier ones stay")
+    ap.add_argument("--v3", action="store_true", help="add the v3 scores and use the v3 model table")
+    ap.add_argument("--v3t", action="store_true", help="add the v3 and v3t scores and use the v3t model table")
+    ap.add_argument("--v3m", action="store_true", help="add every v3 score file and use the v3m model table")
     add_out_root(ap)
     args = ap.parse_args()
     P = Paths(args.out_root)
@@ -51,17 +64,24 @@ def main() -> None:
     pd.set_option("display.width", 250)
 
     k = pd.read_csv(P.kaggle_scores)
+    args.v3t = args.v3t or args.v3m
+    extra = (["v3"] if args.v3 or args.v3t else []) + (["v3t"] if args.v3t else []) + (["v3c", "v3m"] if args.v3m else [])
+    for v in [v for v in extra if P.kaggle_scores.with_name(f"kaggle_scores_{v}.csv").exists()]:
+        k = pd.concat([k, pd.read_csv(P.kaggle_scores.with_name(f"kaggle_scores_{v}.csv"))], ignore_index=True)
     n_cash = int(pd.read_parquet(P.raw / "application_train.parquet", columns=["NAME_CONTRACT_TYPE"])
                  .NAME_CONTRACT_TYPE.eq("Cash loans").sum())
-    s = pd.read_csv(P.results / "model_summary.csv")[["model", "cv_auc_all", "cv_auc_cash"]]
+    s = pd.read_csv(P.results / ("model_summary_v3m.csv" if args.v3m else "model_summary_v3t.csv" if args.v3t else "model_summary_v3.csv" if args.v3
+                                 else "model_summary.csv"))[
+        ["model", "cv_auc_all", "cv_auc_cash"]]
     t = k.drop(columns="source").merge(s, on="model", how="left")
     t["private_minus_cv_cash"] = (t.private_auc - t.cv_auc_cash).round(5)
     t["public_minus_private"] = (t.public_auc - t.private_auc).round(5)
     t = t.sort_values("cv_auc_cash", ascending=False)
-    rho = spearmanr(t.cv_auc_cash, t.private_auc).statistic
+    both = t.dropna(subset=["cv_auc_cash", "private_auc"])  # a model with a Kaggle score but no CV row in this
+    rho = spearmanr(both.cv_auc_cash, both.private_auc).statistic  # summary table is left out of the summary numbers
     t.to_csv(out / f"kaggle_vs_cv{sfx}.csv", index=False)
     print(t.to_string(index=False))
-    print(f"\nmodels: {len(t)}; Spearman rank correlation CV (cash) vs private: {rho:.3f}; "
+    print(f"\nmodels with both scores: {len(both)}; Spearman rank correlation CV (cash) vs private: {rho:.3f}; "
           f"mean private - CV: {t.private_minus_cv_cash.mean():+.4f}\n")
 
     sc = k.set_index("model")

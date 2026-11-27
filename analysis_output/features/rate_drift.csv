@@ -1,0 +1,6 @@
+column,missing_train_pct,missing_test_pct,train_q10,train_q50,train_q90,test_q10,test_q50,test_q90
+rate_term_pred,9.5,0.9,12.038,35.999,59.991,12.001,25.651,47.615
+rate_yearly_pred,9.5,1.0,0.271,0.398,0.681,0.343,0.556,0.978
+rate_total_cost,9.5,0.9,0.28,0.659,1.027,0.267,0.658,0.923
+rate_vs_prev,15.1,3.5,-0.466,-0.097,0.285,-0.33,0.041,0.425
+rate_term_vs_prev,59.4,54.1,0.666,1.449,3.333,0.528,1.136,2.643

@@ -1,7 +1,8 @@
 # Where each result file comes from
 
-Every file below is written by one script; `run_all.sh` runs them all in order. Files under `processed/` are not in
-the repository (they are large or derived from the Kaggle data), so run the pipeline to recreate them.
+Every file below is written by one script. `run_all.sh` (v1, v2) and `run_v3.sh` (v3 up to the final model) run
+them in order, except the few exploratory runs listed under "Run by hand" at the end. Files under `processed/` are
+not in the repository (they are large or derived from the Kaggle data), so run the pipeline to recreate them.
 Run a script from the repository root with `.venv/bin/python -m <module>`.
 
 ## processed/ (not committed)
@@ -19,7 +20,10 @@ Run a script from the repository root with `.venv/bin/python -m <module>`.
 | `adversarial_v2.parquet` | `eda.feature_drift --features v2` |
 | `oof/lgbm_v2_*.parquet`, `preds/lgbm_v2_*_test.parquet`, `lgbm_v2_*_final.txt` | `pipeline.train_lgbm --features v2 ...` (see `run_all.sh`) |
 | `features_v3.parquet` | `pipeline.make_features_v3` |
-| `oof/lgbm_v3_*.parquet` (`*_s0`: seed 0 only), `preds/lgbm_v3_*_test.parquet` | `pipeline.train_lgbm --features v3 ...` (see `run_all.sh`) |
+| `oof/lgbm_v3_*.parquet` (`*_s0`: seed 0 only), `preds/lgbm_v3_*_test.parquet` | `pipeline.train_lgbm --features v3 ...` (first v3 try; rerun with `FIRST_TRY=1 ./run_v3.sh`) |
+| `features_v3b.parquet` (bureau fixes), `adversarial_v3b.parquet` | `pipeline.make_features_v3 --fixed`, `eda.feature_drift --features v3b` |
+| `features_v3c.parquet` (v3b plus the `rate_` loan-price columns) | `pipeline.make_features_rate` |
+| `oof/lgbm_v3b_*.parquet`, `oof/lgbm_v3c_*.parquet`, `preds/..._test.parquet`, `..._final.txt` (+ `_1`, `_2`) | `pipeline.train_lgbm` (see `run_v3.sh`; `*_s1`: seed 1 only) |
 | `oof/xgb_v2_combo_s0.parquet`, `oof/mlp_v2_combo_s0.parquet` (seed 0 only) | `pipeline.train_family` |
 | `oof/lgbm_v1_no_*.parquet`, `preds/lgbm_v1_no_*_test.parquet`, `lgbm_v1_no_*_final.txt` | `pipeline.train_lgbm --drop ... --name ...` |
 | `oof/scorecard_full_no_gender.parquet`, `preds/scorecard_full_no_gender_test.parquet` | `pipeline.train_scorecard --variant full --drop gender --name scorecard_full_no_gender` |
@@ -51,7 +55,7 @@ Run a script from the repository root with `.venv/bin/python -m <module>`.
 | `reasons_v2/*.csv` | `analysis.reason_codes ... --tag v2` |
 | `submissions/manifest_v2.csv` | `pipeline.make_submissions --tag v2` |
 | `business/approval_curve.csv`, `policies.csv`, `sensitivity.csv`, `policy_groups.csv` | `analysis.business` |
-| `errors/segments.csv`, `missed_defaulters.csv`, `candidate_signals.csv` | `analysis.error_analysis` |
+| `errors/segments.csv`, `missed_defaulters.csv`, `candidate_signals.csv` (`mean_pred_by_group.csv` from entry 38 on) | `analysis.error_analysis` |
 | `submissions/manifest.csv` (and `submission/<model>.csv` in the repository root, not committed) | `pipeline.make_submissions` |
 | `model_summary.csv` | `experiments.model_summary` |
 | `kaggle/kaggle_scores.csv` | typed by hand from the Kaggle submissions page (the only input not written by a script) |
@@ -65,6 +69,24 @@ Run a script from the repository root with `.venv/bin/python -m <module>`.
 | `kaggle/kaggle_steps_v2.csv`, `kaggle_vs_cv_v2.csv` | `experiments.kaggle_check --tag v2` |
 | `credit_v2/score_bands.csv`, `ks.csv`, `swap_set.csv`, `psi.csv` | `analysis.credit_tables` |
 | `fairness_v2/counterfactual_age_gender.csv` | `analysis.sensitive_counterfactual` |
+| `eda/feature_drift_v3b.csv`, `feature_drift_loan_terms_v3b.csv`, `feature_adversarial_*_v3b.csv` | `eda.feature_drift --features v3b` |
+| `lgbm/lgbm_v3b_*`, `lgbm/lgbm_v3c_*` (`_folds.csv`, `_importance.csv`, `kept_in_folds`) | `pipeline.train_lgbm` (v3 runs) |
+| `tuning/v3b_sh90_trials.csv`, `v3b_sh90_best.json`, `v3b_sh90_shap_columns.json` | `experiments.tune_lgbm` |
+| `features/rate_term_model.csv`, `rate_drift.csv` | `pipeline.make_features_rate` |
+| `monotone_v3t/violations.csv`, `monotone_v3c/violations.csv` | `experiments.monotone_check` |
+| `comparisons/<A>_vs_<B>_seeds0234.csv` | `experiments.compare A B --seeds 0,2,3,4` |
+| `comparisons/test_like_gain_<A>_vs_<B>.csv` | `experiments.test_like_gain` |
+| `calibration/*_v3.csv`, `*_v3t.csv`, `*_v3m.csv` | `analysis.calibration ... --tag v3 / v3t / v3m` |
+| `business_v3/`, `business_v3t/`, `business_v3m/` | `analysis.business --main ...` |
+| `credit_v3/`, `credit_v3t/`, `credit_v3m/` | `analysis.credit_tables --main ... --tag ...` |
+| `errors_v3/`, `errors_v3t/`, `errors_v3m/` | `analysis.error_analysis --model ... --tag ...` |
+| `fairness_v3/`, `fairness_v3t/`, `fairness_v3m/` | `analysis.fairness`, `analysis.proxy_check`, `analysis.sensitive_counterfactual` (v3 only) |
+| `reasons_v3_cut06/`, `reasons_v3t_cut06/`, `reasons_v3m_cut06/` | `analysis.reason_codes ... --decline-rate 0.06 --tag ...` |
+| `global_shap_v2/`, `global_shap_v3/`, `global_shap_v3t/`, `global_shap_v3m/` | `analysis.global_shap` |
+| `submissions/manifest_v3*.csv` | `pipeline.make_submissions --tag ...` |
+| `model_summary_v3.csv`, `model_summary_v3t.csv`, `model_summary_v3m.csv` | `experiments.model_summary --v3 / --v3t / --v3m` |
+| `kaggle/kaggle_scores_v3.csv`, `kaggle_scores_v3t.csv`, `kaggle_scores_v3c.csv`, `kaggle_scores_v3m.csv` | typed by hand from the Kaggle submissions page |
+| `kaggle/kaggle_vs_cv_v3m.csv`, `kaggle_steps_v3m.csv` (also `_v3`, `_v3t`) | `experiments.kaggle_check --tag v3m --v3m` |
 | `reproducibility/<label>.csv` | `experiments.check_reproduced` |
 
 `eda.one_applicant` prints one applicant's records to the terminal and writes no file (individual records of
@@ -73,11 +95,24 @@ the competition data must not be redistributed).
 ## Charts and notebook (committed)
 | File | Written by |
 |---|---|
-| `figures/*.png` (6 charts used in the README) | `analysis.figures` (chart code in `homecredit/figures.py`) |
+| `figures/*.png` (README and DETAILS.md charts: `*_v3m.png` for the final model; no suffix = v2, `_v3`, `_v3t` = earlier versions) | `analysis.figures --version ...` (chart code in `homecredit/figures.py`) |
 | `notebooks/home_credit_report.ipynb` (executed, with outputs) | `notebooks.build_notebook` |
 
-## Superseded files (kept, not used by the README)
+## Superseded files (kept, not used by the README or DETAILS.md)
 Results are never overwritten. These were written by earlier versions of a script (see git history and
 EXPERIMENTS.md) and replaced by the files named in brackets:
 `business/*` (first business version; `business_v2/`), `kaggle/kaggle_vs_cv.csv` and `kaggle/kaggle_steps.csv`
-(`*_v2.csv`; the steps file used a 5% too large noise scale), `analysis_output/model_summary.csv` is still current.
+(`*_v2.csv`; the steps file used a 5% too large noise scale). `model_summary.csv` is not superseded: it still
+holds the v1 and v2 models.
+
+The v2, v3 and v3t result folders and charts belong to earlier main models. The README and DETAILS.md mostly use the
+`*_v3m` files, but also cite a few earlier ones where the final model has no counterpart:
+`business_v3t/differences.csv` (money from tuning), `fairness/group_decisions.csv` (LightGBM v1 without age),
+`fairness_v3/` (direct age and gender test) and `reasons_v2_cut06/` (share of declines with the external scores
+first, v2).
+
+## Run by hand (not in the run scripts yet)
+| File | Command |
+|---|---|
+| final models and test predictions of `lgbm_v3b_all_s1`, `lgbm_v3b_sh99_s1` | `pipeline.train_lgbm ... --final-only` with the settings and `--name` of the exploratory run |
+| `submissions/manifest_v3_extra.csv`, `manifest_v3c.csv`, `manifest_v3c_mono.csv` | `pipeline.make_submissions --tag ...` for the Kaggle checks |

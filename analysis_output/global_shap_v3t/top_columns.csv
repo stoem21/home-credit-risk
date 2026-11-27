@@ -1,0 +1,16 @@
+column,group,mean_abs_shap,share_pct,direction_spearman
+EXT_SOURCE_2,External credit scores,0.284934485869282,7.04,-1.0
+EXT_SOURCE_3,External credit scores,0.2139672008440796,5.29,-0.99
+EXT_SOURCE_1,External credit scores,0.1500129146852842,3.71,-0.98
+annuity_to_credit,Loan size and terms vs income,0.0950578590155511,2.35,0.35
+ORGANIZATION_TYPE,Employment and income type,0.08569962423996864,2.12,
+AMT_ANNUITY,Loan size and terms vs income,0.08102800975717687,2.0,0.93
+term_down_payment,Loan size and terms vs income,0.07219590729062764,1.78,-0.89
+OCCUPATION_TYPE,Employment and income type,0.07010351181345735,1.73,
+NAME_EDUCATION_TYPE,Education,0.06178045036675672,1.53,
+agg_bur_debt_ratio_max,Loans with other lenders,0.05889411104749231,1.46,0.72
+OWN_CAR_AGE,Car ownership,0.055516222061462395,1.37,0.88
+credit_to_goods,Loan size and terms vs income,0.05485631430696709,1.36,0.89
+DAYS_EMPLOYED,Employment and income type,0.05464524142255388,1.35,0.96
+employed_years,Employment and income type,0.04767051055036176,1.18,-0.97
+agg_bur_act_debt_ratio_max,Loans with other lenders,0.042916603466010506,1.06,0.88

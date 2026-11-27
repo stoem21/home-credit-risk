@@ -1,0 +1,11 @@
+{
+ "trial": 17,
+ "auc_all_seed1": 0.79285,
+ "auc_all_current_settings_seed1": 0.79016,
+ "params": {
+  "num_leaves": 30,
+  "min_child_samples": 174,
+  "feature_fraction": 0.24,
+  "lambda_l2": 6.7041
+ }
+}

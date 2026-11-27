@@ -1,0 +1,2 @@
+rows_fit,rows_holdout,trees,mae_months,median_abs_error_months,share_within_3_months_pct,r2,mae_if_always_median
+369264,92245,3000,0.3,0.03,97.8,0.9948,13.74

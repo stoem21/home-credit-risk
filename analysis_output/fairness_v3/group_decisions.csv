@@ -1,0 +1,82 @@
+model,attribute,group,applicants,default_rate_pct,mean_pred_pct,approval_pct,approval_pct_sd_seeds,approval_pct_good_payers,approval_pct_defaulters,default_pct_among_approved
+lgbm_v3b_sh90_with_gender,gender,F,202448,7.0,6.99,87.99,0.03,90.43,55.66,4.43
+lgbm_v3b_sh90_with_gender,gender,M,105059,10.14,9.86,79.23,0.06,83.09,45.04,5.76
+lgbm_v3b_sh90_with_gender,gender,XNA,4,0.0,11.0,75.0,0.0,75.0,,0.0
+lgbm_v3b_sh90_with_gender,age band,25-34,72429,10.66,10.54,76.89,0.05,81.08,41.81,5.8
+lgbm_v3b_sh90_with_gender,age band,35-44,84261,8.41,8.09,84.75,0.03,87.87,50.83,5.04
+lgbm_v3b_sh90_with_gender,age band,45-54,70190,7.05,7.04,88.14,0.08,90.59,55.8,4.46
+lgbm_v3b_sh90_with_gender,age band,55-64,60522,5.42,5.48,92.85,0.03,94.24,68.63,4.01
+lgbm_v3b_sh90_with_gender,age band,65+,7876,3.66,3.49,97.66,0.1,98.07,86.67,3.25
+lgbm_v3b_sh90_with_gender,age band,<25,12233,12.29,12.55,69.7,0.33,73.92,39.55,6.98
+lgbm_v3b_sh90_with_gender,family status,Civil marriage,29775,9.94,9.68,79.93,0.14,83.85,44.41,5.53
+lgbm_v3b_sh90_with_gender,family status,Married,196432,7.56,7.55,86.21,0.02,88.94,52.79,4.63
+lgbm_v3b_sh90_with_gender,family status,Separated,19770,8.19,7.88,85.62,0.09,88.53,52.96,5.07
+lgbm_v3b_sh90_with_gender,family status,Single / not married,45444,9.81,9.49,80.33,0.06,84.07,45.92,5.61
+lgbm_v3b_sh90_with_gender,family status,Unknown,2,0.0,2.63,100.0,0.0,100.0,,0.0
+lgbm_v3b_sh90_with_gender,family status,Widow,16088,5.82,5.72,92.05,0.14,93.6,66.83,4.23
+lgbm_v3b_sh90_with_gender,children,0,215371,7.71,7.64,86.04,0.02,88.83,52.67,4.72
+lgbm_v3b_sh90_with_gender,children,1,61119,8.92,8.63,82.89,0.05,86.26,48.56,5.23
+lgbm_v3b_sh90_with_gender,children,2,26749,8.72,8.82,82.34,0.12,85.7,47.24,5.0
+lgbm_v3b_sh90_with_gender,children,3+,4272,10.04,10.02,79.19,0.26,83.19,43.36,5.5
+lgbm_v3b_sh90_with_gender,education,Academic degree,164,1.83,6.13,90.98,1.0,91.06,86.67,1.75
+lgbm_v3b_sh90_with_gender,education,Higher education,74863,5.36,5.42,92.36,0.06,93.86,65.93,3.82
+lgbm_v3b_sh90_with_gender,education,Incomplete higher,10277,8.48,8.44,83.73,0.14,86.68,51.95,5.26
+lgbm_v3b_sh90_with_gender,education,Lower secondary,3816,10.93,10.28,78.88,0.25,82.81,46.86,6.49
+lgbm_v3b_sh90_with_gender,education,Secondary / secondary special,218391,8.94,8.79,82.64,0.02,86.03,48.1,5.2
+lgbm_v3b_sh90_with_gender,region rating,1,32197,4.82,4.9,93.64,0.03,94.82,70.32,3.62
+lgbm_v3b_sh90_with_gender,region rating,2,226984,7.89,7.82,85.52,0.02,88.35,52.39,4.83
+lgbm_v3b_sh90_with_gender,region rating,3,48330,11.1,10.74,76.82,0.07,81.27,41.24,5.96
+lgbm_v3b_sh90,gender,F,202448,7.0,7.29,87.15,0.02,89.64,54.0,4.34
+lgbm_v3b_sh90,gender,M,105059,10.14,9.28,80.86,0.05,84.59,47.83,6.0
+lgbm_v3b_sh90,gender,XNA,4,0.0,10.2,75.0,0.0,75.0,,0.0
+lgbm_v3b_sh90,age band,25-34,72429,10.66,10.53,76.86,0.05,81.03,41.87,5.81
+lgbm_v3b_sh90,age band,35-44,84261,8.41,8.08,84.72,0.05,87.85,50.62,5.02
+lgbm_v3b_sh90,age band,45-54,70190,7.05,7.06,88.13,0.04,90.51,56.75,4.54
+lgbm_v3b_sh90,age band,55-64,60522,5.42,5.48,92.99,0.03,94.35,69.29,4.04
+lgbm_v3b_sh90,age band,65+,7876,3.66,3.49,97.68,0.09,98.07,87.43,3.27
+lgbm_v3b_sh90,age band,<25,12233,12.29,12.55,69.49,0.17,73.67,39.68,7.02
+lgbm_v3b_sh90,family status,Civil marriage,29775,9.94,9.17,81.28,0.08,85.11,46.64,5.71
+lgbm_v3b_sh90,family status,Married,196432,7.56,7.78,85.61,0.01,88.37,51.75,4.57
+lgbm_v3b_sh90,family status,Separated,19770,8.19,7.43,86.71,0.08,89.47,55.74,5.27
+lgbm_v3b_sh90,family status,Single / not married,45444,9.81,9.0,81.65,0.07,85.29,48.23,5.79
+lgbm_v3b_sh90,family status,Unknown,2,0.0,2.26,100.0,0.0,100.0,,0.0
+lgbm_v3b_sh90,family status,Widow,16088,5.82,5.82,91.84,0.04,93.37,67.11,4.26
+lgbm_v3b_sh90,children,0,215371,7.71,7.6,86.18,0.01,88.93,53.27,4.77
+lgbm_v3b_sh90,children,1,61119,8.92,8.69,82.68,0.05,86.04,48.31,5.21
+lgbm_v3b_sh90,children,2,26749,8.72,8.98,81.8,0.06,85.19,46.38,4.94
+lgbm_v3b_sh90,children,3+,4272,10.04,10.2,78.6,0.38,82.58,42.94,5.49
+lgbm_v3b_sh90,education,Academic degree,164,1.83,5.96,90.37,0.67,90.68,73.33,1.49
+lgbm_v3b_sh90,education,Higher education,74863,5.36,5.41,92.4,0.06,93.89,66.0,3.83
+lgbm_v3b_sh90,education,Incomplete higher,10277,8.48,8.44,83.79,0.25,86.73,52.09,5.27
+lgbm_v3b_sh90,education,Lower secondary,3816,10.93,10.08,79.39,0.1,83.39,46.81,6.44
+lgbm_v3b_sh90,education,Secondary / secondary special,218391,8.94,8.79,82.62,0.02,85.97,48.4,5.24
+lgbm_v3b_sh90,region rating,1,32197,4.82,4.9,93.67,0.05,94.85,70.44,3.62
+lgbm_v3b_sh90,region rating,2,226984,7.89,7.82,85.51,0.03,88.32,52.65,4.86
+lgbm_v3b_sh90,region rating,3,48330,11.1,10.73,76.84,0.14,81.26,41.48,5.99
+lgbm_v3b_sh90_lr02_x3,gender,F,202448,7.0,7.26,87.17,0.01,89.72,53.36,4.28
+lgbm_v3b_sh90_lr02_x3,gender,M,105059,10.14,9.25,80.81,0.03,84.59,47.36,5.94
+lgbm_v3b_sh90_lr02_x3,gender,XNA,4,0.0,10.58,75.0,0.0,75.0,,0.0
+lgbm_v3b_sh90_lr02_x3,age band,25-34,72429,10.66,10.5,76.75,0.02,80.99,41.2,5.72
+lgbm_v3b_sh90_lr02_x3,age band,35-44,84261,8.41,8.05,84.73,0.03,87.91,50.08,4.97
+lgbm_v3b_sh90_lr02_x3,age band,45-54,70190,7.05,7.02,88.21,0.03,90.63,56.24,4.49
+lgbm_v3b_sh90_lr02_x3,age band,55-64,60522,5.42,5.45,93.05,0.03,94.43,68.95,4.02
+lgbm_v3b_sh90_lr02_x3,age band,65+,7876,3.66,3.48,97.7,0.03,98.12,86.67,3.24
+lgbm_v3b_sh90_lr02_x3,age band,<25,12233,12.29,12.49,69.29,0.25,73.55,38.9,6.9
+lgbm_v3b_sh90_lr02_x3,family status,Civil marriage,29775,9.94,9.14,81.21,0.06,85.1,45.96,5.63
+lgbm_v3b_sh90_lr02_x3,family status,Married,196432,7.56,7.75,85.62,0.01,88.43,51.16,4.52
+lgbm_v3b_sh90_lr02_x3,family status,Separated,19770,8.19,7.4,86.72,0.06,89.51,55.37,5.23
+lgbm_v3b_sh90_lr02_x3,family status,Single / not married,45444,9.81,8.96,81.64,0.07,85.33,47.73,5.73
+lgbm_v3b_sh90_lr02_x3,family status,Unknown,2,0.0,2.38,100.0,0.0,100.0,,0.0
+lgbm_v3b_sh90_lr02_x3,family status,Widow,16088,5.82,5.8,91.88,0.06,93.43,66.74,4.23
+lgbm_v3b_sh90_lr02_x3,children,0,215371,7.71,7.57,86.2,0.03,89.0,52.66,4.71
+lgbm_v3b_sh90_lr02_x3,children,1,61119,8.92,8.65,82.65,0.07,86.05,47.87,5.17
+lgbm_v3b_sh90_lr02_x3,children,2,26749,8.72,8.95,81.76,0.11,85.2,45.73,4.88
+lgbm_v3b_sh90_lr02_x3,children,3+,4272,10.04,10.19,78.6,0.25,82.61,42.7,5.46
+lgbm_v3b_sh90_lr02_x3,education,Academic degree,164,1.83,5.98,90.37,0.67,90.56,80.0,1.62
+lgbm_v3b_sh90_lr02_x3,education,Higher education,74863,5.36,5.36,92.49,0.01,94.02,65.56,3.8
+lgbm_v3b_sh90_lr02_x3,education,Incomplete higher,10277,8.48,8.4,83.81,0.16,86.84,51.1,5.17
+lgbm_v3b_sh90_lr02_x3,education,Lower secondary,3816,10.93,10.09,79.23,0.11,83.22,46.76,6.45
+lgbm_v3b_sh90_lr02_x3,education,Secondary / secondary special,218391,8.94,8.76,82.58,0.01,86.0,47.82,5.18
+lgbm_v3b_sh90_lr02_x3,region rating,1,32197,4.82,4.87,93.7,0.08,94.9,70.05,3.6
+lgbm_v3b_sh90_lr02_x3,region rating,2,226984,7.89,7.78,85.53,0.02,88.39,52.06,4.8
+lgbm_v3b_sh90_lr02_x3,region rating,3,48330,11.1,10.71,76.73,0.08,81.19,40.98,5.93

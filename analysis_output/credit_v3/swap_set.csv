@@ -1,0 +1,5 @@
+group,applicants,pct_of_applicants,difficulty_rate_pct
+approved by both,283010,92.03,5.97
+approved by LightGBM only,5044,1.64,18.22
+approved by the scorecard only,9727,3.16,32.64
+declined by both,9730,3.16,39.55

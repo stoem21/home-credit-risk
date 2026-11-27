@@ -30,12 +30,14 @@ Outputs: analysis_output/reasons/*.csv
 """
 
 import argparse
+import json
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 from joblib import Parallel, delayed
 
-from homecredit.data import drop_columns, load_features, load_folds, select_groups
+from homecredit.data import drop_columns, exclude_prefixes, load_features, load_folds, select_groups
 from homecredit.models import lgbm
 from homecredit.models import scorecard as sc
 from homecredit.paths import Paths, add_out_root
@@ -65,6 +67,8 @@ def group_of(c: str) -> str:
         return "Credit card use"
     if c.startswith("load_"):
         return "Total debt burden"
+    if c.startswith("rate_"):  # feature table v3c: estimated term and interest rate (pipeline/make_features_rate.py)
+        return "Loan size and terms vs income"
     # feature table v2 groups (pipeline/make_features_v2.py)
     if c.startswith(("win_prev_", "win_last_", "term_prev_")):
         return "Earlier Home Credit applications"
@@ -142,8 +146,7 @@ class Averaged:
 def columns(P, cfg):
     """LightGBM columns and scorecard columns for a model setting (cfg: features, add, exclude, drop)."""
     tr, _, cols = load_features(P, cfg["features"], categories=True)
-    lgb_cols = [c for c in drop_columns(select_groups(cols, cfg["add"]), cfg["drop"])
-                if not (cfg["exclude"] and c.startswith(cfg["exclude"]))]
+    lgb_cols = exclude_prefixes(drop_columns(select_groups(cols, cfg["add"]), cfg["drop"]), cfg["exclude"])
     sc_cols = drop_columns(select_groups(cols, None), cfg["drop"])  # the scorecard keeps the v1 candidate columns
     return tr, lgb_cols, sc_cols
 
@@ -158,13 +161,14 @@ def run_fold(k: int, decline_rate: float, threads: int, out_root, cfg: dict):
     f = fo.fold_s0.values
     trn, va = np.where(f != k)[0], np.where(f == k)[0]
     y = tr.TARGET.values.astype(int)
-    if cfg.get("shap_top"):  # the same in-fold SHAP selection as pipeline/train_lgbm.py --shap-top
-        cols = lgbm.shap_select(tr[cols].iloc[trn], y[trn], cfg["shap_top"], 0, threads)
+    if cfg.get("shap_top") or cfg.get("shap_share"):  # the same in-fold SHAP selection as pipeline/train_lgbm.py
+        cols = lgbm.shap_select(tr[cols].iloc[trn], y[trn], cfg.get("shap_top"), 0, threads, share=cfg.get("shap_share"))
     gidx = {g: [cols.index(c) for c in cols if group_of(c) == g] for g in groups}
     Xtr, Xva = tr[cols].iloc[trn], tr[cols].iloc[va]
 
     # ---- LightGBM ----
-    bst = Averaged([lgbm.fit(Xtr, y[trn], seed=1000 * i, threads=threads, learning_rate=cfg["learning_rate"])
+    bst = Averaged([lgbm.fit(Xtr, y[trn], seed=1000 * i, threads=threads, learning_rate=cfg["learning_rate"],
+                             params=cfg.get("params"))
                     for i in range(cfg["n_models"])])
     p_tr = bst.predict(Xtr)
     p_va = bst.predict(Xva)
@@ -257,16 +261,24 @@ def main() -> None:
     ap.add_argument("--learning-rate", type=float, default=None)
     ap.add_argument("--n-models", type=int, default=1)
     ap.add_argument("--shap-top", type=int, default=None)
+    ap.add_argument("--shap-share", type=float, default=None)
     ap.add_argument("--with-fourth", action="store_true",
                     help="also test the 4th-ranked reason group (a control matched closer in importance)")
     ap.add_argument("--tag", default="", help="write to analysis_output/reasons_<tag>/ (earlier results stay)")
+    ap.add_argument("--params", default=None, help="JSON file of tuned LightGBM settings (experiments/tune_lgbm.py)")
+    ap.add_argument("--monotone", default=None, help="JSON file of monotone constraints (pipeline/monotone_v3.json)")
     add_out_root(ap)
     args = ap.parse_args()
     P = Paths(args.out_root)
     out = P.out("reasons" + (f"_{args.tag}" if args.tag else ""))
     cfg = {"features": args.features, "add": args.add, "exclude": args.exclude, "drop": args.drop,
            "learning_rate": args.learning_rate, "n_models": args.n_models, "shap_top": args.shap_top,
+           "shap_share": args.shap_share,
            "with_fourth": args.with_fourth}
+    if args.params:  # only added when given, so earlier configurations stay exactly as they were
+        cfg["params"] = json.loads(Path(args.params).read_text())["params"]
+    if args.monotone:
+        cfg["params"] = {**cfg.get("params", {}), "monotone": json.loads(Path(args.monotone).read_text())}
 
     tr, cols, _ = columns(P, cfg)
     pd.DataFrame({"column": cols, "reason_group": [group_of(c) for c in cols]}).to_csv(

@@ -1,0 +1,5 @@
+part,applicants,default_rate_pct,auc_a,auc_b,gain_mean,gain_sd_over_seeds,seeds
+all loans,307511,8.07,0.79542,0.79801,0.00259,0.00016,5
+short cash loans (predicted term <= 24 months),76333,7.55,0.80916,0.81139,0.00224,0.00016,5
+20% most test-like (adversarial v1),61503,7.62,0.79212,0.7944,0.00228,0.0003,5
+rest (neither),196588,8.43,0.79247,0.7953,0.00283,0.00018,5

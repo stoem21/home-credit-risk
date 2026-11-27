@@ -58,15 +58,20 @@ def bootstrap_aucs(y, preds: list[np.ndarray], n_boot: int = N_BOOT, seed: int =
 
 
 def paired_compare(y, oof_a: pd.DataFrame, oof_b: pd.DataFrame, folds: pd.DataFrame,
-                   masks: dict[str, np.ndarray]) -> list[dict]:
+                   masks: dict[str, np.ndarray], only_seeds: list[int] | None = None) -> list[dict]:
     """Model B vs reference A on the same folds: mean AUCs, gain, bootstrap SE of the gain (seed-0 OOF), wins,
     and the verdict of the adoption rule (gain > 2 x SE and at least 18 of 25 wins).
 
     Exploratory runs may hold fewer seeds (e.g. only s0): then only the seeds both models have are compared and
     the win threshold keeps the same share (18/25 = 72%, rounded up: 4 of 5). Such a verdict is marked
     exploratory; a winner is confirmed with all 5 seeds before it is adopted (the more ideas are tried, the more
-    likely one wins by chance)."""
+    likely one wins by chance).
+
+    only_seeds: compare only these seeds, e.g. to leave out a seed that was used to choose a setting; the win
+    threshold keeps the same share and the verdict names the seeds instead of "exploratory"."""
     seeds = [s for s in range(N_SEEDS) if f"s{s}" in oof_a.columns and f"s{s}" in oof_b.columns]
+    if only_seeds is not None:
+        seeds = [s for s in seeds if s in only_seeds]
     fa = fold_aucs(y, oof_a, folds, masks, seeds)
     fb = fold_aucs(y, oof_b, folds, masks, seeds)
     rows = []
@@ -74,13 +79,15 @@ def paired_compare(y, oof_a: pd.DataFrame, oof_b: pd.DataFrame, folds: pd.DataFr
         a = fa.auc[fa.scope == scope].values
         b = fb.auc[fb.scope == scope].values
         gain = b - a
-        boot = bootstrap_aucs(y[m], [oof_a.s0.values[m], oof_b.s0.values[m]])
+        sb = f"s{seeds[0]}"  # the first common seed (s0 for 5-seed runs, as before)
+        boot = bootstrap_aucs(y[m], [oof_a[sb].values[m], oof_b[sb].values[m]])
         se = float(np.std(boot[:, 1] - boot[:, 0]))
         n = len(gain)
         need = MIN_WINS if n == 25 else int(np.ceil(MIN_WINS / 25 * n))
         b_better = gain.mean() > SE_MULT * se and (gain > 0).sum() >= need
         a_better = -gain.mean() > SE_MULT * se and (gain < 0).sum() >= need
-        note = "" if n == 25 else f" [exploratory: {n} pairs]"
+        note = ("" if n == 25 else f" [seeds {','.join(map(str, seeds))}: {n} pairs]" if only_seeds is not None
+                else f" [exploratory: {n} pairs]")
         rows.append({"scope": scope, "auc_a": round(a.mean(), 5), "auc_b": round(b.mean(), 5),
                      "gain_b_minus_a": round(gain.mean(), 5), "boot_se_gain": round(se, 5),
                      f"b_wins_of_{n}": int((gain > 0).sum()),

@@ -1,71 +1,165 @@
 # Predicting loan default for Home Credit: accuracy, explanations and honest limits
 
-Every number below comes from a script in this repository, except the Kaggle leaderboard figures, which are read
-from Kaggle and marked as such. The [report notebook](notebooks/home_credit_report.ipynb) has the tables behind
-each statement and the technical details; [`EXPERIMENTS.md`](EXPERIMENTS.md) logs every run, including what did
-not work, and [`OUTPUTS.md`](OUTPUTS.md) says which script writes which result file.
+The first half of this page is for everyone. The second half, "For technical readers", has the methods and model
+scores.
 
-## Executive summary
-- **The task:** Home Credit lends to people with little or no credit history. I predict which applicants will
-  have payment difficulties, from the application form and the applicants' past loans.
-- **The result:** pick one applicant who later struggled and one who repaid. My chosen model rates the one who
-  struggled as riskier 79% of the time; a classic bank scorecard does so 76% of the time and a one-line rule 72%.
-  The model does not use gender or family status.
-- **Checked on unseen data:** on Kaggle's hidden test set the model scores the same as my validation predicted, even
-  though the test applicants differ from the training ones.
-- **Why a lender would care (a proposal, on assumed margins and losses):** declining the riskiest 6% of applicants
-  raises profit per applicant from about 83,800 to 86,400 (+3.1%), and every refusal comes with reasons.
-- **The price of explainability:** the simpler scorecard would give up about 1,180 per applicant against the
-  chosen model; about 810 of that remains even when both use the same inputs.
-- **Fairness:** leaving gender and family status out cost 0.002 in validation and 0.003 on the hidden test (on the
-  AUC scale below). It is a policy choice, not a fix: the remaining inputs still reveal gender well.
+## In short
+Home Credit lends money to people with little or no credit history. I built a model that guesses which applicants
+will have trouble repaying, gives the main reasons for each refusal, and does not use gender or family status.
 
-![AUC by model](figures/auc_by_model.png)
+- **It tells risky from safe applicants well:** take one person who later had trouble repaying and one who did not.
+  In my own tests, the model picks the right one as riskier 80% of the time, a classic bank scorecard 76% and a
+  one-line rule 72%. On Kaggle's hidden test of new applicants the model scored 79%, close to my own tests.
+- **A few refusals catch many problem loans:** turning away the riskiest 1 in 10 applicants would have turned away
+  39% of the people who later had trouble. The classic scorecard catches 33%.
+- **It could make money (on numbers I assumed):** turning away the riskiest 6.6% raises profit per applicant by
+  3.4%. This is an idea to test, not a tested result.
+- **Every refusal comes with reasons:** each declined applicant gets the three things that raised their risk most,
+  and I tested that these reasons really change the decision (see "Why each applicant is declined").
+- **It follows common sense:** for 14 inputs where "worse" is clear, such as late payments, a worse value can never
+  make an applicant look safer. This cost almost no accuracy.
+- **Fairness is a choice, and I say so:** leaving out gender costs a little accuracy, and the other inputs still
+  reveal gender. I kept age, because without it young applicants looked riskier than they really were.
 
-## Words used below
-- **AUC:** the "79% of the time" above, written as 0.79: how well a model ranks people by risk, from 0.5 (guessing)
-  to 1.0 (perfect). Banks also quote the Gini coefficient, 2 x AUC - 1 (0.576 for my model).
-- **Points:** percentage points. "0.4 points" means, for example, 8.0% instead of 7.6%.
-- **Feature:** one input column the model uses, for example "share of past instalments paid late".
-- **Fold:** I split the data into 5 parts; each part is predicted by a model trained on the other 4. I repeat this
-  with 5 different random splits, so every comparison rests on 25 scores.
-- **External credit scores:** three scores from outside providers that come with the data. Who made them and how
-  is not disclosed.
-- **Money:** amounts are in the data's currency, which is not disclosed, per applicant, over the life of the loan.
+## The data
+Home Credit shared 307,511 past loans with their outcome, and 48,744 new applications whose outcome only Kaggle
+knows (the "hidden test"). Six more tables hold each applicant's history: loans with other lenders, and earlier
+applications, card statements and repayments at Home Credit. 8.07% of the past loans had trouble repaying, which
+the data defines as "late by more than X days on at least one of the first Y payments" (X and Y are not given).
+The data may only be used for the competition, so it is not in this repository.
 
-## The data and first findings
-Home Credit shared 307,511 past loans with their outcome and 48,744 new applications without it (the Kaggle test
-set), plus six history tables: credits with other lenders (from the credit bureau) and the applicant's earlier
-applications, card statements and instalment payments at Home Credit. 8.07% of the past loans ended in payment
-difficulties: "late by more than X days on at least one of the first Y instalments", with X and Y not disclosed.
-All of these loans were approved at the time, so the data says nothing about applicants Home Credit declined. The
-data may only be used for the competition, so it is not in this repository.
+- **All of these loans were approved:** the data says nothing about people Home Credit turned away.
+- **The new applications look different:** almost all are cash loans, shorter and more expensive than in the
+  past loans. I removed 15 columns whose values alone give away which group a loan comes from, without looking
+  at any test outcomes.
+- **Strange values have meaning:** 365,243 days of employment (1,000 years) is a code for pensioners and people
+  without a job.
+- **One person's record says a lot:** following one applicant through every table showed many applications and
+  new loans just before applying. These became inputs to the model.
 
-- **The test set is a different mix, not a later period.** There are no dates, so I could not test "train on the
-  past, predict the future". Test loans are almost all cash loans (lump sums repaid in fixed instalments) and
-  shorter; a model can tell test rows from training rows almost perfectly (AUC 0.96).
-- **Odd values hide meaning.** 365,243 days in "days employed" (1,000 years) is a code for pensioners and the
-  unemployed.
-- **One record teaches more than a table.** Following one applicant through every table showed a burst of
-  applications and loans stacked on loans just before applying. These became features later.
+## How well it works
+![Trouble repaying by risk group](figures/risk_by_band_v3m.png)
 
-## The question and my approach
-Can a lender predict payment difficulties well enough to decide, and still explain each decision?
+- **How to read it:** I sorted all past applicants by the model's risk score and cut them into ten equal groups.
+  Each bar is the share of that group who really had trouble repaying. If the model knew nothing, every bar would
+  sit at the 8.1% average.
+- **Risk rises steeply:** in the safest group 0.8% had trouble repaying; in the riskiest, 31.5%, about 40 times
+  more.
+- **Predicted risk matches what happened:** split into 20 smaller groups (finer than the 10 in the chart), the
+  predicted share with trouble was within about 1.3 percentage points of the real share. The riskiest groups are
+  slightly underestimated.
+- **The scores held up on Kaggle's hidden test:** the model scored a little lower there than in my own tests (79.4%
+  against 79.7% on cash loans; more in "For technical readers").
 
-- **Validation:** one fold's score moves by 0.002 to 0.003 by chance alone. A change counts as better only if its
-  gain is more than twice its noise and it wins in at least 18 of the 25 folds. The 5 splits reuse the same
-  applicants, so the wins are not fully independent, but every adopted gain is at least 6 times its noise.
-- **Models, simplest first:** a one-line rule; logistic regression on 15 hand-picked columns; a scorecard (WOE,
-  "weight of evidence": each answer on the form earns points, the way banks have scored loans for decades); and
-  LightGBM (many small decision trees added together).
-- **Tuning:** no search over settings. Every model started from fixed, common settings. Only the final LightGBM got
-  two changes (learning more slowly, and averaging 3 models), each adopted after it beat the noise.
-- **Features in steps:** v1 has 149 columns: the form plus 22 summaries of the history tables. v2 adds recent
-  behaviour (the last 90 to 365 days), loan stacking (new credits elsewhere, loans still being repaid) and loan
-  terms (for example the interest rate of earlier loans). Some ideas came from public solutions of the
-  competition; I judged each one only on my own validation. The scorecard uses v1 only.
+![Problem loans stopped per 100](figures/caught_per_100_v3m.png)
 
-## Results
+- **Refuse 1 in 10, stop 39 in 100:** if the bank refused the riskiest 10% of these applicants, it would have
+  refused 39 of every 100 people who later had trouble. The classic scorecard stops 33, and refusing people at
+  random about 10.
+- **The price:** about 7 in 10 of the people the model refuses at this cut-off would have repaid (68.8%). That is
+  why the profit section below refuses fewer.
+- **More refusals stop more, with less gain each time:** refusing 2 in 10 would stop 58 in 100 (the scorecard
+  52).
+
+## How a lender could use it
+The data has no prices or losses, so I assumed that a repaid loan earns 20% of the amount lent and a loan with
+trouble loses 60% of it. A loan then pays when its predicted risk is below 25%, which turns away about 6.6% of
+applicants. All of this is an idea to test on real applicants, not a tested result.
+
+![Extra profit per applicant](figures/profit_gain_v3m.png)
+
+- **Turn away the riskiest 6.6%:** among approved applicants, the share with trouble falls from 8.1% to 6.1%, and
+  profit per applicant rises by about 2,850, from 83,782 to 86,633 (+3.4%, in the data's currency, which is not
+  named).
+- **The assumptions matter more than luck:** with other random samples of applicants, the rise stays between 2,659
+  and 3,034; with other margins and losses, it moves between about 400 and 11,800.
+- **Simple has a price:** the classic scorecard is easier to read, but at its own break-even cut-off it adds only
+  1,388 per applicant, about 1,460 less than my model.
+- **Watch the loan price:** the model's scores look the same on old and new applications, but the inputs about the
+  price of a loan have shifted a lot. A live system should watch them first.
+- **Start small:** fixed actions for each risk group, plain-language refusal letters, a small trial next to the
+  current rules, and a few random approvals below the cut-off to learn about people who would be turned away.
+
+## Why each applicant is declined
+- **Three reasons per refusal:** each declined applicant gets the three groups of inputs that raised their risk
+  most (for example "loans with other lenders" or "repayment of earlier Home Credit loans").
+- **The reasons match the model's decision:** say an applicant is declined mainly because of their loans with
+  other lenders. I give them the values of a randomly picked approved applicant for that group of inputs, keep
+  everything else the same, and score them again. Changing only the first reason this way turns 81% of refusals
+  into approvals; the second reason 59%, the third 45%. This shows the reasons match the model; it does not prove
+  they cause trouble in real life.
+- **Give a reason people can act on:** for 65% of refusals the first reason is the outside credit scores, which an
+  applicant cannot change. A refusal letter should also name the first reason they can do something about.
+- **Common-sense rules:** for each of the 14 listed inputs, I made the value a little worse and scored 20,000
+  applicants again. Without the rules, the predicted risk went down for 10.1% of applicants, averaged over the 14
+  inputs. With them, this never happens on those 14. Related inputs not on the list are not covered.
+
+## Fairness
+- **No gender or family status:** keeping them would make the model only very slightly better (80.0% instead of
+  79.8% in my tests). Removing them does not remove the information: the other inputs can still tell men from
+  women quite well.
+- **Age kept:** an early model without age overstated the risk of people under 25 (14.0% predicted, 12.3% real).
+  Keeping age but not gender is my own judgment.
+- **Approval gaps remain:** at the 6.6% cut-off, 86.6% of people under 25 are approved against 99.4% of people 65
+  and over. Dividing one by the other gives 0.87. A common rule of thumb (the "four-fifths rule") flags a ratio
+  below 0.8, so this passes. For men and women (91.1% against 94.6%) the ratio is 0.96. A stricter cut-off that
+  turns away 15% would bring the age ratio to 0.72, which would not pass.
+
+![Approval by group](figures/approval_by_group_v3m.png)
+
+## Limits
+- **The definition of trouble is hidden** and may not match a bank's legal definition of default (for example 90
+  days late).
+- **No dates:** I could not test "learn from the past, predict the future".
+- **Only approved loans:** the model has never seen the people who were turned away.
+- **Profit numbers rest on my guesses** about margin and loss.
+- **The outside credit scores are a black box:** they are the strongest inputs, and how they are made is not known.
+- **The model did a little worse on Kaggle than in my tests,** mostly after I added the loan price, and I do not
+  know why.
+
+The full list is in [`DETAILS.md`](DETAILS.md#limits).
+
+## Lessons learned
+- **Measure luck before comparing:** many improvements here are tiny; without repeated tests I could not tell them
+  from chance.
+- **Set the rules before looking at results:** how many inputs to keep, the tuning search and the common-sense list
+  were all fixed in advance.
+- **Knowing the business beat tuning:** in my tests, working out the hidden interest rate of each loan helped more
+  than tuning the model's settings (on Kaggle the two helped about the same).
+- **Removing a sensitive column does not remove its effect:** other inputs carry gender and age.
+- **Test the explanations and get a second pair of eyes:** changing an input shows whether a reason matters, and
+  outside reviewers caught sentences that claimed too much.
+
+## For technical readers
+
+### Words used here
+- **AUC:** the "80% of the time" above, written as 0.80. It runs from 0.5 (guessing) to 1.0 (perfect). Banks also
+  quote the Gini coefficient, 2 x AUC - 1 (0.596 for my final model).
+- **Validation:** scoring each applicant with a model that never saw them. I split the data into 5 parts (folds),
+  predict each part from the other 4, and repeat with 5 random splits, so every comparison rests on 25 scores.
+- **SHAP:** a method that splits one prediction into the share each input contributed.
+- **Monotone constraint:** the "common-sense rule" above: the model may not lower the risk when a listed input gets
+  worse.
+
+### Approach
+- **Measure the noise first:** one fold's score moves by 0.002 to 0.003 by chance. I adopt a change only if its
+  gain is more than twice its noise and it wins in at least 18 of the 25 folds. A setting chosen on one split is
+  judged only on the other four.
+- **Simplest model first:** a one-line rule, logistic regression, a scorecard (WOE, "weight of evidence": each
+  answer on the form earns points, the way banks have scored loans for decades), then LightGBM (many small decision
+  trees added together).
+- **Features in steps:** the application form plus summaries of the history tables, then recent behaviour and loan
+  stacking, then systematic summaries of every table. Inside each training fold, SHAP keeps the fewest columns
+  that carry 90% of the model's total SHAP (283 in the final model).
+- **The hidden loan price:** the form gives the loan amount and the monthly payment, but not the number of
+  payments. I estimated the term with a small model and derived the interest rate. The idea comes from public
+  write-ups of top solutions; I judged it, like every idea, only on my own validation.
+- **Fixed before looking:** a small tuning search, and a list of 28 inputs for monotone constraints, of which the
+  final model uses 14.
+- **Kept out because of drift:** a model can tell test rows from training rows almost perfectly (AUC 0.98 on my
+  final feature table). I dropped 15 columns that on their own tell them apart, looking at test inputs only.
+
+### Model comparison
 Mean of 25 folds. The last column says whether the model uses gender or family status.
 
 | Model | AUC | Uses gender / family |
@@ -73,111 +167,68 @@ Mean of 25 folds. The last column says whether the model uses gender or family s
 | Rule: mean of the three external scores | 0.716 | no |
 | Logistic regression, 15 columns | 0.737 | gender |
 | Scorecard, form and history, no gender | 0.755 | no |
-| LightGBM v1, form and history | 0.779 | both |
 | LightGBM v1, no gender or family | 0.777 | no |
-| LightGBM v2, no gender or family (chosen) | 0.788 | no |
+| LightGBM v2, recent behaviour and loan stacking | 0.788 | no |
+| LightGBM v3, all tables, tuned | 0.795 | no |
+| LightGBM v3, tuned, with loan price, monotone (final) | 0.798 | no |
 
-- **Each main step beats the one before in all 25 folds:** rule, logistic regression, scorecard, LightGBM v1, v2.
-- **What v2 added:** loan stacking gave the largest single gain (+0.004), then loan terms and recent behaviour
-  (+0.003 each); together 0.008. Learning more slowly and averaging 3 models added another 0.003.
-- **What did not help:** combinations of the three external scores; the bureau's monthly payment history (no gain,
-  and it covers 36% of training credits but almost all test credits); and, in a quick one-split check, XGBoost
+![AUC by model](figures/auc_by_model_v3m.png)
+
+- **Each main step beat the one before in every fold it was judged on:** rule, logistic regression, scorecard,
+  LightGBM v1, v2, v3, tuning and loan price. The monotone rule then cost 0.0002, within noise; when two models
+  are this close I take the one that is easier to explain.
+- **What did not help:** the bureau's monthly payment history, combinations of the external scores, XGBoost
   (within noise) and a plain neural network (0.016 lower).
-- **Calibration:** when the model says 10% risk, close to 10% really struggle. A small correction made it slightly
-  closer, but it was already close.
+- **Without the external scores** AUC falls from 0.790 to 0.768 (one split), still above the scorecard that uses
+  them. The credit history at Home Credit and other lenders carries most of the signal.
+- **Gender and family status:** a version with them scores 0.0018 higher in validation and 0.0026 on Kaggle. The
+  remaining candidate inputs tell men from women with AUC 0.91.
 
-![Predicted vs observed](figures/calibration.png)
+### Check on Kaggle's hidden test
+![Validation vs Kaggle](figures/cv_vs_kaggle_v3m.png)
 
-- **The Kaggle check:** I have Kaggle scores for 11 of my 18 submission files so far, all LightGBM. Their
-  hidden-test scores keep almost the same order as in my validation (rank correlation 0.96, average gap +0.001).
-  Hidden-test scores wobble by roughly 0.005 by chance (my estimate), so the near-perfect match of the chosen model
-  is partly luck. All 10 steps I adopted or tested moved the hidden-test score in the same direction as in
-  validation, 7 by more than their noise. I changed nothing because of these scores.
+- **The order of models holds:** across 20 models, the hidden test ranks them almost as my validation does (rank
+  correlation 0.99). All 17 steps I adopted or tested moved the hidden-test score in the same direction.
+- **The level is a little lower:** the final model scores 0.7945 on Kaggle against 0.7974 in validation on cash
+  loans (the test's mix). Most of that gap appeared when I added the loan price; the cause is unknown. I changed
+  nothing because of Kaggle scores.
 
-![Validation vs Kaggle](figures/cv_vs_kaggle.png)
+### Every cut-off, not just one
+The two plain charts above show one cut-off each. These curves show all of them.
 
-## Explaining decisions
-Each declined applicant gets the three groups of inputs that pushed their risk up most (SHAP values, which split a
-prediction into the share of each input). Numbers below are at the proposed cut-off, which declines about 6%.
+![Refusals against problem loans caught](figures/declined_vs_caught_v3m.png)
 
-- **The reasons drive the decision, in order.** I replaced one reason group of each declined applicant with the
-  values of an approved applicant and scored again. Changing the first reason turns 83% of declines into
-  approvals, the second 57%, the third 41%, the fourth 30%, and a random low-impact group 9%, in that order in all
-  5 folds. This shows the reasons are faithful to the model, not that they are causes in the real world.
-- **External scores dominate.** They are the first reason for 81% of declines, and an applicant cannot act on them,
-  so a refusal letter should also name the first reason the applicant can act on, usually repayment of earlier
-  loans or loan size against income.
-- **Some defaulters look like good customers.** A quarter of the people who struggled got a lower risk score than
-  the average good payer. That is partly how they were picked, but it also means my inputs hold no warning sign
-  for them.
+![Profit by approval rate](figures/profit_curve_v3m.png)
 
-![Reasons drive decisions](figures/reason_counterfactual.png)
+- **Refusals against problem loans caught:** left to right, the bank refuses more applicants, riskiest first; the
+  height is the share of all later problem loans refused. The dashed line is refusing at random.
+- **Profit:** profit per applicant at each approval rate. It peaks when about 93% are approved; refusing more also
+  loses good customers.
 
-## Fairness
-Decisions below use the proposed cut-off (decline about 6%).
+### What the model relies on
+![What the model relies on](figures/shap_groups_v3m.png)
 
-- **Gender:** in a version of the model that still has gender, switching only an applicant's gender changes 2.0%
-  of decisions. I removed gender and family status.
-- **Removing a column does not remove the information.** The chosen model's own inputs tell men from women with
-  AUC 0.91 (mostly occupation), and, even without the age columns, under 25 or not with 0.99.
-- **Age helps young applicants here.** Scored as if they were 45, more applicants under 25 would be declined (11.7%
-  to 17.7%): a short work history looks normal at 22 but risky at 45. So I kept age.
-- **It is a judgment, not a measurement.** Without gender, women's risk is slightly overstated (7.35% predicted,
-  7.00% observed), the same kind of harm that made me keep age. Many credit laws forbid gender as a factor and
-  allow age under conditions; the data's country is not disclosed, so I name no specific law.
-- **Approval gaps:** under 25: 87.3% approved, 65 and over: 99.5% (ratio 0.88). A stricter cut-off widens the gap:
-  declining 15% instead of 6% puts the ratio at 0.71.
+- **Five groups carry 78% of the SHAP share:** external scores, loans with other lenders, earlier Home Credit
+  applications, repayment of earlier Home Credit loans, and loan size and terms. A large share shows what the model
+  uses, not what causes default.
 
-![Approval by group](figures/approval_by_group.png)
+## More detail
+- [`DETAILS.md`](DETAILS.md): the full write-up, with every caveat and the source file of each number.
+- [Report notebook](notebooks/home_credit_report.ipynb): the tables behind the statements.
+- [`EXPERIMENTS.md`](EXPERIMENTS.md): every run, including what did not work.
+- [`OUTPUTS.md`](OUTPUTS.md): which script writes which result file.
 
-## How the business could use this
-The data has no prices or losses, so I assumed that a repaid loan earns 20% of the credit and a loan with
-difficulties loses 60% of it. Approving then pays when the predicted risk is below 25% (20 / (20 + 60)). Every
-applicant in the data was approved at the time, so this back-test only shows what tightening today's policy would
-do. All of it is a proposal until tested live.
-
-![Profit by approval rate](figures/profit_curve.png)
-
-- **Decline the riskiest 6%:** the rule approves 93.9% of past applicants and cuts the difficulty rate among them
-  from 8.1% to 6.3%. Profit per applicant rises from 83,782 to 86,351 (+3.1%).
-- **The assumptions matter far more than chance:** resampling applicants moves the gain only between 2,381 and
-  2,744; changing margin and loss moves it between about 300 and 11,000, and the best approval rate between 78% and
-  99%. The model is worth most when margins are thin and losses high.
-- **Where the models disagree:** applicants approved by LightGBM but declined by the scorecard had difficulties in
-  18% of cases; those approved by the scorecard but declined by LightGBM in 31%. The notebook has the full score
-  band table.
-- **Putting it to work (untested proposals):** score bands with fixed actions; refusal letters in plain words; a
-  small trial next to the current rules; drift monitoring (the score was stable between training and Kaggle's test
-  set, population stability index 0.005); and a small random approval sample below the cut-off to learn about
-  declined applicants.
-
-## Lessons learned
-- **Measure the noise before comparing.** Many gains here are 0.001 to 0.004 AUC; without paired comparisons I
-  could not tell them from luck.
-- **Removing a sensitive column does not remove its effect.** Other inputs carry gender and age.
-- **Test explanations, do not just display them, and get an independent review.** Swapping an input shows whether
-  a reason matters; outside reviewers found that my calibration measure flattered a correction and that some
-  sentences claimed too much. I fixed both.
-
-## Limits
-- **Target, time and population:** the target's exact definition is hidden; there is no time order, so random folds
-  may flatter the scores; and only approved loans are in the data.
-- **Business numbers rest on assumptions:** margin and loss are guesses; loan term, cures, funding and capital are
-  not modelled.
-- **External scores are opaque:** the strongest inputs come from providers whose method is not disclosed.
-- **The Kaggle check is not fully independent:** some feature ideas came from public solutions that were built with
-  leaderboard feedback.
-- **Possible repeat applicants:** 12,411 training rows share birth date, ID date and gender. Keeping each such group
-  in one fold changed the score by about +0.001, within the effect of reshuffling folds, so the check is
-  inconclusive at that size.
-- **Next:** a third feature version with many more features and SHAP-based feature reduction is being tested
-  (`run_v3.sh`); it is not part of these results.
+Every number on this page comes from a script in this repository, except the Kaggle scores, which I read from
+Kaggle.
 
 ## How to run
-1. Download the competition data from https://www.kaggle.com/competitions/home-credit-default-risk/data with your
-   own Kaggle account (accept the rules first) and unzip it into `data/raw/`. The data is not in this repository:
-   the competition rules do not allow sharing it.
-2. Set up Python 3.11 and the packages in `requirements.txt`.
-3. Run `./run_all.sh` to rebuild every result, or `./run_all.sh /some/folder` to write them elsewhere.
-4. Open the [report notebook](notebooks/home_credit_report.ipynb) for the tables, the code layout and the
-   technical details.
+1. Download the data from https://www.kaggle.com/competitions/home-credit-default-risk/data with your own Kaggle
+   account (accept the rules first) and unzip it into `data/raw/`. The competition rules do not allow sharing it.
+2. Set up Python 3.11 in `.venv` at the repository root with the packages in `requirements.txt` (its first lines
+   give the commands). One training process uses up to 4.8 GB of memory, and the scripts run several at once.
+3. Run `./run_all.sh` (v1 and v2), then `./run_v3.sh` (v3 and the final model). Pass a folder to either to write
+   the results there; without one they overwrite the saved results in `analysis_output/`. A full rerun took about
+   11 hours on a 10-core laptop and reproduced the saved files, apart from run times and a few known differences
+   ([details](DETAILS.md#how-to-run), `analysis_output/reproducibility/v3_full_rerun.csv`).
+4. Rebuild the [report notebook](notebooks/home_credit_report.ipynb) with
+   `.venv/bin/python -m notebooks.build_notebook`.

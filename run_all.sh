@@ -7,7 +7,8 @@
 #
 # The training scripts refuse to overwrite a model that already has results, so a second run in the repository
 # stops at the first existing model; rerun into a new folder instead.
-# Run times on a 10-core laptop are logged in EXPERIMENTS.md; the whole chain takes roughly 10 minutes.
+# Run times are logged in EXPERIMENTS.md; the whole chain took about 1 h 36 min on a 10-core laptop (with other
+# work running at the same time).
 set -euo pipefail
 cd "$(dirname "$0")"
 PY=.venv/bin/python
@@ -105,7 +106,8 @@ run experiments.model_summary
 # Kaggle check (needs analysis_output/kaggle/kaggle_scores.csv, typed from Kaggle by hand)
 run experiments.kaggle_check --tag v2
 
-# Charts for the README and the report notebook
+# What the chosen model relies on overall (global SHAP), then the charts for the README and the report notebook
+run analysis.global_shap --model lgbm_v2_combo_lr02_x3 --features v2 --tag v2
 run analysis.figures
 "$PY" -m notebooks.build_notebook   # reads the results in the repository, not an --out-root folder
 

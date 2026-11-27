@@ -1,0 +1,3 @@
+a,b,scope,auc_a,auc_b,gain_b_minus_a,boot_se_gain,b_wins_of_20,verdict
+lgbm_v3b_sh90_lr02_x3_tuned,lgbm_v3c_sh90_lr02_x3_tuned,all,0.79544,0.79798,0.00254,0.00033,20,"B better (beats noise) [seeds 0,2,3,4: 20 pairs]"
+lgbm_v3b_sh90_lr02_x3_tuned,lgbm_v3c_sh90_lr02_x3_tuned,cash,0.79484,0.79764,0.0028,0.00035,20,"B better (beats noise) [seeds 0,2,3,4: 20 pairs]"

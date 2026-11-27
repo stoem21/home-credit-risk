@@ -28,10 +28,19 @@ def drop_columns(cols: list[str], drop: str | None) -> list[str]:
     return [c for c in cols if c not in gone]
 
 
+def exclude_prefixes(cols: list[str], exclude: str | None) -> list[str]:
+    """Remove columns starting with any of the comma-separated prefixes in `exclude` (e.g. "stk_bb_,load_total")."""
+    if not exclude:
+        return cols
+    return [c for c in cols if not c.startswith(tuple(exclude.split(",")))]
+
+
 # Feature groups added in feature table v2 (pipeline/make_features_v2.py), by short name -> column prefix.
 NEW_GROUPS = {"win": "win_", "stk": "stk_", "term": "term_", "ext": "ext_",
               # feature table v3 (pipeline/make_features_v3.py)
-              "agg": "agg_", "last": "last_", "trend": "trend_", "load": "load_"}
+              "agg": "agg_", "last": "last_", "trend": "trend_", "load": "load_",
+              # feature table v3c (pipeline/make_features_rate.py)
+              "rate": "rate_"}
 
 
 def select_groups(cols: list[str], add: str | None) -> list[str]:

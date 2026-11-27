@@ -1,0 +1,18 @@
+measure,model,scope,value
+"adversarial AUC, mean of 5 folds",,,0.98236
+"adversarial AUC, sd of 5 folds",,,0.00042
+effective sample size of weights (train rows),,,2046.58775
+"effective sample size, % of train",,,0.66553
+largest weight (mean = 1),,,3364.00364
+"OOF AUC, mean of 5 seeds",logreg_baseline,all,0.73729
+"OOF AUC reweighted to test mix, mean of 5 seeds (estimate)",logreg_baseline,all,0.73874
+"OOF AUC, mean of 5 seeds",logreg_baseline,cash,0.73587
+"OOF AUC reweighted to test mix, mean of 5 seeds (estimate)",logreg_baseline,cash,0.73784
+"OOF AUC, mean of 5 seeds",scorecard_full,all,0.75645
+"OOF AUC reweighted to test mix, mean of 5 seeds (estimate)",scorecard_full,all,0.77218
+"OOF AUC, mean of 5 seeds",scorecard_full,cash,0.75542
+"OOF AUC reweighted to test mix, mean of 5 seeds (estimate)",scorecard_full,cash,0.77155
+"OOF AUC, mean of 5 seeds",lgbm_v1,all,0.77918
+"OOF AUC reweighted to test mix, mean of 5 seeds (estimate)",lgbm_v1,all,0.8035
+"OOF AUC, mean of 5 seeds",lgbm_v1,cash,0.77875
+"OOF AUC reweighted to test mix, mean of 5 seeds (estimate)",lgbm_v1,cash,0.80294

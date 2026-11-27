@@ -1,0 +1,19 @@
+group,columns,mean_abs_shap,share_pct
+External credit scores,3,0.7277034733857117,21.9
+Loan size and terms vs income,12,0.4583471863806047,13.8
+Repayment of earlier Home Credit loans,19,0.3933701382639984,11.9
+Earlier Home Credit applications,21,0.32470701657453144,9.8
+Loans with other lenders,11,0.27947727040079384,8.4
+Employment and income type,6,0.27890474772488916,8.4
+Loans still running at Home Credit,2,0.13675602367489936,4.1
+Housing,49,0.10718540930455678,3.2
+Documents and ID,22,0.09581893777077291,2.9
+Credit card use,7,0.09163359753852658,2.8
+Region and address,9,0.08088293240853944,2.4
+Car ownership,2,0.06885909996421571,2.1
+Education,1,0.06173237754391395,1.9
+Contact details,7,0.06388562376457571,1.9
+Age [sensitive],2,0.055393315525722395,1.7
+Defaults in social circle,4,0.0394030774555872,1.2
+"Application process (day, hour, companion)",3,0.026065658004775262,0.8
+Recent credit enquiries,6,0.025387522616271384,0.8

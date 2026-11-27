@@ -315,9 +315,9 @@ Interpretations that are not measured are marked as guesses.
   default.
 
 ## 16. Feature table v1, train vs test
-- **Run:** `eda/feature_drift.py` (about 1.5 min; 5 parallel LightGBM fits). Output `analysis_output/eda/feature_drift*.csv`,
-  `feature_adversarial_*.csv` and `processed/adversarial_v1.parquet`. Ran twice (the second run added the
-  loan-term table); the adversarial numbers were identical.
+- **Run:** `eda/feature_drift.py` (about 1.5 min; 5 parallel LightGBM fits). Output
+  `analysis_output/eda/feature_drift*.csv`, `feature_adversarial_*.csv` and `processed/adversarial_v1.parquet`. Ran
+  twice (the second run added the loan-term table); the adversarial numbers were identical.
 - **Single features (measured):** 7 of 133 numeric features separate test from train with AUC above 0.55. The
   largest: `annuity_to_credit` 0.669, `AMT_REQ_CREDIT_BUREAU_QRT` 0.623, `credit_to_income` 0.590. The 22 history
   summaries all stay below 0.545. 11 features differ by more than 2 points in share missing; the largest is
@@ -372,10 +372,10 @@ Interpretations that are not measured are marked as guesses.
   genuinely different family). Both were tried later on the v2 features (see the LightGBM v2 entry).
 
 ## 19. README draft started
-- `README.md` drafted as a story (summary first, technical details last), with the findings so far. Every number in it was
-  copied from a file in `analysis_output/` (target, comparisons, noise, calibration, reasons, errors, feature
-  drift, reproducibility) and checked against it. Business, fairness and the final write-up are marked as not
-  done. `run_all.sh` now also runs `eda.feature_drift` and `analysis.error_analysis`.
+- `README.md` drafted as a story (summary first, technical details last), with the findings so far. Every number in
+  it was copied from a file in `analysis_output/` (target, comparisons, noise, calibration, reasons, errors, feature
+  drift, reproducibility) and checked against it. Business, fairness and the final write-up are marked as not done.
+  `run_all.sh` now also runs `eda.feature_drift` and `analysis.error_analysis`.
 
 ## 20. Fairness, project step 8
 - **Run:** `pipeline/train_lgbm.py --drop gender|gender,family|gender,family,age` and
@@ -466,15 +466,15 @@ Interpretations that are not measured are marked as guesses.
 - **A run stopped by me:** the first XGBoost / MLP launch forgot `--exclude stk_bb_` (189 instead of 186
   columns), so the comparison with LightGBM would not have used the same data. Stopped within a minute; no file
   had been written; `--exclude` was added to `pipeline/train_family.py` and the run restarted.
-- **Other model families, 1 seed (exploratory, same 186 columns, same rules, no tuning; measured on the 5
-  seed-0 folds against `lgbm_v2_combo`, which has the same learning rate 0.05 and a single fit):**
-  XGBoost (`pipeline/train_family.py --model xgb`, 45 s) AUC 0.7851 vs LightGBM 0.7844, +0.0007 (SE 0.0004, 3 of
-  5 wins): no clear difference. MLP (two hidden layers 256 / 128, 28 s) AUC 0.7681, -0.0163 (0 of 5): clearly
-  worse; its best epoch was the 3rd or 4th, so it overfits fast with these settings. A first MLP run failed (a
-  missing-value indicator met a column with missing values only in the hold-out); fixed with
-  `error_on_new=False`. **Decision (within noise, keep the simpler):** XGBoost is within noise of LightGBM and no simpler, so
-  LightGBM stays; the MLP result matches the public experience that plain neural nets trail boosted trees here.
-  Not confirmed with 5 seeds: neither model is adopted, so there is nothing to confirm.
+- **Other model families, 1 seed (exploratory, same 186 columns, same rules, no tuning; measured on the 5 seed-0
+  folds against `lgbm_v2_combo`, which has the same learning rate 0.05 and a single fit):** XGBoost
+  (`pipeline/train_family.py --model xgb`, 45 s) AUC 0.7851 vs LightGBM 0.7844, +0.0007 (SE 0.0004, 3 of 5 wins): no
+  clear difference. MLP (two hidden layers 256 / 128, 28 s) AUC 0.7681, -0.0163 (0 of 5): clearly worse; its best
+  epoch was the 3rd or 4th, so it overfits fast with these settings. A first MLP run failed (a missing-value
+  indicator met a column with missing values only in the hold-out); fixed with `error_on_new=False`. **Decision
+  (within noise, keep the simpler):** XGBoost is within noise of LightGBM and no simpler, so LightGBM stays; the MLP
+  result matches the public experience that plain neural nets trail boosted trees here. Not confirmed with 5 seeds:
+  neither model is adopted, so there is nothing to confirm.
 - **Fairness reference for v2 (`lgbm_v2_combo_with_gender`, same 186 columns plus gender and family, learning
   rate 0.05, measured):** AUC 0.7866. Leaving gender and family out (`lgbm_v2_combo`) costs 0.0016 (SE 0.0004, 0
   of 25), about the same as in v1 (0.0019). The v2 candidate without them (`lgbm_v2_combo_lr02_x3`) is 0.0016
@@ -571,9 +571,9 @@ Interpretations that are not measured are marked as guesses.
   reduction does not add accuracy here; its value is a smaller, simpler model at a small cost.
 - **5 seeds (measured, learning rate 0.05, single fit):** all 728 columns (`lgbm_v3_all`) AUC 0.7904 all loans,
   0.7897 cash, +0.0054 vs `lgbm_v2_combo` (SE 0.0005, 25 of 25). SHAP top 350 (`lgbm_v3_shap350`) 0.7903 / 0.7897,
-  +0.0053 (25 of 25). The two are the same: -0.0001 (SE 0.0004, 13 of 25 wins). **Decision (within noise, keep the simpler):**
-  keep the SHAP-350 version, half the columns for the same accuracy. Run time 513 s (all) vs 892 s (the selection
-  fit is extra).
+  +0.0053 (25 of 25). The two are the same: -0.0001 (SE 0.0004, 13 of 25 wins). **Decision (within noise, keep the
+  simpler):** keep the SHAP-350 version, half the columns for the same accuracy. Run time 513 s (all) vs 892 s (the
+  selection fit is extra).
 - **Final v3 candidate (`lgbm_v3_shap350_lr02_x3`, measured):** SHAP top 350 chosen inside each fold, learning
   rate 0.02, 3 fits per fold: AUC 0.7939 all loans, 0.7933 cash. +0.0036 vs `lgbm_v3_shap350` (SE 0.0003, 25 of
   25) and +0.0057 vs the v2 model `lgbm_v2_combo_lr02_x3` (SE 0.0005, 25 of 25). 2,597 s for the 25 folds.
@@ -588,10 +588,10 @@ Interpretations that are not measured are marked as guesses.
   0.0006, 25 of 25), vs `scorecard_full_no_gender` +0.0330 (SE 0.0008, 25 of 25).
 
 ## 28. Fixes after an external review (4 reviewers with no prior context; v2 only)
-- **Review:** four independent AI reviewers, each with no prior context, read a clean clone of the repository (no Kaggle
-  data): a credit-risk
-  hiring manager, a non-technical reader, a senior data scientist, and a code reviewer who also ran read-only
-  checks. No leakage of a validation row's own label was found. I re-checked every major finding myself; all held.
+- **Review:** four independent AI reviewers, each with no prior context, read a clean clone of the repository (no
+  Kaggle data): a credit-risk hiring manager, a non-technical reader, a senior data scientist, and a code reviewer
+  who also ran read-only checks. No leakage of a validation row's own label was found. I re-checked every major
+  finding myself; all held.
 - **Calibration metric corrected (measured):** the pooled ECE of a cross-fitted isotonic map is biased low (pooled
   0.094 points for v2 isotonic, below the 0.160 that a perfectly calibrated model would show). New:
   `evaluate.ece_by_fold` and `ece_floor`, written by `analysis/calibration.py` to `ece_by_fold_v2.csv` (earlier
@@ -669,3 +669,440 @@ Interpretations that are not measured are marked as guesses.
   under 25 vs 65+); age decision argued with the new counterfactual; legal framing without naming a country;
   repeat-applicant check called inconclusive at about 0.001; Kaggle coverage stated (11 of 18 files scored);
   score-band table, swap-set and PSI added. `kaggle_scores.csv` source note reworded (values unchanged).
+
+## 30. Full rerun of the v2 project (reproducibility check)
+- **Run:** `run_all.sh` into a separate folder (5,739 s, about 1 h 36 min, with other work running on the machine),
+  then `experiments/check_reproduced.py`.
+- **Two bugs found by the rerun (fixed):** the chart code and the notebook still read the old file name
+  `kaggle_vs_cv.csv`, which a fresh run no longer writes (it writes `kaggle_vs_cv_v2.csv`). In the repository the old
+  file still existed, so the bug was hidden. `analysis.figures` stopped the chain; after the fix the three remaining
+  steps (charts, credit tables, age and gender counterfactual) were run into the same folder. A first comparison
+  made before that is kept as `reproducibility/v2_2026-11-25.csv`.
+- **Result (measured, `reproducibility/v2_full_rerun.csv`):** of the 223 result files present in both runs, 207 are
+  byte-identical and 16 differ only in their run-time column (`seconds`). Only in the repository (44): the v3 work
+  in progress (run by `run_v3.sh`, not `run_all.sh`), the superseded first business files and Kaggle check files,
+  and the hand-typed `kaggle_scores.csv`. Only in the new run (3): `calibration/ece_by_fold.csv` (the improved
+  calibration script now writes it for the first calibration run too) and the two extra fits of the chosen model,
+  which the training script now saves; all three were copied into the repository.
+
+## 31. v3 as a candidate main model: corrected features and drift check
+- **Plan (agreed before running):** fix the two data issues the code review found, check drift, then choose the
+  SHAP feature reduction by a cumulative-share rule fixed in advance instead of a K picked on CV; compare 90%, 95%
+  and 99% on seed 1 (not used to pick anything before) and keep the smallest share that is within noise of all
+  features; compare with v2 on one seed, and run 5 seeds only for the setting finally chosen.
+- **Corrected table (`pipeline/make_features_v3.py --fixed`, `features_v3b`; `features_v3` and its results kept):**
+  bureau `DAYS_CREDIT_UPDATE` clipped at 0 (17 rows were after the application); bureau amounts in a currency
+  other than "currency 1" (1,408 rows) set to missing before summing. 69 columns change, each in tens to about a
+  thousand applicants.
+- **Drift check (`eda/feature_drift.py --features v3b`, 11 min, measured):** adversarial AUC 0.982 (v2: 0.968),
+  driven by the bureau_balance columns (already excluded) and by the bureau instalment amount (`AMT_ANNUITY`):
+  missing for 74% of train vs 22% of test bureau rows, so its sums and the burden features built on it separate
+  test from train on their own (AUC up to 0.82; `load_*annuity*` 0.67 to 0.69). Active bureau credits with an
+  actual end date (0.5% of rows) separate them with 0.95. Excluded, with a new comma-list `--exclude`:
+  `stk_bb_`, `agg_bur_AMT_ANNUITY`, `agg_bur_act_AMT_ANNUITY`, `agg_bur_act_DAYS_ENDDATE_FACT`,
+  `load_total_annuity`, `load_existing_annuity` (731 to 716 columns). The card aggregates are missing 5.9 points
+  more often in train, the same gap as the v1 card features (more test applicants have a card); kept.
+- **New option:** `--shap-share` (`homecredit.models.lgbm.shap_select(share=...)`): in each training fold keep the
+  fewest columns whose mean |SHAP| adds up to the share. On one training fold (seed 1, fold 0, v3), 90% / 95% / 99%
+  need 286 / 381 / 520 of 728 columns; the earlier K=350 held 93.6%; 88 columns had zero SHAP.
+- **Choosing the SHAP share (seed 1, learning rate 0.05, one fit; exploratory, measured):** all 716 columns AUC
+  0.7900; 90% (about 290 columns per fold, 362 used in at least one fold) 0.7902, +0.0002 (SE 0.0004, 3 of 5, no
+  clear difference); 95% (469 in at least one fold) 0.7908, +0.0008 (SE 0.0004, 5 of 5, better); 99% (581) 0.7906,
+  +0.0006 (4 of 5, no clear difference). 95% vs 90%: +0.0006 (SE 0.0003, 5 of 5, below 2 SE). **Decision, by
+  the rule fixed beforehand (the smallest share within noise of all columns): 90%.** Picking 95% because it scored
+  highest would be choosing on validation scores. v3b with all columns vs `lgbm_v2_combo` (same setting, seed 1):
+  +0.0047 (SE 0.0006, 5 of 5). The comparison code now bootstraps on the first seed both runs share (s1 here); a
+  25-fold comparison file was checked to be reproduced exactly.
+- **v3 final setting vs v2 (seed 1, exploratory, measured):** v3b, SHAP share 90%, learning rate 0.02, average of
+  3 fits: AUC 0.7940 vs 0.7883 for `lgbm_v2_combo_lr02_x3` on the same folds, +0.0057 (SE 0.0004, 5 of 5). Cost
+  of leaving out gender and family in v3 (learning rate 0.05, one fit, SHAP 90%): -0.0019 (SE 0.0004, 0 of 5);
+  v2 measured -0.0016. Passed the decision point, so the 5-seed confirmation runs next.
+- **5-seed confirmation (measured, 25 folds):** `lgbm_v3b_sh90_lr02_x3` AUC 0.7938 all loans, 0.7931 cash (sd of
+  seed means 0.0002) vs `lgbm_v2_combo_lr02_x3` 0.7882 / 0.7877: +0.0056 all (SE 0.0005, 25 of 25 wins), +0.0054
+  cash (SE 0.0005, 25 of 25). **Adopted as the main model.** 35 min for the folds, final model 1,304 trees
+  (average of 3 fits). Learning rate 0.02 with 3 fits vs 0.05 with one fit (`lgbm_v3b_sh90`, 0.7903): +0.0036
+  (SE 0.0003, 25 of 25). Cost of leaving out gender and family (`lgbm_v3b_sh90_with_gender` 0.7920 vs
+  `lgbm_v3b_sh90`): -0.0018 (SE 0.0004, 1 of 25 wins); v2 measured -0.0016.
+- **Kaggle late submissions (outside check only; nothing chosen on them;
+  `analysis_output/kaggle/kaggle_scores_v3.csv`):** private / public AUC: `lgbm_v3b_sh90_lr02_x3` 0.79261 / 0.79405
+  (v2 chosen model 0.78782 / 0.78971); `lgbm_v3b_sh90_with_gender` 0.79097 / 0.79546; `lgbm_v3b_sh90` 0.78888 /
+  0.79062; the first v3 attempt before the bureau fixes (`lgbm_v3_shap350_lr02_x3`) 0.79181 / 0.79585. New option
+  `train_lgbm --final-only`: final model of an exploratory run (trees from its seed-1 folds), used for
+  `lgbm_v3b_all_s1` and `lgbm_v3b_sh99_s1` files.
+- **Downstream analyses on v3 (`run_v3.sh`, 42 min, measured; v2 files untouched, new `*_v3` folders):**
+  calibration by fold after isotonic 0.35 points vs noise floor 0.33 (raw 0.54); break-even rule approves 93.6%,
+  +2,753 per applicant vs approving everyone (95% CI 2,569 to 2,938), +184 vs the v2 model (CI 100 to 265); KS 0.444
+  (scorecard 0.382); score PSI train vs test 0.004. Reason codes at a 6% decline rule: the first reason flips 82%
+  of declines to approve, a random low-impact group 8%. Proxy check on all 716 candidate columns: gender AUC 0.91,
+  under 25 0.99. Direct effect at the 6% rule: setting every applicant to age 45 changes 0.8% of decisions (4.8%
+  of under-25s); switching gender in the model that uses it changes 1.9%. Global SHAP: external scores 18% (v2 22%),
+  earlier Home Credit applications 16%, loans with other lenders 16%, repayment history 15%. Bug fixed:
+  `analysis/global_shap.py` now maps LightGBM's saved names (spaces as "_") back to the table's columns.
+- **v3 without the three external scores (seed 1, exploratory, measured):** same setting as `lgbm_v3b_sh90`
+  (learning rate 0.05, one fit, SHAP 90% chosen again in each fold) with `EXT_SOURCE_` added to `--exclude`
+  (`lgbm_v3b_sh90_noext_s1`, 713 columns): AUC 0.7678 all loans vs 0.7902 with them, -0.0224 (SE 0.0009, 0 of 5);
+  cash -0.0223. Still above the WOE scorecard that uses them (0.7553, 25 folds) and the rule on the scores alone
+  (0.7165). Question it answers: what the lender would lose by not buying or not having these scores. The
+  in-house and bureau data carry most of the signal, the external scores add about 0.02 AUC on top.
+
+## 32. Bounded tuning of four LightGBM settings (v3)
+- **Plan (fixed before running; `experiments/tune_lgbm.py`):** search num_leaves 16 to 128, min_child_samples 20
+  to 500, feature_fraction 0.1 to 0.8, lambda_l2 0.01 to 10 (log scales for all but feature_fraction); 20 random
+  combinations from numpy seed 0 (the list is fixed before any score) plus the current settings as trial 0. Each
+  trial: seed 1, 5 folds, learning rate 0.05, one fit, the columns of the 90% SHAP rule (computed once per fold).
+  Best = highest mean AUC on all loans. Confirmation: the full setting (learning rate 0.02, 3 fits, 5 seeds) vs
+  `lgbm_v3b_sh90_lr02_x3`, judged only on seeds 0, 2, 3, 4 (seed 1 chose the SHAP share and the settings):
+  adopted only if gain > 2 SE and at least 15 of 20 wins; otherwise the current settings stay. Random search
+  instead of Optuna: no new dependency. Only LightGBM is tuned; the scorecard, XGBoost and the MLP are not.
+- **New options:** `train_lgbm --params <best.json>`; `compare --seeds 0,2,3,4` (writes `..._seeds0234.csv`; a
+  25-fold comparison file was checked to be reproduced unchanged).
+- **Search result (seed 1, exploratory, measured; `analysis_output/tuning/v3b_sh90_trials.csv`):** stopped once
+  after 15 trials when the session ended and resumed with a new `--resume` option (the finished trials are checked
+  against the fixed list; nothing was rerun or redrawn). Trial 0, the current settings, gave AUC 0.79016, the same
+  as `lgbm_v3b_sh90_s1`. Best: trial 17 (num_leaves 30, min_child_samples 174, feature_fraction 0.24, lambda_l2 6.7)
+  0.79285, +0.0027. The next best were 0.79206 and 0.79188; 12 of the 20 random trials beat the current settings.
+  Settings with fewer columns per tree (feature_fraction 0.2 to 0.3) were among the best, as guessed beforehand.
+  This gain is on the seed that chose it, so it is expected to shrink; the confirmation decides.
+- **Confirmation (measured, `lgbm_v3b_sh90_lr02_x3_tuned`: trial 17's settings with learning rate 0.02, 3 fits,
+  5 seeds):** AUC 0.7954 all loans, 0.7948 cash (sd of seed means 0.0002). On seeds 0, 2, 3, 4 only (the decision):
+  +0.0017 all loans (SE 0.0002, 20 of 20 wins), +0.0017 cash (20 of 20). **Adopted: the tuned model is the main
+  model.** All 25 folds, for information: +0.0016 (25 of 25). The seed-1 search gain (+0.0027 at learning rate
+  0.05) shrank to +0.0017 on the other seeds, as expected for a winner picked among 20 (later revised: entries 36
+  and 38). 29 min for the folds; final model 1,578 trees (average of 3 fits).
+- **Follow-up runs for the tuned model (`*_v3t` folders):** a fairness reference with gender and family at the same
+  tuned setting, then calibration, business, credit tables, error analysis, reason codes and global SHAP. The proxy
+  check does not depend on the model (same candidate columns as v3) and the direct age / gender test refits the
+  faster untuned setting, as in v2; both keep their v3 results.
+- **Kaggle (outside check only; `kaggle_scores_v3t.csv`):** `lgbm_v3b_sh90_lr02_x3_tuned` private 0.79371, public
+  0.79562; untuned v3 0.79261 / 0.79405, v2 0.78782 / 0.78971. The private gain over untuned v3 (+0.0011) has the
+  same sign as on CV (+0.0017 cash).
+- **Kaggle check of the SHAP share (outside check only; final models from `--final-only`, learning rate 0.05, one
+  fit):** private / public: 90% (`lgbm_v3b_sh90`) 0.78888 / 0.79062; 99% (`lgbm_v3b_sh99_s1`) 0.79047 / 0.78861;
+  all 716 columns (`lgbm_v3b_all_s1`) 0.78921 / 0.79095. Private puts 99% highest (+0.0016 over 90%), public puts it
+  lowest; a rough private SE for such a pair is about 0.001 (the CV SE of 0.0004 scaled to the smaller private
+  set), so these gaps are close to noise. The 90% choice stays (rule fixed beforehand; no choice made on Kaggle).
+- **Follow-up results for the tuned model (`run_v3.sh` tuned part, 51 min, measured):** gender and family cost at
+  the tuned setting: with them 0.7972 vs 0.7954 without, -0.0018 (SE 0.0002, 0 of 25), the same as before tuning.
+  Break-even rule approves 92.8%, +2,782 per applicant vs approving everyone (CI 2,588 to 2,978); vs untuned v3
+  +30 (CI -22 to 84: no clear money gain from tuning); vs v2 +214 (CI 119 to 305). KS 0.447. Reason codes at the
+  6% rule: the first reason flips 80% of declines; external scores are the first reason in 69% of declines (untuned
+  v3: 77%). Global SHAP is spread more evenly: loans with other lenders 17%, earlier applications 17%, external
+  scores 16%, repayment history 15%.
+
+## 33. Estimated term and interest rate of the loan applied for (feature group rate_)
+- **Why:** the application has the credit and the monthly instalment but not the term, so the price of the loan is
+  hidden; public top write-ups estimated it, and our error analysis found the model weakest on the longest loans
+  (AUC 0.758 in the longest fifth by annuity / credit vs 0.794 overall; v3 error analysis).
+- **Term model (`pipeline/make_features_rate.py`, measured):** LightGBM regression of CNT_PAYMENT on credit,
+  instalment, goods price and ratios, fitted on 461k earlier cash-loan applications (no TARGET used). On 20% of
+  applicants held out: mean absolute error 0.3 months, 97.8% within 3 months, R2 0.995 (always guessing the
+  median: error 13.7 months). The term is almost fixed by the amounts, so the rate estimate is close to exact.
+- **New columns (5):** predicted term, implied yearly rate, total cost share, rate vs the applicant's earlier
+  rates, term vs earlier terms. Revolving loans have none (missing 9.5% in train, 0.9% in test: the share of
+  revolving loans).
+- **Train vs test (measured, `analysis_output/features/rate_drift.csv`):** test loans are shorter and dearer
+  (median predicted term 25.7 vs 36.0 months; median rate 56% vs 40%). The same shift is already in
+  annuity_to_credit (PSI 1.0, credit tables): the test period sold shorter loans. The formula is the same for
+  both, so this is a real change of population, not a broken feature; Kaggle will show whether it transfers.
+- **Test plan:** seed 1, learning rate 0.05, one fit, tuned settings, SHAP 90%: v3c (+ rate_) vs v3b; if it wins
+  4 of 5, confirm with the full setting on 5 seeds (seeds 0, 2, 3, 4 decide, at least 15 of 20).
+- **Seed 1 (exploratory, measured):** reference v3b with the tuned settings at learning rate 0.05 (0.79285, the
+  same as tuning trial 17); with rate_ (721 candidate columns) 0.79551: +0.0027 all loans (SE 0.0005, 5 of 5),
+  +0.0030 cash. All 5 rate_ columns but one were kept by SHAP in every fold; the implied rate and the total cost
+  are the 3rd and 4th most used columns (gain share 3.7% and 3.5%), after two external scores. Passed, so the
+  5-seed confirmation runs (`lgbm_v3c_sh90_lr02_x3_tuned`).
+- **5-seed confirmation (measured, `lgbm_v3c_sh90_lr02_x3_tuned`, full setting):** AUC 0.7980 all loans, 0.7977 cash
+  (sd of seed means 0.0001). On seeds 0, 2, 3, 4 (the decision): +0.0025 all loans (SE 0.0003, 20 of 20), +0.0028
+  cash (20 of 20). **Adopted: v3c tuned is the main model.** All 25 folds, for information: +0.0026 (25 of 25).
+  The estimated loan price gave more than the whole tuning step (+0.0017). Final model 1,397 trees.
+- **Kaggle (outside check only; `kaggle_scores_v3c.csv`):** `lgbm_v3c_sh90_lr02_x3_tuned` private 0.79479, public
+  0.79596; v3b tuned 0.79371 / 0.79562. Private gain +0.0011 vs +0.0028 on CV (cash): same sign but less than half,
+  and about one rough private SE (0.001), so not clearly beyond noise on Kaggle. Private is now 0.0029 below CV
+  (cash), against about 0.001 for the earlier models. A likely reason (a guess, not tested): test loans are shorter
+  and dearer (above), so the rate columns meet values the training data has fewer of. Kept as the main model
+  (the decision is made on our validation), with this gap stated as a limitation.
+- **Check of that guess (validation, out-of-fold, mean of 5 seeds, measured; `experiments/test_like_gain.py`):** the
+  gain of v3c over v3b tuned is about the same in the test-like parts of train: short cash loans (predicted term up
+  to 24 months, 76k) +0.0022, the 20% most test-like by the v1 adversarial model +0.0023, everyone else +0.0028
+  (sd over seeds 0.0002 to 0.0003). So the guess is not supported; the smaller Kaggle gain is within about one
+  private SE and may be chance.
+
+## 34. Monotone constraints (B1): risk that always moves the expected way
+- **Plan (fixed before running):** `pipeline/monotone_v3.json` lists 28 columns with a clear business direction
+  (external scores and years employed: higher = safer; late payment, underpayment, days past due, overdue bureau
+  credit, refused applications, instalment / income: higher = riskier). Sensitive attributes, loan amounts and the
+  rate estimates are left free. LightGBM `monotone_constraints` (method "intermediate") on those columns; nothing
+  else changes. This is a trade-off, not a race: the result is the AUC (and money) given up for a model whose
+  answer to "what if this value were worse" never points the wrong way. New: `train_lgbm --monotone`,
+  `experiments/monotone_check.py`.
+- **How often the current model points the wrong way (`experiments/monotone_check.py`, final model, 20,000 train
+  applicants, one small step the worse way per column, measured):** `lgbm_v3b_sh90_lr02_x3_tuned` lowers the
+  predicted risk after a worse value for 0.4% to 1.1% of applicants on the external scores, 6.7% on years
+  employed, and 3% to 17% on the late-payment and burden columns (late share 17.1%, mean days late 16.7%,
+  instalment / income 17.5%). Mean over the 14 constrained columns the model uses: 7.9%. The steps are small, so
+  many of these moves are tiny; it measures direction, not size.
+- **Result (measured, `lgbm_v3c_sh90_lr02_x3_tuned_mono`, full setting, 5 seeds):** AUC 0.7978 all loans vs 0.7980
+  without constraints: -0.0002 (SE 0.0001), the constrained model wins only 3 of 25 folds, so the cost is small
+  but probably real; below the 2 SE line, so "no clear difference" by the project rule. Wrong-direction moves
+  (`analysis_output/monotone_v3c/violations.csv`): the unconstrained v3c model lowers the risk after a worse value
+  for 10.1% of applicants on average over its 14 constrained columns (up to 38% for other-lender debt / income and
+  23% for mean days late in the last 90 days); the constrained model 0% on every column, as designed.
+- **Decision:** the monotone model `lgbm_v3c_sh90_lr02_x3_tuned_mono` is the final main model (checklist 15: within
+  noise of the unconstrained one, so the more explainable one). Follow-up analyses rerun into `*_v3m` folders,
+  with a fairness reference that adds gender and family at the same setting. The direct age / gender test
+  (`analysis/sensitive_counterfactual.py`) keeps its v3 result (untuned, no rate columns, no constraints).
+- **Follow-up results for the final model (`run_v3.sh` v3m part, 82 min, measured; `*_v3m` folders):** gender and
+  family cost at the final setting: with them (`lgbm_v3c_sh90_lr02_x3_tuned_mono_with_gender`) 0.7996 vs 0.7978,
+  -0.0018 (SE 0.0002, 0 of 25), the same as for every earlier version. Calibration by fold: raw 0.47 points against
+  a noise floor of 0.34, isotonic 0.36 against 0.33; mean predicted 7.98% vs 8.07% observed. Break-even rule
+  approves 93.4%, difficulty rate among approved 6.1%, +2,851 per applicant vs approving everyone (CI 2,659 to
+  3,034); vs the scorecard +1,463 (CI 1,317 to 1,623); vs v2 +282 (CI 183 to 377); vs v3b tuned +68 (CI -3 to 132);
+  vs the same model without constraints -12 (CI -46 to 21). KS 0.452 (scorecard 0.382); score PSI train vs test
+  0.002, but the two main loan-price columns 0.84 (yearly rate) and 0.45 (total cost). Reason codes at the 6% rule:
+  the first reason flips 81% of declines, then 59%, 45%, 33% (fourth), control 8%, in that order in all 5 folds;
+  external scores are the first reason in 65% of declines, loan size and terms in 18%; age in the top 3 for 0.07%.
+  Global SHAP: external scores 16.8%, loans with other lenders 16.5%, earlier applications 15.5%, repayment 14.8%,
+  loan size and terms 14.5%; the total cost and the yearly rate are the 3rd and 5th largest columns, both with
+  risk rising with the value. Proxy check on the 721 candidate columns: gender AUC 0.91, married 0.76, under 25
+  0.99, 55 or over 0.97. Approval at the break-even rule: under 25 86.6%, 65+ 99.4% (ratio 0.87); men 91.1%, women
+  94.6%; at the 15% rule the age ratio is 0.72. Without gender, women's mean predicted risk 7.34% vs 7.00% observed,
+  men 9.49% vs 10.14%.
+- **Fixes found in this run:** (1) the 5 `rate_` columns fell into the reason group "Other", so a refusal could
+  name "Other"; `analysis/reason_codes.py` now puts them in "Loan size and terms vs income" (earlier versions have
+  no `rate_` columns, so their results are unchanged). The reason codes ran after the fix; global SHAP v3m was
+  rerun with it (its first output had "Other" 8.0%). (2) `experiments/kaggle_check.py` computed the rank
+  correlation over all rows, and one Kaggle-scored model (`lgbm_v3_shap350_lr02_x3`) has no CV row in the v3
+  tables, giving `nan`; it now uses the rows with both scores (18 models: 0.990; mean private - CV +0.0003). The
+  CSV it writes did not change. (3) The AUC chart's title was cut off with the longer model names; shortened.
+- **Kaggle (outside check, 18 models with both scores):** all 15 steps in the step table move the private score
+  in the same direction as CV; 10 of them by more than twice the rough private SE. The final model's own Kaggle
+  score is not in yet.
+- **Kaggle for the final model (outside check only; `kaggle_scores_v3m.csv`):** `lgbm_v3c_sh90_lr02_x3_tuned_mono`
+  private 0.79448, public 0.79593 (CV cash 0.79744: private 0.0030 below, like the unconstrained v3c model's
+  0.0029). Without constraints 0.79479 / 0.79596: the constraints cost 0.0003 private (CV 0.0002, within the
+  rough private SE of 0.0004). With gender and family (`..._mono_with_gender`) 0.79709 / 0.79990: leaving them out
+  cost 0.0026 private (CV 0.0018, beyond 2 rough SE). Over the 20 models with both scores: rank correlation 0.992,
+  mean private - CV 0.0000; all 17 steps have the CV sign, 11 beyond 2 rough SE. `experiments/kaggle_check.py`
+  gained the gender step for the final model, and the v3m Kaggle files were rewritten with these two scores (the
+  earlier run had no score for the final model). Chart fix: the diagonal's label and the "chosen model" label
+  overlapped with the v3 points; both moved (only when the axis reaches above 0.791, so the v2 chart is unchanged).
+
+## 35. Third review round (one new AI reviewer, fresh copy of the repo) and wording fixes
+- **Review:** one reviewer with no earlier context read the repo at the final model. No leakage or broken numbers;
+  the main points were claims that went further than the measurements, plus two analysis gaps.
+- **Checked and fixed in the text (README, my Thai translation kept outside the repo, notebook):**
+  (1) The monotone claim read as if all 28 listed columns were constrained in the final model. After the in-fold
+  SHAP cut, the final model uses 14 of the 28 (the 14 rows of `monotone_v3c/violations.csv`); the "one in ten" is
+  the mean over those 14 (median 6.5%). Related late-payment and overdue summaries that were not on the list stay
+  unconstrained, and I did not run the violation check on them. The README now says the guarantee covers the
+  listed inputs only.
+  (2) The gap between the private score and CV on cash loans grows with the later steps (v1 +0.0012, final v2
+  +0.0001, v3b 0.0005 below, v3b tuned 0.0011 below, final 0.0030 below; `kaggle_vs_cv_v3m.csv`). All steps were
+  judged on the same folds, so I read this as likely selection optimism, and the summary now leads with the
+  hidden-test 0.7945.
+  (3) The loan-price columns may partly carry Home Credit's own earlier risk view if it priced by risk; added as a
+  limit (the data cannot tell).
+  (4) The fairness figures at the break-even rule (from `business.py`) use the cross-fitted isotonic probabilities,
+  while `fairness.py` (the 15% rule) cuts on the raw score; the README now says which is which.
+  (5) "Not a later period" was more than I can know without dates; now "I cannot tell whether it is later".
+  (6) Small ones: tuning written as +0.0017 (all applicants, 20 of 20) instead of +0.002; loan-price gains labelled
+  by scope (+0.0025 all, +0.0028 cash); learning rate 0.02 and 3 fits were judged on all 25 folds, not "the same
+  way" as tuning; the money lines now give their intervals (final vs v3b tuned +68, CI -3 to 132; tuning +30, CI
+  -22 to 84 from `business_v3t/differences.csv`); the SHAP-share note now says 95% won 5 of 5 folds just under
+  2 SE and that the 99% file scored 0.0016 higher on Kaggle (not acted on); `OUTPUTS.md` said the first v3 runs
+  (`lgbm_v3_*`) come from `run_all.sh`; they come from `FIRST_TRY=1 ./run_v3.sh`.
+- **Left for code changes after the full rerun:** the SHAP group shares add up each column's mean |SHAP|, which
+  overstates groups of many correlated columns; a second version will take the mean |sum of the group's SHAP|
+  and go to new files. The "7.0% average of good payers" in the error analysis is only printed by
+  `analysis/error_analysis.py`; it will be written to a file.
+
+## 36. Fourth review round (another new AI reviewer, read-only) and wording fixes
+- **Review:** a second reviewer with no earlier context read the repo after entry 35. No critical issue and no
+  leakage; it traced almost every README number to a file. I checked each point myself before changing anything.
+- **Checked and accepted (text changed in README, my Thai translation, notebook, OUTPUTS.md):**
+  (1) Monotone: the final model has 283 inputs (`global_shap_v3m/groups.csv`), 14 of them constrained; close
+  cousins of the listed columns (other late-payment summaries, overdue amounts at other lenders, refused
+  applications) are unconstrained, so a joint "what if" is not guaranteed. Now said in the summary.
+  (2) The CV-to-Kaggle gap: -0.0011 for v3b tuned, then -0.0029 with the loan price (`kaggle_vs_cv_v3m.csv`), so
+  most of it came at one planned step. "Likely selection luck" (entry 35) was too strong; now "cause unknown,
+  selection optimism one guess".
+  (3) Tuning lesson: recomputed from the out-of-fold files, the gain of the tuned settings at the final setting
+  (learning rate 0.02, 3 fits) per seed is s0 0.00152, s1 0.00144, s2 0.00152, s3 0.00195, s4 0.00171. Seed 1,
+  which chose the settings, gained the least, so the drop from 0.0027 (search, learning rate 0.05, one fit) to
+  0.0017 goes with the slower setting, not with a winner's curse. Lesson reworded.
+  (4) Flat margin: declined loans are dearer, so a flat 20% margin likely overstates the gain; added as a limit,
+  not measured yet.
+  (6) SHAP group shares: caveat added (groups of 70 and 93 columns against 3 for external scores).
+  (7) "v2 +0.011" split into features +0.0077 and learning rate plus 3 fits +0.0018 + 0.0015 (each 25 of 25;
+  `comparisons/`).
+  Smaller: headline AUC now "about 79% on the hidden test (80% in validation)"; target not a regulatory default
+  definition; calibration "within about 1.3 points in each of 20 bands" (raw reliability file, worst 13.1% vs
+  14.4%); "the model finds no warning sign"; the loan-price idea credited to public write-ups; the SHAP 90% rule
+  came after the K = 100 / 200 / 350 attempt; the 5 bureau columns and the monthly history dropped for drift
+  disclosed (test inputs only, no labels); approval among good payers (under 25 89.7% vs 99.6%; men 93.8%, women
+  96.2%; `business_v3m/policy_groups.csv`); the v1 model without age (64.5% vs 69.7% approved under 25 at 15%,
+  risk 14.0% vs 12.3%; `fairness/group_decisions.csv`); repeat applicants now quote 0.7843 vs 0.7856 instead of an
+  uncited "within reshuffling noise"; test-like gain "slightly smaller" (+0.0022 / +0.0023 vs +0.0028); "best
+  approval rate" renamed; "cures" explained; three terms added to the glossary. New README section "What a credit
+  risk team would ask": weak segments (`errors_v3m/segments.csv`), size (283 inputs, 3 models of about 1,400
+  trees: median fold choice x 1.1), dependence on external scores, drift, and what was not measured.
+  OUTPUTS.md: the "superseded" paragraph was garbled and said the earlier folders are unused; fixed, and a "Run
+  by hand" table lists the files that `run_v3.sh` does not make (no-external-scores run, `--final-only` runs,
+  three submission manifests).
+- **Checked and not accepted as written:** (a) the reviewer read `mean_change_pts` in `monotone_v3c/violations.csv`
+  as the size of the wrong-way moves; it is the mean change over all applicants after the step
+  (`experiments/monotone_check.py`), so it says nothing about the size of the violations. (b) It called
+  test-likeness decile D1 "most test-like"; `analysis/error_analysis.py` cuts deciles of P(test) from low to high,
+  so D1 is the least test-like (AUC 0.752) and D10 the most (0.793). Neither went into the README.
+- **Left for code changes after the full rerun:** a joint monotone check on the unconstrained cousin columns; a
+  price-dependent margin as a business sensitivity case; the Kaggle chart subtitle (says 21 models, plots 20) and
+  title; the missing manual runs added to `run_v3.sh`; plus the two items from entry 35 (group SHAP, the 7.0%
+  figure to a file).
+
+## 37. Full rerun of v1 to v3 into a separate folder
+- **Why:** to check that `run_all.sh` and `run_v3.sh` rebuild every saved result from the raw data, before I
+  call the v3 results reproducible.
+- **Run:** both scripts with a separate output folder, then `experiments/check_reproduced.py --name
+  v3_full_rerun` (`analysis_output/reproducibility/v3_full_rerun.csv`). About 7.2 hours until it stopped, then 3.8
+  hours after the resume.
+- **It stopped once:** `experiments.model_summary --v3t` needs `lgbm_v3b_sh90_noext_s1` (the model without the
+  three external scores, entry 31), which I had only run by hand. I added that run and its comparison to
+  `run_v3.sh`, with the settings from my original command, and resumed from that step. So this is not one
+  uninterrupted run of the scripts as they are now, but every step ran once, from the same inputs.
+- **Result (measured):** 443 files in both runs. 400 identical byte for byte; 34 differ only in run-time columns
+  (`seconds`); 9 differ otherwise, each explained:
+  - `processed/adversarial_v3b.parquet`, `eda/feature_adversarial_importance_v3b.csv` and
+    `eda/feature_adversarial_summary_v3b.csv`: the v3b drift check from the same feature table (identical) came
+    out slightly different: adversarial AUC 0.98236 vs 0.98237, effective sample size of the weights 2,047 vs
+    1,971, the reweighted AUC estimates up to 0.001 apart, column ranks reordered. v1 and v2 drift checks matched
+    exactly. Cause not checked (a guess: LightGBM run with several threads on 700+ columns is not always
+    bit-for-bit repeatable). No later step reads it (`test_like_gain` and `error_analysis` use the v1 file, which
+    matched), and the exclusion list in `run_v3.sh` is fixed text, so nothing downstream changed.
+  - 4 submission manifests and `model_summary_v3t.csv` / `model_summary_v3m.csv`: the saved ones also list the
+    runs I made by hand (`--final-only` test predictions of `lgbm_v3b_all_s1` and `lgbm_v3b_sh99_s1`, and the
+    first v3 try), which the scripts do not make.
+- **Only in the saved results (55 files):** the first v3 try (made only with `FIRST_TRY=1`), the hand-made runs
+  above and three manifests, the Kaggle scores typed by hand, and the superseded first-version `business/` and
+  `kaggle/` files. **Only in the new run (4):** `kaggle_steps_v3/_v3t` and `kaggle_vs_cv_v3/_v3t`, which the
+  script now makes because the hand-typed v3 and v3t scores exist; I had only run the v3m check before.
+- **Every model's out-of-fold predictions, comparisons, final models and test predictions match byte for byte**,
+  including the final model `lgbm_v3c_sh90_lr02_x3_tuned_mono`, so every README number that comes from them is
+  reproduced.
+
+## 38. Fifth review round: a content reviewer and a hiring reviewer (fresh copy of the repo at entry 37)
+- **Review:** two new reviewers with no earlier context, read-only, on a `git archive` copy of the commit: a
+  credit-risk data scientist (content) and a hiring manager for banking and fintech roles. The content reviewer
+  found no leakage and traced most README numbers to files. I checked every point myself before changing
+  anything.
+- **Checked and fixed (README, notebook, figures, code that writes new files only):**
+  (1) "5 bureau columns" was wrong: the exclusion list drops 15 columns, the 3 monthly-history summaries and 12
+  others (10 bureau summaries of instalment amounts and closing dates, 2 debt-burden ratios built on them; counted
+  from the v3b feature table). (2) The "dearer loans explain at most a small part" claim was not tested: the
+  test-likeness model is v1 and has no price inputs. Now it says so, with the rate gap (`features/rate_drift.csv`:
+  test 90th percentile 0.978 against 0.681 in train). (3) The tuning lesson said the shrinkage "goes with the
+  slower setting, not with picking a winner"; the second half does not follow, because the other four splits hold
+  the same applicants. Now: most of the shrinkage goes with the change of setting (seed 1 already 0.0014 at the
+  final setting), and the other splits guard only against luck in how the folds were cut. The same caveat was
+  added to the validation bullet. (4) The 7.0% good-payer mean is now saved by `analysis/error_analysis.py` to a
+  new file, `errors_v3m/mean_pred_by_group.csv` (6.99%); the rerun left every existing `errors_v3m` file
+  unchanged. (5) `figures/cv_vs_kaggle_v3m.png` counted 21 models but plotted 20 (the first v3 try has no
+  validation score); it now counts points with both scores and is titled "Validation and the hidden test rank
+  models alike". The calibration and approval charts said "default rate"; they now say payment difficulties. Only
+  the three v3m charts were regenerated; the older versions keep the old wording. (6) Smaller: AUC 0.96 named as
+  the first feature table (0.98 on the final one); "slightly different" drift rerun now also says up to 0.33 for
+  single rows; the "every fold" claim cites its files and notes the scorecard there is the version with gender;
+  a sentence that one hidden-test score has its own noise I cannot measure; "would confuse" became "could
+  confuse" with "size not measured"; the age mechanism labelled a guess; the four-fifths rule of thumb named as a
+  benchmark (0.87 passes, 0.72 does not); a business limit on the training mix (9.5% revolving vs 0.9% in test,
+  `eda/drift_details.csv`) and on booking early difficulties as a 60% loss; How to run now names the `.venv`
+  path, the setup lines in `requirements.txt`, the 4.8 GB per training process, the overwrite risk without an
+  output folder and the notebook build command. Entry 32 points to the revision; "Thai README" mentions say it
+  is kept outside the repo.
+- **Checked and not accepted as written:** the hiring reviewer said the code has no `assert` at all; 9 modules
+  use them (there is no unit-test folder, which is true).
+- **Left open (not measured, or a change of scope to decide on):** a shorter README with details moved out and a
+  rewritten executive summary; a "score to PD" section (master scale, grade tests, EL = PD x LGD x EAD); a model
+  card; a scoring function with unit tests and CI; a reason-code to letter-wording table; reject inference;
+  a strategy table (approve / refer / decline); business numbers on cash loans only with a cure scenario; the
+  test-like check cut on loan price and an adversarial model with price inputs; Kaggle scores for the scorecard
+  and logistic regression; the size of wrong-way monotone moves and the direction of debt-to-income at other
+  lenders (the unconstrained model leaned the other way); archiving the superseded figures; the remaining code
+  items of entry 36 (group SHAP, joint monotone check, price-dependent margin).
+
+## 39. Shorter README, full write-up moved to DETAILS.md
+- **Why:** the hiring review in entry 38 found the README long and heavy with caveats for a first read. I kept
+  every caveat but moved it: the previous README, without its executive summary, is now `DETAILS.md` (the full
+  write-up). Its glossary now explains AUC on its own instead of pointing to the summary.
+- **New README (about 2,200 words, from about 4,700):** a rewritten executive summary that leads with one plain
+  sentence on what I built and six results (ranking on the hidden test, money on assumed margins, reasons that
+  drive decisions, sensible "what if" answers, validation against Kaggle, fairness as an open choice); short
+  sections on the data, approach, results, explanations, fairness, business use, lessons, the five main limits
+  and how to run. The results table keeps seven of the ten rows. It links to `DETAILS.md` for the full limits
+  and the rerun details.
+- **No new numbers:** every number in the new README also appears in `DETAILS.md`, checked by a script; the only
+  ones that do not are 79%, 76% and 72%, which are the AUCs 0.7945, 0.755 and 0.716 written as percentages, as
+  before. Links and the two section anchors were checked. `OUTPUTS.md` now names both files where it said README.
+
+## 40. README reordered for non-technical readers, two new charts
+- **Why:** the shorter README of entry 39 still opened with technical terms and put methods before what a reader
+  outside data science wants to know.
+- **Order:** the first half is for everyone (in short, how a decision is made, the data, how well it works, how a
+  lender could use it, why each applicant is declined, fairness, limits, lessons); the second half, "For technical
+  readers", holds the glossary, approach, model table, Kaggle check and SHAP groups. Plain words replace terms in
+  the first half ("trouble repaying", "common-sense rules", "my own tests"); each term is defined in the second.
+- **Decision diagram (removed again later in this entry):** a Mermaid flowchart (application and history, model,
+  cut-off, approve or decline with three reasons). It has no numbers; GitHub draws it from the text.
+- **Two new charts from saved files only** (`homecredit/figures.py`, drawn with `analysis.figures --version v3m
+  --only risk_by_band,declined_vs_caught`): `risk_by_band_v3m.png` (share with difficulties in each tenth of
+  predicted risk, final model against the scorecard, from `credit_v3m/score_bands.csv`) and
+  `declined_vs_caught_v3m.png` (share of later problem loans turned away against the share of applicants turned
+  away, from `business_v3m/approval_curve.csv`). New README figures: turning away 10% catches 38.8% of later
+  problem loans (scorecard 32.6%), 20% catches 58.4% (51.6%); these are now also in `DETAILS.md`. So far the two
+  charts are drawn only for v3m, and the notebook does not show them yet.
+- **Checked:** every README number appears in `DETAILS.md` except the AUCs written as percentages and the rounded
+  39%, 58%, 33% and 52% above; links exist; no em dashes.
+- **Diagram removed:** I took the decision diagram out again; the text already says the same.
+  Its one fact, the 25% break-even risk that turns away about 6.6%, moved to "How a lender could use it".
+
+## 41. Ordinary-reader review of the README
+- **Review:** a fresh reviewer read the README as a non-specialist (charts included) and reported only. It got
+  the main message and trusted the page more for its stated limits. It got lost on mixed number formats, a
+  ranking claim that compared the hidden test with my own tests, the reason-swap test, an unexplained ratio, two
+  different under-25 approval figures, and the file list that opened the page.
+- **Text changes (README; the Thai copy mirrors them):** all model comparisons in "In short" use my own tests
+  (80%, 76%, 72%), with the hidden test (79%) in a separate sentence; percentages instead of AUC decimals in the
+  first half (79.4% against 79.7%; with gender 80.0% instead of 79.8%); the profit rise given before its range
+  (about 2,850, `business_v3m/policies.csv`); the reason-swap test written once, as a worked example, under a
+  milder heading; the wrong-way check says what is averaged; "20 groups" says it is finer than the chart's 10;
+  the fairness ratio says what it divides, whether it passes the four-fifths rule of thumb, and adds men and women
+  (0.96, `business_v3m/policy_groups.csv`, now also in `DETAILS.md`); the earlier model's under-25 approval rates
+  left the README (still in `DETAILS.md`); the file list moved to a new "More detail" section; a repeated 39%
+  left "How well it works". The reviewer's point on unexplained words (Kaggle, outside scores, cash loans, the
+  one-line rule) was left as it is: I judged these words plain enough.
+- **Chart changes (v3m only, redrawn from saved files):** `auc_by_model_v3m.png` now shows the same models as the
+  README table (LightGBM v1 without gender or family 0.777, v3 tuned 0.795), where it showed v1 with gender
+  (0.779) and v3 before tuning (0.794); `profit_curve_v3m.png` marks the proposed cut-off (approve 93.4%), uses
+  the same legend words as the other charts and says its axis does not start at zero; `approval_by_group_v3m.png`
+  starts at zero, draws the four-fifths line for each set and explains the brackets; `shap_groups_v3m.png`
+  explains its axis in words; `risk_by_band_v3m.png` has a plainer subtitle.
+
+## 42. One-message charts for the first half of the README
+- **Why:** after entry 41, the three charts around "How well it works" and "How a lender could use it" were still
+  hard to read for a non-specialist: they compare two series at once, and two of them are curves over every
+  cut-off.
+- **New or redrawn (v3m only, from saved files, `homecredit/figures.py`):** `risk_by_band_v3m.png` now shows the
+  final model alone with every bar labelled and a dashed line at the 8.1% average ("each bar would sit here if
+  the model knew nothing"); new `caught_per_100_v3m.png` shows, at a 10% refusal rate, problem loans stopped per
+  100: the final model 39, the scorecard 33, refusing at random about 10 (`business_v3m/approval_curve.csv`); new
+  `profit_gain_v3m.png` shows extra profit per applicant against approving everyone at each model's break-even
+  cut-off: the final model +2,851, the scorecard +1,388 (`business_v3m/policies.csv`; the scorecard figure is now
+  also in `DETAILS.md`).
+- **README:** the first half uses the three one-message charts, with a short "how to read it" for the risk
+  groups; the two curves (`declined_vs_caught_v3m.png`, `profit_curve_v3m.png`) moved to a new technical
+  subsection, "Every cut-off, not just one". The Thai copy mirrors this.
+- **Second ordinary-reader check:** a fresh reviewer understood the risk-group chart at once and the other two
+  after a moment. Fixes: plainer subtitle on the risk groups ("tested on past applicants the model had not
+  seen"); the per-100 chart now says whose 100 ("of every 100 past applicants who later had trouble repaying")
+  and its price (about 7 in 10 refused would have repaid, 68.8%, from `business_v3m/approval_curve.csv`, also in
+  the README and `DETAILS.md`); the profit chart is titled "Extra profit, if my assumptions are right", names the
+  assumed margin and loss, and shows +3.4% and +1.7% next to the amounts.

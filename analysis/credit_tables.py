@@ -17,7 +17,8 @@ All from saved predictions; no model is trained here.
 
 Usage:
     .venv/bin/python -m analysis.credit_tables [--out-root DIR]
-Outputs: analysis_output/credit_v2/score_bands.csv, ks.csv, swap_set.csv, psi.csv
+    v3: --main lgbm_v3b_sh90_lr02_x3 --features v3b --tag v3
+Outputs: analysis_output/credit_<tag>/score_bands.csv, ks.csv, swap_set.csv, psi.csv (default tag v2)
 """
 
 import argparse
@@ -30,7 +31,7 @@ from homecredit.data import N_SEEDS, is_text, load_features, load_folds
 from homecredit.evaluate import load_oof
 from homecredit.paths import Paths, add_out_root
 
-CHOSEN, SCORECARD = "lgbm_v2_combo_lr02_x3", "scorecard_full_no_gender"
+DEFAULT_MAIN, SCORECARD = "lgbm_v2_combo_lr02_x3", "scorecard_full_no_gender"
 P_STAR = 0.20 / (0.20 + 0.60)  # break-even risk of the business base case (analysis/business.py)
 
 
@@ -59,19 +60,23 @@ def psi(expected: pd.Series, actual: pd.Series) -> float:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
+    ap.add_argument("--main", default=DEFAULT_MAIN, help="the chosen model")
+    ap.add_argument("--features", default="v2", help="feature table of the chosen model (for PSI of its inputs)")
+    ap.add_argument("--tag", default="v2", help="output folder credit_<tag>")
     add_out_root(ap)
     args = ap.parse_args()
+    chosen = args.main
     P = Paths(args.out_root)
-    out = P.out("credit_v2")
+    out = P.out(f"credit_{args.tag}")
     pd.set_option("display.width", 220)
 
-    tr, te, _ = load_features(P, "v2", categories=True)
+    tr, te, _ = load_features(P, args.features, categories=True)
     y = tr.TARGET.values.astype(int)
     folds = load_folds(P, tr.SK_ID_CURR)
 
     # ---- 1. score bands and KS ----
     bands, ks_rows = [], []
-    for name in [CHOSEN, SCORECARD]:
+    for name in [chosen, SCORECARD]:
         oof = load_oof(P, name, tr.SK_ID_CURR)
         p = np.column_stack([oof[f"s{s}"].values for s in range(N_SEEDS)]).mean(axis=1)
         band = pd.qcut(pd.Series(p).rank(method="first"), 10, labels=False).values + 1
@@ -91,16 +96,16 @@ def main() -> None:
     bands, ks_df = pd.DataFrame(bands), pd.DataFrame(ks_rows)
     bands.to_csv(out / "score_bands.csv", index=False)
     ks_df.to_csv(out / "ks.csv", index=False)
-    print(bands[bands.model == CHOSEN].to_string(index=False), "\n")
+    print(bands[bands.model == chosen].to_string(index=False), "\n")
     print(ks_df.to_string(index=False), "\n")
 
     # ---- 2. swap-set at the proposed cut-off (seed 0) ----
     f0 = folds.fold_s0.values
     appr = {}
-    for name in [CHOSEN, SCORECARD]:
+    for name in [chosen, SCORECARD]:
         raw = load_oof(P, name, tr.SK_ID_CURR).s0.values
         appr[name] = recalibrate(raw, y, f0, "isotonic") < P_STAR
-    a, b = appr[CHOSEN], appr[SCORECARD]
+    a, b = appr[chosen], appr[SCORECARD]
     rows = []
     for label, m in [("approved by both", a & b), ("approved by LightGBM only", a & ~b),
                      ("approved by the scorecard only", ~a & b), ("declined by both", ~a & ~b)]:
@@ -111,10 +116,10 @@ def main() -> None:
     print(swap.to_string(index=False), "\n")
 
     # ---- 3. PSI train vs Kaggle test ----
-    score_tr = load_oof(P, CHOSEN, tr.SK_ID_CURR).s0
-    score_te = pd.read_parquet(P.test_preds(CHOSEN)).TARGET
+    score_tr = load_oof(P, chosen, tr.SK_ID_CURR).s0
+    score_te = pd.read_parquet(P.test_preds(chosen)).TARGET
     rows = [{"what": "model score", "psi": round(psi(score_tr, score_te), 4)}]
-    imp = pd.read_csv(P.results / "lgbm" / f"{CHOSEN}_importance.csv").variable.head(10)
+    imp = pd.read_csv(P.results / "lgbm" / f"{chosen}_importance.csv").variable.head(10)
     for c in imp:
         rows.append({"what": c, "psi": round(psi(tr[c], te[c]), 4)})
     ps = pd.DataFrame(rows)

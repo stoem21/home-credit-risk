@@ -20,7 +20,7 @@ a model that never saw their outcome. No model is trained here.
 
 Usage:
     .venv/bin/python -m analysis.error_analysis [--model lgbm_v2_combo_lr02_x3 --tag v2] [--out-root DIR]
-Outputs: analysis_output/errors/segments.csv, missed_defaulters.csv, candidate_signals.csv
+Outputs: analysis_output/errors/segments.csv, missed_defaulters.csv, mean_pred_by_group.csv, candidate_signals.csv
 """
 
 import argparse
@@ -183,6 +183,10 @@ def main() -> None:
     prof.insert(1, "mean_pred_missed_pct", round(100 * p_mean[missed].mean(), 2))
     prof.insert(2, "mean_pred_caught_pct", round(100 * p_mean[caught].mean(), 2))
     prof.to_csv(out / "missed_defaulters.csv", index=False)
+    pd.DataFrame([{"group": "missed (safest quarter of defaulters)", "mean_pred_pct": round(100 * p_mean[missed].mean(), 2)},
+                  {"group": "caught (riskiest quarter of defaulters)", "mean_pred_pct": round(100 * p_mean[caught].mean(), 2)},
+                  {"group": "all non-defaulters", "mean_pred_pct": round(100 * p_mean[non].mean(), 2)}]
+                 ).to_csv(out / "mean_pred_by_group.csv", index=False)
     print(f"missed defaulters (safest quarter, mean predicted {100 * p_mean[missed].mean():.1f}%) vs caught "
           f"(riskiest quarter, {100 * p_mean[caught].mean():.1f}%); non-defaulters average "
           f"{100 * p_mean[non].mean():.1f}%")

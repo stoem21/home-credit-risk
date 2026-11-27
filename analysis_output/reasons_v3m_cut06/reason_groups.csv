@@ -1,0 +1,722 @@
+column,reason_group
+NAME_CONTRACT_TYPE,Loan size and terms vs income
+FLAG_OWN_CAR,Car ownership
+FLAG_OWN_REALTY,Housing
+AMT_INCOME_TOTAL,Loan size and terms vs income
+AMT_CREDIT,Loan size and terms vs income
+AMT_ANNUITY,Loan size and terms vs income
+AMT_GOODS_PRICE,Loan size and terms vs income
+NAME_TYPE_SUITE,"Application process (day, hour, companion)"
+NAME_INCOME_TYPE,Employment and income type
+NAME_EDUCATION_TYPE,Education
+NAME_HOUSING_TYPE,Housing
+REGION_POPULATION_RELATIVE,Region and address
+DAYS_BIRTH,Age [sensitive]
+DAYS_EMPLOYED,Employment and income type
+DAYS_REGISTRATION,Documents and ID
+DAYS_ID_PUBLISH,Documents and ID
+OWN_CAR_AGE,Car ownership
+FLAG_MOBIL,Contact details
+FLAG_EMP_PHONE,Contact details
+FLAG_WORK_PHONE,Contact details
+FLAG_CONT_MOBILE,Contact details
+FLAG_PHONE,Contact details
+FLAG_EMAIL,Contact details
+OCCUPATION_TYPE,Employment and income type
+REGION_RATING_CLIENT,Region and address
+REGION_RATING_CLIENT_W_CITY,Region and address
+WEEKDAY_APPR_PROCESS_START,"Application process (day, hour, companion)"
+HOUR_APPR_PROCESS_START,"Application process (day, hour, companion)"
+REG_REGION_NOT_LIVE_REGION,Region and address
+REG_REGION_NOT_WORK_REGION,Region and address
+LIVE_REGION_NOT_WORK_REGION,Region and address
+REG_CITY_NOT_LIVE_CITY,Region and address
+REG_CITY_NOT_WORK_CITY,Region and address
+LIVE_CITY_NOT_WORK_CITY,Region and address
+ORGANIZATION_TYPE,Employment and income type
+EXT_SOURCE_1,External credit scores
+EXT_SOURCE_2,External credit scores
+EXT_SOURCE_3,External credit scores
+APARTMENTS_AVG,Housing
+BASEMENTAREA_AVG,Housing
+YEARS_BEGINEXPLUATATION_AVG,Housing
+YEARS_BUILD_AVG,Housing
+COMMONAREA_AVG,Housing
+ELEVATORS_AVG,Housing
+ENTRANCES_AVG,Housing
+FLOORSMAX_AVG,Housing
+FLOORSMIN_AVG,Housing
+LANDAREA_AVG,Housing
+LIVINGAPARTMENTS_AVG,Housing
+LIVINGAREA_AVG,Housing
+NONLIVINGAPARTMENTS_AVG,Housing
+NONLIVINGAREA_AVG,Housing
+APARTMENTS_MODE,Housing
+BASEMENTAREA_MODE,Housing
+YEARS_BEGINEXPLUATATION_MODE,Housing
+YEARS_BUILD_MODE,Housing
+COMMONAREA_MODE,Housing
+ELEVATORS_MODE,Housing
+ENTRANCES_MODE,Housing
+FLOORSMAX_MODE,Housing
+FLOORSMIN_MODE,Housing
+LANDAREA_MODE,Housing
+LIVINGAPARTMENTS_MODE,Housing
+LIVINGAREA_MODE,Housing
+NONLIVINGAPARTMENTS_MODE,Housing
+NONLIVINGAREA_MODE,Housing
+APARTMENTS_MEDI,Housing
+BASEMENTAREA_MEDI,Housing
+YEARS_BEGINEXPLUATATION_MEDI,Housing
+YEARS_BUILD_MEDI,Housing
+COMMONAREA_MEDI,Housing
+ELEVATORS_MEDI,Housing
+ENTRANCES_MEDI,Housing
+FLOORSMAX_MEDI,Housing
+FLOORSMIN_MEDI,Housing
+LANDAREA_MEDI,Housing
+LIVINGAPARTMENTS_MEDI,Housing
+LIVINGAREA_MEDI,Housing
+NONLIVINGAPARTMENTS_MEDI,Housing
+NONLIVINGAREA_MEDI,Housing
+FONDKAPREMONT_MODE,Housing
+HOUSETYPE_MODE,Housing
+TOTALAREA_MODE,Housing
+WALLSMATERIAL_MODE,Housing
+EMERGENCYSTATE_MODE,Housing
+OBS_30_CNT_SOCIAL_CIRCLE,Defaults in social circle
+DEF_30_CNT_SOCIAL_CIRCLE,Defaults in social circle
+OBS_60_CNT_SOCIAL_CIRCLE,Defaults in social circle
+DEF_60_CNT_SOCIAL_CIRCLE,Defaults in social circle
+DAYS_LAST_PHONE_CHANGE,Contact details
+FLAG_DOCUMENT_2,Documents and ID
+FLAG_DOCUMENT_3,Documents and ID
+FLAG_DOCUMENT_4,Documents and ID
+FLAG_DOCUMENT_5,Documents and ID
+FLAG_DOCUMENT_6,Documents and ID
+FLAG_DOCUMENT_7,Documents and ID
+FLAG_DOCUMENT_8,Documents and ID
+FLAG_DOCUMENT_9,Documents and ID
+FLAG_DOCUMENT_10,Documents and ID
+FLAG_DOCUMENT_11,Documents and ID
+FLAG_DOCUMENT_12,Documents and ID
+FLAG_DOCUMENT_13,Documents and ID
+FLAG_DOCUMENT_14,Documents and ID
+FLAG_DOCUMENT_15,Documents and ID
+FLAG_DOCUMENT_16,Documents and ID
+FLAG_DOCUMENT_17,Documents and ID
+FLAG_DOCUMENT_18,Documents and ID
+FLAG_DOCUMENT_19,Documents and ID
+FLAG_DOCUMENT_20,Documents and ID
+FLAG_DOCUMENT_21,Documents and ID
+AMT_REQ_CREDIT_BUREAU_HOUR,Recent credit enquiries
+AMT_REQ_CREDIT_BUREAU_DAY,Recent credit enquiries
+AMT_REQ_CREDIT_BUREAU_WEEK,Recent credit enquiries
+AMT_REQ_CREDIT_BUREAU_MON,Recent credit enquiries
+AMT_REQ_CREDIT_BUREAU_QRT,Recent credit enquiries
+AMT_REQ_CREDIT_BUREAU_YEAR,Recent credit enquiries
+no_employment_code,Employment and income type
+age_years,Age [sensitive]
+employed_years,Employment and income type
+credit_to_income,Loan size and terms vs income
+annuity_to_income,Loan size and terms vs income
+credit_to_goods,Loan size and terms vs income
+annuity_to_credit,Loan size and terms vs income
+bureau_n,Loans with other lenders
+bureau_active_n,Loans with other lenders
+bureau_overdue_any,Loans with other lenders
+bureau_overdue_days_max,Loans with other lenders
+bureau_days_since_last_credit,Loans with other lenders
+bureau_active_debt,Loans with other lenders
+bureau_active_debt_to_credit,Loans with other lenders
+prev_n,Earlier Home Credit applications
+prev_approved_n,Earlier Home Credit applications
+prev_refused_share,Earlier Home Credit applications
+prev_days_since_last_decision,Earlier Home Credit applications
+inst_n,Repayment of earlier Home Credit loans
+inst_late_share,Repayment of earlier Home Credit loans
+inst_days_late_mean,Repayment of earlier Home Credit loans
+inst_days_late_max,Repayment of earlier Home Credit loans
+inst_underpaid_share,Repayment of earlier Home Credit loans
+inst_late_share_last_year,Repayment of earlier Home Credit loans
+pos_months_n,Repayment of earlier Home Credit loans
+pos_dpd_any,Repayment of earlier Home Credit loans
+cc_has_card,Credit card use
+cc_util_mean,Credit card use
+cc_dpd_any,Credit card use
+win_prev_n_90d,Earlier Home Credit applications
+win_prev_refused_90d,Earlier Home Credit applications
+win_prev_canceled_90d,Earlier Home Credit applications
+win_prev_n_365d,Earlier Home Credit applications
+win_prev_refused_365d,Earlier Home Credit applications
+win_prev_canceled_365d,Earlier Home Credit applications
+win_last_status,Earlier Home Credit applications
+win_last_type,Earlier Home Credit applications
+win_last_product,Earlier Home Credit applications
+win_last_yield_group,Earlier Home Credit applications
+win_last_amt_credit,Earlier Home Credit applications
+win_last_cnt_payment,Earlier Home Credit applications
+win_last_days_decision,Earlier Home Credit applications
+win_last_approved_days,Earlier Home Credit applications
+win_inst_late_share_90d,Repayment of earlier Home Credit loans
+win_inst_days_late_mean_90d,Repayment of earlier Home Credit loans
+win_inst_late_share_180d,Repayment of earlier Home Credit loans
+win_inst_days_late_mean_180d,Repayment of earlier Home Credit loans
+win_inst_late_share_365d,Repayment of earlier Home Credit loans
+win_inst_days_late_mean_365d,Repayment of earlier Home Credit loans
+win_inst_underpaid_share_365d,Repayment of earlier Home Credit loans
+win_inst_paid_ratio_365d,Repayment of earlier Home Credit loans
+win_inst_n_365d,Repayment of earlier Home Credit loans
+win_inst_late30_share,Repayment of earlier Home Credit loans
+win_pos_dpd_share_12m,Repayment of earlier Home Credit loans
+win_cc_util_3m,Credit card use
+win_cc_drawings_3m,Credit card use
+win_cc_dpd_share_12m,Credit card use
+win_cc_util_3m_minus_all,Credit card use
+stk_bureau_new_90d,Loans with other lenders
+stk_bureau_new_365d,Loans with other lenders
+stk_bureau_active_credit_to_income,Loans with other lenders
+stk_bureau_active_debt_to_income,Loans with other lenders
+stk_hc_running_n,Loans still running at Home Credit
+stk_hc_instalments_left,Loans still running at Home Credit
+term_prev_rate_mean,Earlier Home Credit applications
+term_prev_rate_last,Earlier Home Credit applications
+term_prev_granted_to_asked,Earlier Home Credit applications
+term_credit_to_last_approved,Loan size and terms vs income
+term_annuity_to_last_approved,Loan size and terms vs income
+term_down_payment,Loan size and terms vs income
+agg_bur_DAYS_CREDIT_mean,Loans with other lenders
+agg_bur_DAYS_CREDIT_max,Loans with other lenders
+agg_bur_DAYS_CREDIT_min,Loans with other lenders
+agg_bur_DAYS_CREDIT_sum,Loans with other lenders
+agg_bur_CREDIT_DAY_OVERDUE_mean,Loans with other lenders
+agg_bur_CREDIT_DAY_OVERDUE_max,Loans with other lenders
+agg_bur_CREDIT_DAY_OVERDUE_min,Loans with other lenders
+agg_bur_CREDIT_DAY_OVERDUE_sum,Loans with other lenders
+agg_bur_DAYS_CREDIT_ENDDATE_mean,Loans with other lenders
+agg_bur_DAYS_CREDIT_ENDDATE_max,Loans with other lenders
+agg_bur_DAYS_CREDIT_ENDDATE_min,Loans with other lenders
+agg_bur_DAYS_CREDIT_ENDDATE_sum,Loans with other lenders
+agg_bur_DAYS_ENDDATE_FACT_mean,Loans with other lenders
+agg_bur_DAYS_ENDDATE_FACT_max,Loans with other lenders
+agg_bur_DAYS_ENDDATE_FACT_min,Loans with other lenders
+agg_bur_DAYS_ENDDATE_FACT_sum,Loans with other lenders
+agg_bur_AMT_CREDIT_MAX_OVERDUE_mean,Loans with other lenders
+agg_bur_AMT_CREDIT_MAX_OVERDUE_max,Loans with other lenders
+agg_bur_AMT_CREDIT_MAX_OVERDUE_min,Loans with other lenders
+agg_bur_AMT_CREDIT_MAX_OVERDUE_sum,Loans with other lenders
+agg_bur_CNT_CREDIT_PROLONG_mean,Loans with other lenders
+agg_bur_CNT_CREDIT_PROLONG_max,Loans with other lenders
+agg_bur_CNT_CREDIT_PROLONG_min,Loans with other lenders
+agg_bur_CNT_CREDIT_PROLONG_sum,Loans with other lenders
+agg_bur_AMT_CREDIT_SUM_mean,Loans with other lenders
+agg_bur_AMT_CREDIT_SUM_max,Loans with other lenders
+agg_bur_AMT_CREDIT_SUM_min,Loans with other lenders
+agg_bur_AMT_CREDIT_SUM_sum,Loans with other lenders
+agg_bur_AMT_CREDIT_SUM_DEBT_mean,Loans with other lenders
+agg_bur_AMT_CREDIT_SUM_DEBT_max,Loans with other lenders
+agg_bur_AMT_CREDIT_SUM_DEBT_min,Loans with other lenders
+agg_bur_AMT_CREDIT_SUM_DEBT_sum,Loans with other lenders
+agg_bur_AMT_CREDIT_SUM_LIMIT_mean,Loans with other lenders
+agg_bur_AMT_CREDIT_SUM_LIMIT_max,Loans with other lenders
+agg_bur_AMT_CREDIT_SUM_LIMIT_min,Loans with other lenders
+agg_bur_AMT_CREDIT_SUM_LIMIT_sum,Loans with other lenders
+agg_bur_AMT_CREDIT_SUM_OVERDUE_mean,Loans with other lenders
+agg_bur_AMT_CREDIT_SUM_OVERDUE_max,Loans with other lenders
+agg_bur_AMT_CREDIT_SUM_OVERDUE_min,Loans with other lenders
+agg_bur_AMT_CREDIT_SUM_OVERDUE_sum,Loans with other lenders
+agg_bur_DAYS_CREDIT_UPDATE_mean,Loans with other lenders
+agg_bur_DAYS_CREDIT_UPDATE_max,Loans with other lenders
+agg_bur_DAYS_CREDIT_UPDATE_min,Loans with other lenders
+agg_bur_DAYS_CREDIT_UPDATE_sum,Loans with other lenders
+agg_bur_debt_ratio_mean,Loans with other lenders
+agg_bur_debt_ratio_max,Loans with other lenders
+agg_bur_debt_ratio_min,Loans with other lenders
+agg_bur_debt_ratio_sum,Loans with other lenders
+agg_bur_overdue_ratio_mean,Loans with other lenders
+agg_bur_overdue_ratio_max,Loans with other lenders
+agg_bur_overdue_ratio_min,Loans with other lenders
+agg_bur_overdue_ratio_sum,Loans with other lenders
+agg_bur_planned_days_mean,Loans with other lenders
+agg_bur_planned_days_max,Loans with other lenders
+agg_bur_planned_days_min,Loans with other lenders
+agg_bur_planned_days_sum,Loans with other lenders
+agg_bur_act_DAYS_CREDIT_mean,Loans with other lenders
+agg_bur_act_DAYS_CREDIT_max,Loans with other lenders
+agg_bur_act_DAYS_CREDIT_sum,Loans with other lenders
+agg_bur_act_CREDIT_DAY_OVERDUE_mean,Loans with other lenders
+agg_bur_act_CREDIT_DAY_OVERDUE_max,Loans with other lenders
+agg_bur_act_CREDIT_DAY_OVERDUE_sum,Loans with other lenders
+agg_bur_act_DAYS_CREDIT_ENDDATE_mean,Loans with other lenders
+agg_bur_act_DAYS_CREDIT_ENDDATE_max,Loans with other lenders
+agg_bur_act_DAYS_CREDIT_ENDDATE_sum,Loans with other lenders
+agg_bur_act_AMT_CREDIT_MAX_OVERDUE_mean,Loans with other lenders
+agg_bur_act_AMT_CREDIT_MAX_OVERDUE_max,Loans with other lenders
+agg_bur_act_AMT_CREDIT_MAX_OVERDUE_sum,Loans with other lenders
+agg_bur_act_CNT_CREDIT_PROLONG_mean,Loans with other lenders
+agg_bur_act_CNT_CREDIT_PROLONG_max,Loans with other lenders
+agg_bur_act_CNT_CREDIT_PROLONG_sum,Loans with other lenders
+agg_bur_act_AMT_CREDIT_SUM_mean,Loans with other lenders
+agg_bur_act_AMT_CREDIT_SUM_max,Loans with other lenders
+agg_bur_act_AMT_CREDIT_SUM_sum,Loans with other lenders
+agg_bur_act_AMT_CREDIT_SUM_DEBT_mean,Loans with other lenders
+agg_bur_act_AMT_CREDIT_SUM_DEBT_max,Loans with other lenders
+agg_bur_act_AMT_CREDIT_SUM_DEBT_sum,Loans with other lenders
+agg_bur_act_AMT_CREDIT_SUM_LIMIT_mean,Loans with other lenders
+agg_bur_act_AMT_CREDIT_SUM_LIMIT_max,Loans with other lenders
+agg_bur_act_AMT_CREDIT_SUM_LIMIT_sum,Loans with other lenders
+agg_bur_act_AMT_CREDIT_SUM_OVERDUE_mean,Loans with other lenders
+agg_bur_act_AMT_CREDIT_SUM_OVERDUE_max,Loans with other lenders
+agg_bur_act_AMT_CREDIT_SUM_OVERDUE_sum,Loans with other lenders
+agg_bur_act_DAYS_CREDIT_UPDATE_mean,Loans with other lenders
+agg_bur_act_DAYS_CREDIT_UPDATE_max,Loans with other lenders
+agg_bur_act_DAYS_CREDIT_UPDATE_sum,Loans with other lenders
+agg_bur_act_debt_ratio_mean,Loans with other lenders
+agg_bur_act_debt_ratio_max,Loans with other lenders
+agg_bur_act_debt_ratio_sum,Loans with other lenders
+agg_bur_act_overdue_ratio_mean,Loans with other lenders
+agg_bur_act_overdue_ratio_max,Loans with other lenders
+agg_bur_act_overdue_ratio_sum,Loans with other lenders
+agg_bur_act_planned_days_mean,Loans with other lenders
+agg_bur_act_planned_days_max,Loans with other lenders
+agg_bur_act_planned_days_sum,Loans with other lenders
+agg_bur_cls_DAYS_CREDIT_mean,Loans with other lenders
+agg_bur_cls_DAYS_CREDIT_max,Loans with other lenders
+agg_bur_cls_DAYS_CREDIT_min,Loans with other lenders
+agg_bur_cls_DAYS_ENDDATE_FACT_mean,Loans with other lenders
+agg_bur_cls_DAYS_ENDDATE_FACT_max,Loans with other lenders
+agg_bur_cls_DAYS_ENDDATE_FACT_min,Loans with other lenders
+agg_bur_cls_AMT_CREDIT_SUM_mean,Loans with other lenders
+agg_bur_cls_AMT_CREDIT_SUM_max,Loans with other lenders
+agg_bur_cls_AMT_CREDIT_SUM_min,Loans with other lenders
+agg_bur_cls_AMT_CREDIT_MAX_OVERDUE_mean,Loans with other lenders
+agg_bur_cls_AMT_CREDIT_MAX_OVERDUE_max,Loans with other lenders
+agg_bur_cls_AMT_CREDIT_MAX_OVERDUE_min,Loans with other lenders
+agg_bur_cls_planned_days_mean,Loans with other lenders
+agg_bur_cls_planned_days_max,Loans with other lenders
+agg_bur_cls_planned_days_min,Loans with other lenders
+agg_bur_CREDIT_TYPE_Car loan,Loans with other lenders
+agg_bur_CREDIT_TYPE_Consumer credit,Loans with other lenders
+agg_bur_CREDIT_TYPE_Credit card,Loans with other lenders
+agg_bur_CREDIT_TYPE_Loan for business development,Loans with other lenders
+agg_bur_CREDIT_TYPE_Microloan,Loans with other lenders
+agg_bur_CREDIT_TYPE_Mortgage,Loans with other lenders
+agg_bur_CREDIT_TYPE_other,Loans with other lenders
+agg_bur_CREDIT_ACTIVE_Active,Loans with other lenders
+agg_bur_CREDIT_ACTIVE_Closed,Loans with other lenders
+agg_bur_CREDIT_ACTIVE_Sold,Loans with other lenders
+agg_bur_CREDIT_ACTIVE_other,Loans with other lenders
+agg_prev_AMT_ANNUITY_mean,Earlier Home Credit applications
+agg_prev_AMT_ANNUITY_max,Earlier Home Credit applications
+agg_prev_AMT_ANNUITY_min,Earlier Home Credit applications
+agg_prev_AMT_APPLICATION_mean,Earlier Home Credit applications
+agg_prev_AMT_APPLICATION_max,Earlier Home Credit applications
+agg_prev_AMT_APPLICATION_min,Earlier Home Credit applications
+agg_prev_AMT_CREDIT_mean,Earlier Home Credit applications
+agg_prev_AMT_CREDIT_max,Earlier Home Credit applications
+agg_prev_AMT_CREDIT_min,Earlier Home Credit applications
+agg_prev_AMT_DOWN_PAYMENT_mean,Earlier Home Credit applications
+agg_prev_AMT_DOWN_PAYMENT_max,Earlier Home Credit applications
+agg_prev_AMT_DOWN_PAYMENT_min,Earlier Home Credit applications
+agg_prev_AMT_GOODS_PRICE_mean,Earlier Home Credit applications
+agg_prev_AMT_GOODS_PRICE_max,Earlier Home Credit applications
+agg_prev_AMT_GOODS_PRICE_min,Earlier Home Credit applications
+agg_prev_HOUR_APPR_PROCESS_START_mean,Earlier Home Credit applications
+agg_prev_HOUR_APPR_PROCESS_START_max,Earlier Home Credit applications
+agg_prev_HOUR_APPR_PROCESS_START_min,Earlier Home Credit applications
+agg_prev_RATE_DOWN_PAYMENT_mean,Earlier Home Credit applications
+agg_prev_RATE_DOWN_PAYMENT_max,Earlier Home Credit applications
+agg_prev_RATE_DOWN_PAYMENT_min,Earlier Home Credit applications
+agg_prev_DAYS_DECISION_mean,Earlier Home Credit applications
+agg_prev_DAYS_DECISION_max,Earlier Home Credit applications
+agg_prev_DAYS_DECISION_min,Earlier Home Credit applications
+agg_prev_CNT_PAYMENT_mean,Earlier Home Credit applications
+agg_prev_CNT_PAYMENT_max,Earlier Home Credit applications
+agg_prev_CNT_PAYMENT_min,Earlier Home Credit applications
+agg_prev_DAYS_FIRST_DRAWING_mean,Earlier Home Credit applications
+agg_prev_DAYS_FIRST_DRAWING_max,Earlier Home Credit applications
+agg_prev_DAYS_FIRST_DRAWING_min,Earlier Home Credit applications
+agg_prev_DAYS_FIRST_DUE_mean,Earlier Home Credit applications
+agg_prev_DAYS_FIRST_DUE_max,Earlier Home Credit applications
+agg_prev_DAYS_FIRST_DUE_min,Earlier Home Credit applications
+agg_prev_DAYS_LAST_DUE_1ST_VERSION_mean,Earlier Home Credit applications
+agg_prev_DAYS_LAST_DUE_1ST_VERSION_max,Earlier Home Credit applications
+agg_prev_DAYS_LAST_DUE_1ST_VERSION_min,Earlier Home Credit applications
+agg_prev_DAYS_LAST_DUE_mean,Earlier Home Credit applications
+agg_prev_DAYS_LAST_DUE_max,Earlier Home Credit applications
+agg_prev_DAYS_LAST_DUE_min,Earlier Home Credit applications
+agg_prev_DAYS_TERMINATION_mean,Earlier Home Credit applications
+agg_prev_DAYS_TERMINATION_max,Earlier Home Credit applications
+agg_prev_DAYS_TERMINATION_min,Earlier Home Credit applications
+agg_prev_SELLERPLACE_AREA_mean,Earlier Home Credit applications
+agg_prev_SELLERPLACE_AREA_max,Earlier Home Credit applications
+agg_prev_SELLERPLACE_AREA_min,Earlier Home Credit applications
+agg_prev_app_to_credit_mean,Earlier Home Credit applications
+agg_prev_app_to_credit_max,Earlier Home Credit applications
+agg_prev_app_to_credit_min,Earlier Home Credit applications
+agg_prev_credit_to_goods_mean,Earlier Home Credit applications
+agg_prev_credit_to_goods_max,Earlier Home Credit applications
+agg_prev_credit_to_goods_min,Earlier Home Credit applications
+agg_prev_annuity_to_credit_mean,Earlier Home Credit applications
+agg_prev_annuity_to_credit_max,Earlier Home Credit applications
+agg_prev_annuity_to_credit_min,Earlier Home Credit applications
+agg_prev_planned_days_mean,Earlier Home Credit applications
+agg_prev_planned_days_max,Earlier Home Credit applications
+agg_prev_planned_days_min,Earlier Home Credit applications
+agg_prev_end_shift_mean,Earlier Home Credit applications
+agg_prev_end_shift_max,Earlier Home Credit applications
+agg_prev_end_shift_min,Earlier Home Credit applications
+agg_prev_appr_AMT_ANNUITY_mean,Earlier Home Credit applications
+agg_prev_appr_AMT_ANNUITY_max,Earlier Home Credit applications
+agg_prev_appr_AMT_ANNUITY_min,Earlier Home Credit applications
+agg_prev_appr_AMT_APPLICATION_mean,Earlier Home Credit applications
+agg_prev_appr_AMT_APPLICATION_max,Earlier Home Credit applications
+agg_prev_appr_AMT_APPLICATION_min,Earlier Home Credit applications
+agg_prev_appr_AMT_CREDIT_mean,Earlier Home Credit applications
+agg_prev_appr_AMT_CREDIT_max,Earlier Home Credit applications
+agg_prev_appr_AMT_CREDIT_min,Earlier Home Credit applications
+agg_prev_appr_AMT_DOWN_PAYMENT_mean,Earlier Home Credit applications
+agg_prev_appr_AMT_DOWN_PAYMENT_max,Earlier Home Credit applications
+agg_prev_appr_AMT_DOWN_PAYMENT_min,Earlier Home Credit applications
+agg_prev_appr_AMT_GOODS_PRICE_mean,Earlier Home Credit applications
+agg_prev_appr_AMT_GOODS_PRICE_max,Earlier Home Credit applications
+agg_prev_appr_AMT_GOODS_PRICE_min,Earlier Home Credit applications
+agg_prev_appr_HOUR_APPR_PROCESS_START_mean,Earlier Home Credit applications
+agg_prev_appr_HOUR_APPR_PROCESS_START_max,Earlier Home Credit applications
+agg_prev_appr_HOUR_APPR_PROCESS_START_min,Earlier Home Credit applications
+agg_prev_appr_RATE_DOWN_PAYMENT_mean,Earlier Home Credit applications
+agg_prev_appr_RATE_DOWN_PAYMENT_max,Earlier Home Credit applications
+agg_prev_appr_RATE_DOWN_PAYMENT_min,Earlier Home Credit applications
+agg_prev_appr_DAYS_DECISION_mean,Earlier Home Credit applications
+agg_prev_appr_DAYS_DECISION_max,Earlier Home Credit applications
+agg_prev_appr_DAYS_DECISION_min,Earlier Home Credit applications
+agg_prev_appr_CNT_PAYMENT_mean,Earlier Home Credit applications
+agg_prev_appr_CNT_PAYMENT_max,Earlier Home Credit applications
+agg_prev_appr_CNT_PAYMENT_min,Earlier Home Credit applications
+agg_prev_appr_DAYS_FIRST_DRAWING_mean,Earlier Home Credit applications
+agg_prev_appr_DAYS_FIRST_DRAWING_max,Earlier Home Credit applications
+agg_prev_appr_DAYS_FIRST_DRAWING_min,Earlier Home Credit applications
+agg_prev_appr_DAYS_FIRST_DUE_mean,Earlier Home Credit applications
+agg_prev_appr_DAYS_FIRST_DUE_max,Earlier Home Credit applications
+agg_prev_appr_DAYS_FIRST_DUE_min,Earlier Home Credit applications
+agg_prev_appr_DAYS_LAST_DUE_1ST_VERSION_mean,Earlier Home Credit applications
+agg_prev_appr_DAYS_LAST_DUE_1ST_VERSION_max,Earlier Home Credit applications
+agg_prev_appr_DAYS_LAST_DUE_1ST_VERSION_min,Earlier Home Credit applications
+agg_prev_appr_DAYS_LAST_DUE_mean,Earlier Home Credit applications
+agg_prev_appr_DAYS_LAST_DUE_max,Earlier Home Credit applications
+agg_prev_appr_DAYS_LAST_DUE_min,Earlier Home Credit applications
+agg_prev_appr_DAYS_TERMINATION_mean,Earlier Home Credit applications
+agg_prev_appr_DAYS_TERMINATION_max,Earlier Home Credit applications
+agg_prev_appr_DAYS_TERMINATION_min,Earlier Home Credit applications
+agg_prev_appr_SELLERPLACE_AREA_mean,Earlier Home Credit applications
+agg_prev_appr_SELLERPLACE_AREA_max,Earlier Home Credit applications
+agg_prev_appr_SELLERPLACE_AREA_min,Earlier Home Credit applications
+agg_prev_appr_app_to_credit_mean,Earlier Home Credit applications
+agg_prev_appr_app_to_credit_max,Earlier Home Credit applications
+agg_prev_appr_app_to_credit_min,Earlier Home Credit applications
+agg_prev_appr_credit_to_goods_mean,Earlier Home Credit applications
+agg_prev_appr_credit_to_goods_max,Earlier Home Credit applications
+agg_prev_appr_credit_to_goods_min,Earlier Home Credit applications
+agg_prev_appr_annuity_to_credit_mean,Earlier Home Credit applications
+agg_prev_appr_annuity_to_credit_max,Earlier Home Credit applications
+agg_prev_appr_annuity_to_credit_min,Earlier Home Credit applications
+agg_prev_appr_planned_days_mean,Earlier Home Credit applications
+agg_prev_appr_planned_days_max,Earlier Home Credit applications
+agg_prev_appr_planned_days_min,Earlier Home Credit applications
+agg_prev_appr_end_shift_mean,Earlier Home Credit applications
+agg_prev_appr_end_shift_max,Earlier Home Credit applications
+agg_prev_appr_end_shift_min,Earlier Home Credit applications
+agg_prev_ref_AMT_APPLICATION_mean,Earlier Home Credit applications
+agg_prev_ref_AMT_APPLICATION_max,Earlier Home Credit applications
+agg_prev_ref_AMT_APPLICATION_min,Earlier Home Credit applications
+agg_prev_ref_AMT_CREDIT_mean,Earlier Home Credit applications
+agg_prev_ref_AMT_CREDIT_max,Earlier Home Credit applications
+agg_prev_ref_AMT_CREDIT_min,Earlier Home Credit applications
+agg_prev_ref_DAYS_DECISION_mean,Earlier Home Credit applications
+agg_prev_ref_DAYS_DECISION_max,Earlier Home Credit applications
+agg_prev_ref_DAYS_DECISION_min,Earlier Home Credit applications
+agg_prev_ref_CNT_PAYMENT_mean,Earlier Home Credit applications
+agg_prev_ref_CNT_PAYMENT_max,Earlier Home Credit applications
+agg_prev_ref_CNT_PAYMENT_min,Earlier Home Credit applications
+agg_prev_ref_app_to_credit_mean,Earlier Home Credit applications
+agg_prev_ref_app_to_credit_max,Earlier Home Credit applications
+agg_prev_ref_app_to_credit_min,Earlier Home Credit applications
+agg_prev_NAME_CONTRACT_STATUS_Approved,Earlier Home Credit applications
+agg_prev_NAME_CONTRACT_STATUS_Canceled,Earlier Home Credit applications
+agg_prev_NAME_CONTRACT_STATUS_Refused,Earlier Home Credit applications
+agg_prev_NAME_CONTRACT_STATUS_Unused offer,Earlier Home Credit applications
+agg_prev_NAME_YIELD_GROUP_XNA,Earlier Home Credit applications
+agg_prev_NAME_YIELD_GROUP_high,Earlier Home Credit applications
+agg_prev_NAME_YIELD_GROUP_low_action,Earlier Home Credit applications
+agg_prev_NAME_YIELD_GROUP_low_normal,Earlier Home Credit applications
+agg_prev_NAME_YIELD_GROUP_middle,Earlier Home Credit applications
+agg_prev_NAME_CONTRACT_TYPE_Cash loans,Earlier Home Credit applications
+agg_prev_NAME_CONTRACT_TYPE_Consumer loans,Earlier Home Credit applications
+agg_prev_NAME_CONTRACT_TYPE_Revolving loans,Earlier Home Credit applications
+agg_prev_NAME_CONTRACT_TYPE_other,Earlier Home Credit applications
+agg_prev_CODE_REJECT_REASON_CLIENT,Earlier Home Credit applications
+agg_prev_CODE_REJECT_REASON_HC,Earlier Home Credit applications
+agg_prev_CODE_REJECT_REASON_LIMIT,Earlier Home Credit applications
+agg_prev_CODE_REJECT_REASON_SCO,Earlier Home Credit applications
+agg_prev_CODE_REJECT_REASON_SCOFR,Earlier Home Credit applications
+agg_prev_CODE_REJECT_REASON_XAP,Earlier Home Credit applications
+agg_prev_CODE_REJECT_REASON_other,Earlier Home Credit applications
+agg_prev_NAME_PORTFOLIO_Cards,Earlier Home Credit applications
+agg_prev_NAME_PORTFOLIO_Cars,Earlier Home Credit applications
+agg_prev_NAME_PORTFOLIO_Cash,Earlier Home Credit applications
+agg_prev_NAME_PORTFOLIO_POS,Earlier Home Credit applications
+agg_prev_NAME_PORTFOLIO_XNA,Earlier Home Credit applications
+agg_prev_CHANNEL_TYPE_AP+ (Cash loan),Earlier Home Credit applications
+agg_prev_CHANNEL_TYPE_Contact center,Earlier Home Credit applications
+agg_prev_CHANNEL_TYPE_Country-wide,Earlier Home Credit applications
+agg_prev_CHANNEL_TYPE_Credit and cash offices,Earlier Home Credit applications
+agg_prev_CHANNEL_TYPE_Regional / Local,Earlier Home Credit applications
+agg_prev_CHANNEL_TYPE_Stone,Earlier Home Credit applications
+agg_prev_CHANNEL_TYPE_other,Earlier Home Credit applications
+agg_prev_NAME_PRODUCT_TYPE_XNA,Earlier Home Credit applications
+agg_prev_NAME_PRODUCT_TYPE_walk-in,Earlier Home Credit applications
+agg_prev_NAME_PRODUCT_TYPE_x-sell,Earlier Home Credit applications
+agg_prev_NAME_CLIENT_TYPE_New,Earlier Home Credit applications
+agg_prev_NAME_CLIENT_TYPE_Refreshed,Earlier Home Credit applications
+agg_prev_NAME_CLIENT_TYPE_Repeater,Earlier Home Credit applications
+agg_prev_NAME_CLIENT_TYPE_other,Earlier Home Credit applications
+agg_prev_NAME_GOODS_CATEGORY_Audio/Video,Earlier Home Credit applications
+agg_prev_NAME_GOODS_CATEGORY_Computers,Earlier Home Credit applications
+agg_prev_NAME_GOODS_CATEGORY_Construction Materials,Earlier Home Credit applications
+agg_prev_NAME_GOODS_CATEGORY_Consumer Electronics,Earlier Home Credit applications
+agg_prev_NAME_GOODS_CATEGORY_Furniture,Earlier Home Credit applications
+agg_prev_NAME_GOODS_CATEGORY_Mobile,Earlier Home Credit applications
+agg_prev_NAME_GOODS_CATEGORY_Photo / Cinema Equipment,Earlier Home Credit applications
+agg_prev_NAME_GOODS_CATEGORY_XNA,Earlier Home Credit applications
+agg_prev_NAME_GOODS_CATEGORY_other,Earlier Home Credit applications
+agg_inst_days_late_mean,Repayment of earlier Home Credit loans
+agg_inst_days_late_max,Repayment of earlier Home Credit loans
+agg_inst_days_late_min,Repayment of earlier Home Credit loans
+agg_inst_days_late_sum,Repayment of earlier Home Credit loans
+agg_inst_days_late_std,Repayment of earlier Home Credit loans
+agg_inst_days_early_mean,Repayment of earlier Home Credit loans
+agg_inst_days_early_max,Repayment of earlier Home Credit loans
+agg_inst_days_early_min,Repayment of earlier Home Credit loans
+agg_inst_days_early_sum,Repayment of earlier Home Credit loans
+agg_inst_days_early_std,Repayment of earlier Home Credit loans
+agg_inst_paid_ratio_mean,Repayment of earlier Home Credit loans
+agg_inst_paid_ratio_max,Repayment of earlier Home Credit loans
+agg_inst_paid_ratio_min,Repayment of earlier Home Credit loans
+agg_inst_paid_ratio_sum,Repayment of earlier Home Credit loans
+agg_inst_paid_ratio_std,Repayment of earlier Home Credit loans
+agg_inst_paid_diff_mean,Repayment of earlier Home Credit loans
+agg_inst_paid_diff_max,Repayment of earlier Home Credit loans
+agg_inst_paid_diff_min,Repayment of earlier Home Credit loans
+agg_inst_paid_diff_sum,Repayment of earlier Home Credit loans
+agg_inst_paid_diff_std,Repayment of earlier Home Credit loans
+agg_inst_amt_due_mean,Repayment of earlier Home Credit loans
+agg_inst_amt_due_max,Repayment of earlier Home Credit loans
+agg_inst_amt_due_min,Repayment of earlier Home Credit loans
+agg_inst_amt_due_sum,Repayment of earlier Home Credit loans
+agg_inst_amt_due_std,Repayment of earlier Home Credit loans
+agg_inst_amt_paid_mean,Repayment of earlier Home Credit loans
+agg_inst_amt_paid_max,Repayment of earlier Home Credit loans
+agg_inst_amt_paid_min,Repayment of earlier Home Credit loans
+agg_inst_amt_paid_sum,Repayment of earlier Home Credit loans
+agg_inst_amt_paid_std,Repayment of earlier Home Credit loans
+agg_inst_late_mean,Repayment of earlier Home Credit loans
+agg_inst_late_max,Repayment of earlier Home Credit loans
+agg_inst_late_min,Repayment of earlier Home Credit loans
+agg_inst_late_sum,Repayment of earlier Home Credit loans
+agg_inst_late_std,Repayment of earlier Home Credit loans
+agg_inst_late30_mean,Repayment of earlier Home Credit loans
+agg_inst_late30_max,Repayment of earlier Home Credit loans
+agg_inst_late30_min,Repayment of earlier Home Credit loans
+agg_inst_late30_sum,Repayment of earlier Home Credit loans
+agg_inst_late30_std,Repayment of earlier Home Credit loans
+agg_inst_365d_days_late_mean,Repayment of earlier Home Credit loans
+agg_inst_365d_days_late_max,Repayment of earlier Home Credit loans
+agg_inst_365d_days_late_sum,Repayment of earlier Home Credit loans
+agg_inst_365d_days_early_mean,Repayment of earlier Home Credit loans
+agg_inst_365d_days_early_max,Repayment of earlier Home Credit loans
+agg_inst_365d_days_early_sum,Repayment of earlier Home Credit loans
+agg_inst_365d_paid_ratio_mean,Repayment of earlier Home Credit loans
+agg_inst_365d_paid_ratio_max,Repayment of earlier Home Credit loans
+agg_inst_365d_paid_ratio_sum,Repayment of earlier Home Credit loans
+agg_inst_365d_paid_diff_mean,Repayment of earlier Home Credit loans
+agg_inst_365d_paid_diff_max,Repayment of earlier Home Credit loans
+agg_inst_365d_paid_diff_sum,Repayment of earlier Home Credit loans
+agg_inst_365d_amt_due_mean,Repayment of earlier Home Credit loans
+agg_inst_365d_amt_due_max,Repayment of earlier Home Credit loans
+agg_inst_365d_amt_due_sum,Repayment of earlier Home Credit loans
+agg_inst_365d_amt_paid_mean,Repayment of earlier Home Credit loans
+agg_inst_365d_amt_paid_max,Repayment of earlier Home Credit loans
+agg_inst_365d_amt_paid_sum,Repayment of earlier Home Credit loans
+agg_inst_365d_late_mean,Repayment of earlier Home Credit loans
+agg_inst_365d_late_max,Repayment of earlier Home Credit loans
+agg_inst_365d_late_sum,Repayment of earlier Home Credit loans
+agg_inst_365d_late30_mean,Repayment of earlier Home Credit loans
+agg_inst_365d_late30_max,Repayment of earlier Home Credit loans
+agg_inst_365d_late30_sum,Repayment of earlier Home Credit loans
+agg_inst_loan_loan_max_late_mean,Repayment of earlier Home Credit loans
+agg_inst_loan_loan_max_late_max,Repayment of earlier Home Credit loans
+agg_inst_loan_loan_late_share_mean,Repayment of earlier Home Credit loans
+agg_inst_loan_loan_late_share_max,Repayment of earlier Home Credit loans
+agg_pos_MONTHS_BALANCE_mean,Repayment of earlier Home Credit loans
+agg_pos_MONTHS_BALANCE_max,Repayment of earlier Home Credit loans
+agg_pos_MONTHS_BALANCE_min,Repayment of earlier Home Credit loans
+agg_pos_CNT_INSTALMENT_mean,Repayment of earlier Home Credit loans
+agg_pos_CNT_INSTALMENT_max,Repayment of earlier Home Credit loans
+agg_pos_CNT_INSTALMENT_min,Repayment of earlier Home Credit loans
+agg_pos_CNT_INSTALMENT_FUTURE_mean,Repayment of earlier Home Credit loans
+agg_pos_CNT_INSTALMENT_FUTURE_max,Repayment of earlier Home Credit loans
+agg_pos_CNT_INSTALMENT_FUTURE_min,Repayment of earlier Home Credit loans
+agg_pos_SK_DPD_mean,Repayment of earlier Home Credit loans
+agg_pos_SK_DPD_max,Repayment of earlier Home Credit loans
+agg_pos_SK_DPD_min,Repayment of earlier Home Credit loans
+agg_pos_SK_DPD_DEF_mean,Repayment of earlier Home Credit loans
+agg_pos_SK_DPD_DEF_max,Repayment of earlier Home Credit loans
+agg_pos_SK_DPD_DEF_min,Repayment of earlier Home Credit loans
+agg_pos_completed_mean,Repayment of earlier Home Credit loans
+agg_pos_completed_max,Repayment of earlier Home Credit loans
+agg_pos_completed_min,Repayment of earlier Home Credit loans
+agg_pos_12m_CNT_INSTALMENT_FUTURE_mean,Repayment of earlier Home Credit loans
+agg_pos_12m_CNT_INSTALMENT_FUTURE_max,Repayment of earlier Home Credit loans
+agg_pos_12m_SK_DPD_mean,Repayment of earlier Home Credit loans
+agg_pos_12m_SK_DPD_max,Repayment of earlier Home Credit loans
+agg_pos_12m_SK_DPD_DEF_mean,Repayment of earlier Home Credit loans
+agg_pos_12m_SK_DPD_DEF_max,Repayment of earlier Home Credit loans
+agg_cc_MONTHS_BALANCE_mean,Credit card use
+agg_cc_MONTHS_BALANCE_max,Credit card use
+agg_cc_MONTHS_BALANCE_min,Credit card use
+agg_cc_MONTHS_BALANCE_sum,Credit card use
+agg_cc_AMT_BALANCE_mean,Credit card use
+agg_cc_AMT_BALANCE_max,Credit card use
+agg_cc_AMT_BALANCE_min,Credit card use
+agg_cc_AMT_BALANCE_sum,Credit card use
+agg_cc_AMT_CREDIT_LIMIT_ACTUAL_mean,Credit card use
+agg_cc_AMT_CREDIT_LIMIT_ACTUAL_max,Credit card use
+agg_cc_AMT_CREDIT_LIMIT_ACTUAL_min,Credit card use
+agg_cc_AMT_CREDIT_LIMIT_ACTUAL_sum,Credit card use
+agg_cc_AMT_DRAWINGS_ATM_CURRENT_mean,Credit card use
+agg_cc_AMT_DRAWINGS_ATM_CURRENT_max,Credit card use
+agg_cc_AMT_DRAWINGS_ATM_CURRENT_min,Credit card use
+agg_cc_AMT_DRAWINGS_ATM_CURRENT_sum,Credit card use
+agg_cc_AMT_DRAWINGS_CURRENT_mean,Credit card use
+agg_cc_AMT_DRAWINGS_CURRENT_max,Credit card use
+agg_cc_AMT_DRAWINGS_CURRENT_min,Credit card use
+agg_cc_AMT_DRAWINGS_CURRENT_sum,Credit card use
+agg_cc_AMT_DRAWINGS_OTHER_CURRENT_mean,Credit card use
+agg_cc_AMT_DRAWINGS_OTHER_CURRENT_max,Credit card use
+agg_cc_AMT_DRAWINGS_OTHER_CURRENT_min,Credit card use
+agg_cc_AMT_DRAWINGS_OTHER_CURRENT_sum,Credit card use
+agg_cc_AMT_DRAWINGS_POS_CURRENT_mean,Credit card use
+agg_cc_AMT_DRAWINGS_POS_CURRENT_max,Credit card use
+agg_cc_AMT_DRAWINGS_POS_CURRENT_min,Credit card use
+agg_cc_AMT_DRAWINGS_POS_CURRENT_sum,Credit card use
+agg_cc_AMT_INST_MIN_REGULARITY_mean,Credit card use
+agg_cc_AMT_INST_MIN_REGULARITY_max,Credit card use
+agg_cc_AMT_INST_MIN_REGULARITY_min,Credit card use
+agg_cc_AMT_INST_MIN_REGULARITY_sum,Credit card use
+agg_cc_AMT_PAYMENT_CURRENT_mean,Credit card use
+agg_cc_AMT_PAYMENT_CURRENT_max,Credit card use
+agg_cc_AMT_PAYMENT_CURRENT_min,Credit card use
+agg_cc_AMT_PAYMENT_CURRENT_sum,Credit card use
+agg_cc_AMT_PAYMENT_TOTAL_CURRENT_mean,Credit card use
+agg_cc_AMT_PAYMENT_TOTAL_CURRENT_max,Credit card use
+agg_cc_AMT_PAYMENT_TOTAL_CURRENT_min,Credit card use
+agg_cc_AMT_PAYMENT_TOTAL_CURRENT_sum,Credit card use
+agg_cc_AMT_RECEIVABLE_PRINCIPAL_mean,Credit card use
+agg_cc_AMT_RECEIVABLE_PRINCIPAL_max,Credit card use
+agg_cc_AMT_RECEIVABLE_PRINCIPAL_min,Credit card use
+agg_cc_AMT_RECEIVABLE_PRINCIPAL_sum,Credit card use
+agg_cc_AMT_RECIVABLE_mean,Credit card use
+agg_cc_AMT_RECIVABLE_max,Credit card use
+agg_cc_AMT_RECIVABLE_min,Credit card use
+agg_cc_AMT_RECIVABLE_sum,Credit card use
+agg_cc_AMT_TOTAL_RECEIVABLE_mean,Credit card use
+agg_cc_AMT_TOTAL_RECEIVABLE_max,Credit card use
+agg_cc_AMT_TOTAL_RECEIVABLE_min,Credit card use
+agg_cc_AMT_TOTAL_RECEIVABLE_sum,Credit card use
+agg_cc_CNT_DRAWINGS_ATM_CURRENT_mean,Credit card use
+agg_cc_CNT_DRAWINGS_ATM_CURRENT_max,Credit card use
+agg_cc_CNT_DRAWINGS_ATM_CURRENT_min,Credit card use
+agg_cc_CNT_DRAWINGS_ATM_CURRENT_sum,Credit card use
+agg_cc_CNT_DRAWINGS_CURRENT_mean,Credit card use
+agg_cc_CNT_DRAWINGS_CURRENT_max,Credit card use
+agg_cc_CNT_DRAWINGS_CURRENT_min,Credit card use
+agg_cc_CNT_DRAWINGS_CURRENT_sum,Credit card use
+agg_cc_CNT_DRAWINGS_OTHER_CURRENT_mean,Credit card use
+agg_cc_CNT_DRAWINGS_OTHER_CURRENT_max,Credit card use
+agg_cc_CNT_DRAWINGS_OTHER_CURRENT_min,Credit card use
+agg_cc_CNT_DRAWINGS_OTHER_CURRENT_sum,Credit card use
+agg_cc_CNT_DRAWINGS_POS_CURRENT_mean,Credit card use
+agg_cc_CNT_DRAWINGS_POS_CURRENT_max,Credit card use
+agg_cc_CNT_DRAWINGS_POS_CURRENT_min,Credit card use
+agg_cc_CNT_DRAWINGS_POS_CURRENT_sum,Credit card use
+agg_cc_CNT_INSTALMENT_MATURE_CUM_mean,Credit card use
+agg_cc_CNT_INSTALMENT_MATURE_CUM_max,Credit card use
+agg_cc_CNT_INSTALMENT_MATURE_CUM_min,Credit card use
+agg_cc_CNT_INSTALMENT_MATURE_CUM_sum,Credit card use
+agg_cc_SK_DPD_mean,Credit card use
+agg_cc_SK_DPD_max,Credit card use
+agg_cc_SK_DPD_min,Credit card use
+agg_cc_SK_DPD_sum,Credit card use
+agg_cc_SK_DPD_DEF_mean,Credit card use
+agg_cc_SK_DPD_DEF_max,Credit card use
+agg_cc_SK_DPD_DEF_min,Credit card use
+agg_cc_SK_DPD_DEF_sum,Credit card use
+agg_cc_util_mean,Credit card use
+agg_cc_util_max,Credit card use
+agg_cc_util_min,Credit card use
+agg_cc_util_sum,Credit card use
+agg_cc_pay_to_min_mean,Credit card use
+agg_cc_pay_to_min_max,Credit card use
+agg_cc_pay_to_min_min,Credit card use
+agg_cc_pay_to_min_sum,Credit card use
+agg_cc_6m_util_mean,Credit card use
+agg_cc_6m_util_max,Credit card use
+agg_cc_6m_AMT_BALANCE_mean,Credit card use
+agg_cc_6m_AMT_BALANCE_max,Credit card use
+agg_cc_6m_AMT_DRAWINGS_CURRENT_mean,Credit card use
+agg_cc_6m_AMT_DRAWINGS_CURRENT_max,Credit card use
+agg_cc_6m_AMT_PAYMENT_CURRENT_mean,Credit card use
+agg_cc_6m_AMT_PAYMENT_CURRENT_max,Credit card use
+agg_cc_6m_pay_to_min_mean,Credit card use
+agg_cc_6m_pay_to_min_max,Credit card use
+agg_cc_6m_SK_DPD_mean,Credit card use
+agg_cc_6m_SK_DPD_max,Credit card use
+agg_cc_6m_SK_DPD_DEF_mean,Credit card use
+agg_cc_6m_SK_DPD_DEF_max,Credit card use
+last_last3_AMT_CREDIT_mean,Earlier Home Credit applications
+last_last3_AMT_APPLICATION_mean,Earlier Home Credit applications
+last_last3_AMT_ANNUITY_mean,Earlier Home Credit applications
+last_last3_CNT_PAYMENT_mean,Earlier Home Credit applications
+last_last3_refused_mean,Earlier Home Credit applications
+last_last3_approved_mean,Earlier Home Credit applications
+last_last3_app_to_credit_mean,Earlier Home Credit applications
+last_last5_AMT_CREDIT_mean,Earlier Home Credit applications
+last_last5_AMT_APPLICATION_mean,Earlier Home Credit applications
+last_last5_AMT_ANNUITY_mean,Earlier Home Credit applications
+last_last5_CNT_PAYMENT_mean,Earlier Home Credit applications
+last_last5_refused_mean,Earlier Home Credit applications
+last_last5_approved_mean,Earlier Home Credit applications
+last_last5_app_to_credit_mean,Earlier Home Credit applications
+last_first_days_decision,Earlier Home Credit applications
+last_first_amt_credit,Earlier Home Credit applications
+last_credit_growth_last_vs_first,Earlier Home Credit applications
+last_channel,Earlier Home Credit applications
+last_goods,Earlier Home Credit applications
+last_reject_reason,Earlier Home Credit applications
+last_client_type,Earlier Home Credit applications
+last_portfolio,Earlier Home Credit applications
+last_max_applications_same_day,Earlier Home Credit applications
+trend_inst_days_late_6m_minus_prev6m,Repayment of earlier Home Credit loans
+trend_inst_late_6m_minus_prev6m,Repayment of earlier Home Credit loans
+trend_inst_amt_paid_6m_minus_prev6m,Repayment of earlier Home Credit loans
+trend_cc_util_3m_minus_4to12m,Credit card use
+trend_cc_AMT_BALANCE_3m_minus_4to12m,Credit card use
+trend_cc_AMT_DRAWINGS_CURRENT_3m_minus_4to12m,Credit card use
+trend_bur_new_credits_last_year_minus_year_before,Loans with other lenders
+load_loans_running_n,Total debt burden
+load_bureau_debt_to_this_credit,Total debt burden
+rate_term_pred,Loan size and terms vs income
+rate_yearly_pred,Loan size and terms vs income
+rate_total_cost,Loan size and terms vs income
+rate_vs_prev,Loan size and terms vs income
+rate_term_vs_prev,Loan size and terms vs income

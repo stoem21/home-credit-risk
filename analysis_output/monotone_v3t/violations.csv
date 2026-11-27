@@ -1,0 +1,15 @@
+model,column,direction,step,applicants_with_value,pct_risk_down_after_worse_value,pct_risk_up,mean_change_pts
+lgbm_v3b_sh90_lr02_x3_tuned,EXT_SOURCE_1,-1,0.0577,8758,0.54,99.19,0.676
+lgbm_v3b_sh90_lr02_x3_tuned,EXT_SOURCE_2,-1,0.0505,19968,0.43,99.14,0.6917
+lgbm_v3b_sh90_lr02_x3_tuned,EXT_SOURCE_3,-1,0.0526,16079,1.12,98.48,0.5929
+lgbm_v3b_sh90_lr02_x3_tuned,employed_years,-1,1.3577,16426,6.69,88.46,0.1072
+lgbm_v3b_sh90_lr02_x3_tuned,inst_late_share,1,0.0267,18941,17.09,71.44,0.0174
+lgbm_v3b_sh90_lr02_x3_tuned,inst_days_late_mean,1,0.2138,18940,16.72,71.31,0.0233
+lgbm_v3b_sh90_lr02_x3_tuned,inst_late_share_last_year,1,0.0214,14049,9.22,69.54,0.0262
+lgbm_v3b_sh90_lr02_x3_tuned,win_inst_late_share_90d,1,0.0333,10234,7.48,37.24,0.0124
+lgbm_v3b_sh90_lr02_x3_tuned,win_inst_late_share_180d,1,0.02,11702,5.26,31.05,0.0056
+lgbm_v3b_sh90_lr02_x3_tuned,win_inst_late_share_365d,1,0.0214,14049,4.8,54.32,0.0191
+lgbm_v3b_sh90_lr02_x3_tuned,win_inst_days_late_mean_90d,1,0.05,10230,15.77,59.25,0.0056
+lgbm_v3b_sh90_lr02_x3_tuned,win_inst_days_late_mean_365d,1,0.0667,14047,4.47,84.45,0.0382
+lgbm_v3b_sh90_lr02_x3_tuned,prev_refused_share,1,0.04,18899,3.1,21.81,0.0204
+lgbm_v3b_sh90_lr02_x3_tuned,annuity_to_income,1,0.0221,20000,17.48,72.6,0.0457

@@ -43,6 +43,8 @@ Outputs (analysis_output/business_v2/):
 
 Usage:
     .venv/bin/python -m analysis.business [--tag v2] [--out-root DIR]
+    v3: --main lgbm_v3b_sh90_lr02_x3 --also lgbm_v2_combo_lr02_x3 --tag v3 (adds the v3 vs v2 difference; the
+        other models and pairs stay as in v2, with the main model in place of the v2 one)
 """
 
 import argparse
@@ -58,7 +60,8 @@ from homecredit.paths import Paths, add_out_root
 BASE_M, BASE_LGD = 0.20, 0.60
 GRID_M, GRID_LGD = [0.10, 0.20, 0.30], [0.40, 0.60, 0.80]
 RATES = np.round(np.arange(0.50, 1.0001, 0.05), 2)
-MODELS = ["lgbm_v2_combo_lr02_x3", "scorecard_full_no_gender", "lgbm_v1_no_gender_family", "lgbm_v1"]
+MAIN = "lgbm_v2_combo_lr02_x3"
+OTHERS = ["scorecard_full_no_gender", "lgbm_v1_no_gender_family", "lgbm_v1"]
 N_BOOT = 1000
 MIN_GROUP = 1000
 
@@ -109,8 +112,13 @@ def groups(app: pd.DataFrame) -> dict[str, np.ndarray]:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--tag", default="v2", help="output folder analysis_output/business_<tag>/")
+    ap.add_argument("--main", default=MAIN, help="the chosen model")
+    ap.add_argument("--also", default="", help="comma list of extra models compared with the main one")
     add_out_root(ap)
     args = ap.parse_args()
+    main_m = args.main
+    also = [m for m in args.also.split(",") if m]
+    MODELS = [main_m] + also + OTHERS
     P = Paths(args.out_root)
     out = P.out(f"business_{args.tag}")
     pd.set_option("display.width", 250)
@@ -176,12 +184,13 @@ def main() -> None:
     def per_applicant(key):
         return np.mean([base_gain * a for a in decisions[key]], axis=0)
 
-    pairs = [(("lgbm_v2_combo_lr02_x3", "break-even rule"), ("(no model)", "approve everyone")),
-             (("lgbm_v2_combo_lr02_x3", "break-even rule"), ("scorecard_full_no_gender", "break-even rule")),
+    pairs = [((main_m, "break-even rule"), ("(no model)", "approve everyone")),
+             ((main_m, "break-even rule"), ("scorecard_full_no_gender", "break-even rule")),
              (("lgbm_v1_no_gender_family", "break-even rule"), ("scorecard_full_no_gender", "break-even rule")),
-             (("lgbm_v2_combo_lr02_x3", "break-even rule"), ("lgbm_v1_no_gender_family", "break-even rule")),
-             (("lgbm_v2_combo_lr02_x3", "break-even rule"), ("lgbm_v1", "break-even rule")),
-             (("lgbm_v2_combo_lr02_x3", "cross-fitted best cut-off"), ("lgbm_v2_combo_lr02_x3", "break-even rule"))]
+             ((main_m, "break-even rule"), ("lgbm_v1_no_gender_family", "break-even rule")),
+             ((main_m, "break-even rule"), ("lgbm_v1", "break-even rule")),
+             ((main_m, "cross-fitted best cut-off"), (main_m, "break-even rule"))]
+    pairs += [((main_m, "break-even rule"), (m, "break-even rule")) for m in also]
     diff = []
     for a, b in pairs:
         d = per_applicant(a) - per_applicant(b)
@@ -210,7 +219,7 @@ def main() -> None:
 
     # ---- 5. who is approved under the base-case rule ----
     pg = []
-    for name in ["lgbm_v2_combo_lr02_x3", "scorecard_full_no_gender"]:
+    for name in [main_m, "scorecard_full_no_gender"]:
         appr = np.column_stack(decisions[(name, "break-even rule")])
         p_mean = np.column_stack(cal[name]).mean(axis=1)
         for attr, lab in groups(app).items():
@@ -231,7 +240,7 @@ def main() -> None:
             pg.append(r)
     pg = pd.concat(pg, ignore_index=True)
     pg.to_csv(out / "policy_groups.csv", index=False)
-    print(pg[pg.model == "lgbm_v2_combo_lr02_x3"].to_string(index=False))
+    print(pg[pg.model == main_m].to_string(index=False))
 
 
 if __name__ == "__main__":

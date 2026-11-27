@@ -1,0 +1,3 @@
+a,b,scope,auc_a,auc_b,gain_b_minus_a,boot_se_gain,b_wins_of_25,verdict
+lgbm_v3c_sh90_lr02_x3_tuned,lgbm_v3c_sh90_lr02_x3_tuned_mono,all,0.79802,0.79779,-0.00023,0.00012,3,no clear difference
+lgbm_v3c_sh90_lr02_x3_tuned,lgbm_v3c_sh90_lr02_x3_tuned_mono,cash,0.79768,0.79744,-0.00024,0.00013,3,no clear difference

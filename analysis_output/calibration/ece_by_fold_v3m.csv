@@ -1,0 +1,7 @@
+model,version,scope,ece_by_fold_pts,floor_pts
+lgbm_v3c_sh90_lr02_x3_tuned_mono,raw,all,0.4701,0.3384
+lgbm_v3c_sh90_lr02_x3_tuned_mono,raw,cash,0.4809,0.3594
+lgbm_v3c_sh90_lr02_x3_tuned_mono,platt,all,0.4641,0.34
+lgbm_v3c_sh90_lr02_x3_tuned_mono,platt,cash,0.4745,0.3614
+lgbm_v3c_sh90_lr02_x3_tuned_mono,isotonic,all,0.3628,0.333
+lgbm_v3c_sh90_lr02_x3_tuned_mono,isotonic,cash,0.3774,0.3591

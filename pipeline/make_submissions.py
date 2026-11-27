@@ -55,7 +55,8 @@ def cv_auc(P: Paths, name: str, app: pd.DataFrame, folds: pd.DataFrame) -> dict:
         oof = pd.DataFrame({f"s{s}": score for s in range(5)})
     else:
         oof = load_oof(P, name, app.SK_ID_CURR)
-    fa = fold_aucs(y, oof, folds, scopes(app.NAME_CONTRACT_TYPE))
+    seeds = [s for s in range(5) if f"s{s}" in oof.columns]  # exploratory runs have one seed
+    fa = fold_aucs(y, oof, folds, scopes(app.NAME_CONTRACT_TYPE), seeds)
     return {f"cv_auc_{k}": round(v, 5) for k, v in fa.groupby("scope").auc.mean().items()}
 
 

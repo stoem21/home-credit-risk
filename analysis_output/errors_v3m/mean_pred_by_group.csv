@@ -1,0 +1,4 @@
+group,mean_pred_pct
+missed (safest quarter of defaulters),4.33
+caught (riskiest quarter of defaulters),41.66
+all non-defaulters,6.99

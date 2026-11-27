@@ -1,0 +1,7 @@
+model,flag,pct_declines_top1,pct_declines_any_top3
+lightgbm (SHAP),"sensitive (age, gender, family)",0.0,0.07
+lightgbm (SHAP),"not a fair reason (application day/hour, contact details)",0.0,0.11
+scorecard (points below max),"sensitive (age, gender, family)",0.0,0.0
+scorecard (points below max),"not a fair reason (application day/hour, contact details)",0.0,0.0
+scorecard (points below approved average),"sensitive (age, gender, family)",0.0,0.0
+scorecard (points below approved average),"not a fair reason (application day/hour, contact details)",0.0,0.08

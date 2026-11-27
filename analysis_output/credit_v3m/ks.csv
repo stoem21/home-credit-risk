@@ -1,0 +1,3 @@
+model,ks_mean_of_seeds,ks_sd,ks_of_seed_mean_score
+lgbm_v3c_sh90_lr02_x3_tuned_mono,0.4519,0.0007,0.4528
+scorecard_full_no_gender,0.3824,0.0007,0.3837

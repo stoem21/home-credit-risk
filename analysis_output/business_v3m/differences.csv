@@ -1,0 +1,10 @@
+policy_a,policy_b,profit_diff_per_applicant,ci95_low,ci95_high
+lgbm_v3c_sh90_lr02_x3_tuned_mono / break-even rule,(no model) / approve everyone,2850.6,2658.5,3034.2
+lgbm_v3c_sh90_lr02_x3_tuned_mono / break-even rule,scorecard_full_no_gender / break-even rule,1462.6,1316.7,1623.1
+lgbm_v1_no_gender_family / break-even rule,scorecard_full_no_gender / break-even rule,811.4,693.0,944.6
+lgbm_v3c_sh90_lr02_x3_tuned_mono / break-even rule,lgbm_v1_no_gender_family / break-even rule,651.2,541.7,761.6
+lgbm_v3c_sh90_lr02_x3_tuned_mono / break-even rule,lgbm_v1 / break-even rule,577.7,467.4,695.5
+lgbm_v3c_sh90_lr02_x3_tuned_mono / cross-fitted best cut-off,lgbm_v3c_sh90_lr02_x3_tuned_mono / break-even rule,-19.9,-35.2,-4.4
+lgbm_v3c_sh90_lr02_x3_tuned_mono / break-even rule,lgbm_v3c_sh90_lr02_x3_tuned / break-even rule,-12.2,-46.0,21.2
+lgbm_v3c_sh90_lr02_x3_tuned_mono / break-even rule,lgbm_v3b_sh90_lr02_x3_tuned / break-even rule,68.3,-3.1,132.3
+lgbm_v3c_sh90_lr02_x3_tuned_mono / break-even rule,lgbm_v2_combo_lr02_x3 / break-even rule,281.9,183.2,377.2

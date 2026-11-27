@@ -1,0 +1,49 @@
+model,attribute,group,applicants,default_rate_pct,mean_pred_pct,approval_pct,approval_pct_good_payers,default_rate_approved_pct,adverse_impact_ratio
+lgbm_v3c_sh90_lr02_x3_tuned_mono,gender,F,202448,7.0,7.34,94.56,96.19,5.4,1.0
+lgbm_v3c_sh90_lr02_x3_tuned_mono,gender,M,105059,10.14,9.49,91.13,93.78,7.53,0.964
+lgbm_v3c_sh90_lr02_x3_tuned_mono,age band,25-34,72429,10.66,10.75,89.1,92.19,7.56,0.896
+lgbm_v3c_sh90_lr02_x3_tuned_mono,age band,35-44,84261,8.41,8.2,93.15,95.25,6.35,0.937
+lgbm_v3c_sh90_lr02_x3_tuned_mono,age band,45-54,70190,7.05,7.1,95.07,96.62,5.53,0.956
+lgbm_v3c_sh90_lr02_x3_tuned_mono,age band,55-64,60522,5.42,5.47,97.48,98.26,4.67,0.981
+lgbm_v3c_sh90_lr02_x3_tuned_mono,age band,65+,7876,3.66,3.32,99.41,99.62,3.45,1.0
+lgbm_v3c_sh90_lr02_x3_tuned_mono,age band,<25,12233,12.29,12.83,86.59,89.74,9.1,0.871
+lgbm_v3c_sh90_lr02_x3_tuned_mono,family status,Civil marriage,29775,9.94,9.28,91.4,94.14,7.25,0.943
+lgbm_v3c_sh90_lr02_x3_tuned_mono,family status,Married,196432,7.56,7.9,93.67,95.53,5.72,0.967
+lgbm_v3c_sh90_lr02_x3_tuned_mono,family status,Separated,19770,8.19,7.46,94.24,96.06,6.43,0.973
+lgbm_v3c_sh90_lr02_x3_tuned_mono,family status,Single / not married,45444,9.81,9.1,91.86,94.32,7.39,0.948
+lgbm_v3c_sh90_lr02_x3_tuned_mono,family status,Widow,16088,5.82,5.77,96.89,97.83,4.91,1.0
+lgbm_v3c_sh90_lr02_x3_tuned_mono,children,0,215371,7.71,7.68,93.98,95.82,5.9,1.0
+lgbm_v3c_sh90_lr02_x3_tuned_mono,children,1,61119,8.92,8.82,92.33,94.61,6.67,0.982
+lgbm_v3c_sh90_lr02_x3_tuned_mono,children,2,26749,8.72,9.15,91.69,94.05,6.37,0.976
+lgbm_v3c_sh90_lr02_x3_tuned_mono,children,3+,4272,10.04,10.43,89.33,92.17,7.18,0.951
+lgbm_v3c_sh90_lr02_x3_tuned_mono,education,Higher education,74863,5.36,5.4,97.25,98.08,4.55,1.0
+lgbm_v3c_sh90_lr02_x3_tuned_mono,education,Incomplete higher,10277,8.48,8.58,93.29,95.09,6.72,0.959
+lgbm_v3c_sh90_lr02_x3_tuned_mono,education,Lower secondary,3816,10.93,10.41,89.91,92.93,7.93,0.925
+lgbm_v3c_sh90_lr02_x3_tuned_mono,education,Secondary / secondary special,218391,8.94,8.93,92.13,94.48,6.62,0.947
+lgbm_v3c_sh90_lr02_x3_tuned_mono,region rating,1,32197,4.82,4.88,97.83,98.41,4.25,1.0
+lgbm_v3c_sh90_lr02_x3_tuned_mono,region rating,2,226984,7.89,7.92,93.77,95.63,6.06,0.958
+lgbm_v3c_sh90_lr02_x3_tuned_mono,region rating,3,48330,11.1,10.94,88.64,92.0,7.73,0.906
+scorecard_full_no_gender,gender,F,202448,7.0,7.53,95.94,97.01,5.96,1.0
+scorecard_full_no_gender,gender,M,105059,10.14,9.12,93.64,95.26,8.59,0.976
+scorecard_full_no_gender,age band,25-34,72429,10.66,10.86,91.14,93.24,8.61,0.914
+scorecard_full_no_gender,age band,35-44,84261,8.41,7.9,95.71,96.98,7.19,0.96
+scorecard_full_no_gender,age band,45-54,70190,7.05,7.1,96.9,97.78,6.21,0.972
+scorecard_full_no_gender,age band,55-64,60522,5.42,5.18,98.92,99.2,5.16,0.992
+scorecard_full_no_gender,age band,65+,7876,3.66,4.22,99.71,99.75,3.62,1.0
+scorecard_full_no_gender,age band,<25,12233,12.29,15.14,83.53,86.36,9.32,0.838
+scorecard_full_no_gender,family status,Civil marriage,29775,9.94,9.73,92.63,94.47,8.16,0.943
+scorecard_full_no_gender,family status,Married,196432,7.56,7.67,95.82,96.94,6.48,0.976
+scorecard_full_no_gender,family status,Separated,19770,8.19,7.59,95.91,97.02,7.13,0.977
+scorecard_full_no_gender,family status,Single / not married,45444,9.81,9.75,92.54,94.34,8.05,0.942
+scorecard_full_no_gender,family status,Widow,16088,5.82,5.8,98.21,98.68,5.37,1.0
+scorecard_full_no_gender,children,0,215371,7.71,7.68,95.61,96.76,6.6,1.0
+scorecard_full_no_gender,children,1,61119,8.92,8.89,94.22,95.74,7.45,0.985
+scorecard_full_no_gender,children,2,26749,8.72,9.04,94.08,95.58,7.26,0.984
+scorecard_full_no_gender,children,3+,4272,10.04,10.0,92.47,94.61,7.95,0.967
+scorecard_full_no_gender,education,Higher education,74863,5.36,5.31,98.37,98.81,4.94,1.0
+scorecard_full_no_gender,education,Incomplete higher,10277,8.48,10.12,92.52,94.06,6.95,0.941
+scorecard_full_no_gender,education,Lower secondary,3816,10.93,10.66,91.81,93.75,9.04,0.933
+scorecard_full_no_gender,education,Secondary / secondary special,218391,8.94,8.88,94.23,95.74,7.49,0.958
+scorecard_full_no_gender,region rating,1,32197,4.82,4.61,98.95,99.16,4.61,1.0
+scorecard_full_no_gender,region rating,2,226984,7.89,7.94,95.57,96.71,6.79,0.966
+scorecard_full_no_gender,region rating,3,48330,11.1,11.0,90.7,93.13,8.73,0.917

@@ -21,7 +21,7 @@ import pandas as pd
 from joblib import Parallel, delayed
 from threadpoolctl import threadpool_limits
 
-from homecredit.data import N_FOLDS, N_SEEDS, drop_columns, load_features, load_folds, scopes, select_groups
+from homecredit.data import N_FOLDS, N_SEEDS, drop_columns, exclude_prefixes, load_features, load_folds, scopes, select_groups
 from homecredit.evaluate import auc, save_oof
 from homecredit.models import mlp, xgb
 from homecredit.paths import Paths, add_out_root
@@ -31,7 +31,7 @@ _cache = {}
 
 def columns(P, features, add, drop, exclude=None):
     tr, te, cols = load_features(P, features, categories=True)
-    cols = [c for c in drop_columns(select_groups(cols, add), drop) if not (exclude and c.startswith(exclude))]
+    cols = exclude_prefixes(drop_columns(select_groups(cols, add), drop), exclude)
     return tr, te, cols
 
 

@@ -1,0 +1,33 @@
+attribute,rank,column,share_of_gain_pct
+gender: men vs women,1,OCCUPATION_TYPE,31.23
+gender: men vs women,2,ORGANIZATION_TYPE,9.48
+gender: men vs women,3,OWN_CAR_AGE,7.27
+gender: men vs women,4,EXT_SOURCE_1,4.87
+gender: men vs women,5,AMT_INCOME_TOTAL,2.58
+gender: men vs women,6,FLAG_OWN_CAR,2.23
+gender: men vs women,7,FLAG_DOCUMENT_8,2.15
+gender: men vs women,8,DAYS_BIRTH,1.74
+family: married or civil marriage,1,DAYS_BIRTH,6.41
+family: married or civil marriage,2,annuity_to_income,6.24
+family: married or civil marriage,3,ORGANIZATION_TYPE,6.22
+family: married or civil marriage,4,OWN_CAR_AGE,6.06
+family: married or civil marriage,5,NAME_TYPE_SUITE,5.67
+family: married or civil marriage,6,age_years,4.53
+family: married or civil marriage,7,stk_bureau_active_credit_to_income,3.89
+family: married or civil marriage,8,AMT_GOODS_PRICE,2.68
+age: under 25,1,DAYS_ID_PUBLISH,35.26
+age: under 25,2,agg_bur_DAYS_CREDIT_min,9.18
+age: under 25,3,employed_years,6.65
+age: under 25,4,DAYS_EMPLOYED,6.51
+age: under 25,5,DAYS_REGISTRATION,4.75
+age: under 25,6,agg_pos_MONTHS_BALANCE_min,4.58
+age: under 25,7,EXT_SOURCE_1,2.6
+age: under 25,8,agg_prev_NAME_PRODUCT_TYPE_XNA,2.12
+age: 55 or over,1,DAYS_EMPLOYED,29.43
+age: 55 or over,2,employed_years,27.57
+age: 55 or over,3,DAYS_ID_PUBLISH,9.89
+age: 55 or over,4,DAYS_REGISTRATION,4.1
+age: 55 or over,5,EXT_SOURCE_1,3.96
+age: 55 or over,6,ORGANIZATION_TYPE,2.32
+age: 55 or over,7,FLAG_DOCUMENT_6,1.02
+age: 55 or over,8,OCCUPATION_TYPE,1.01

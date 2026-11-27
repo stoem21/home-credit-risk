@@ -12,18 +12,23 @@ Usage:
     --folds-only 0 (or any subset of folds) is a timing run: nothing is written.
     --seeds 0 (fewer than 5 seeds, all folds) is an exploratory run: out-of-fold files only, no final model;
     experiments/compare.py then compares the common seeds and marks the verdict exploratory.
+    --final-only (with the same settings and --name as an earlier exploratory run): no CV; trains only the final
+    model and its test predictions, with trees = median of that run's fold choices x 1.1 (read from its
+    _folds.csv). Used to send exploratory settings to the Kaggle check without running 5 seeds.
 Outputs: processed/oof/<name>.parquet (if all 5 seeds ran), processed/preds/<name>_test.parquet,
          processed/<name>_final.txt, analysis_output/lgbm/<name>_folds.csv, <name>_importance.csv
 """
 
 import argparse
+import json
 import time
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 from joblib import Parallel, delayed
 
-from homecredit.data import drop_columns, load_features, load_folds, scopes, select_groups
+from homecredit.data import drop_columns, exclude_prefixes, load_features, load_folds, scopes, select_groups
 from homecredit.evaluate import auc, save_oof
 from homecredit.models.lgbm import fit, fit_fixed, shap_select
 from homecredit.paths import Paths, add_out_root
@@ -32,23 +37,23 @@ _cache = {}
 
 
 def run_fold(out_root, seed, k, threads, drop=None, features="v1", add=None, exclude=None, lr=None, n_models=1,
-             shap_top=None):
+             shap_top=None, shap_share=None, params=None):
     if "tr" not in _cache:
         P = Paths(out_root)
         tr, _, cols = load_features(P, features, categories=True)
-        cols = [c for c in drop_columns(select_groups(cols, add), drop) if not (exclude and c.startswith(exclude))]
+        cols = exclude_prefixes(drop_columns(select_groups(cols, add), drop), exclude)
         _cache.update(tr=tr, cols=cols, fo=load_folds(P, tr.SK_ID_CURR))
     tr, cols, fo = _cache["tr"], _cache["cols"], _cache["fo"]
     f = fo[f"fold_s{seed}"].values
     trn, va = np.where(f != k)[0], np.where(f == k)[0]
     y = tr.TARGET.values.astype(int)
     t0 = time.time()
-    if shap_top:  # keep the shap_top columns with the largest mean |SHAP|, judged on the training part only
-        cols = shap_select(tr[cols].iloc[trn], y[trn], shap_top, seed, threads)
+    if shap_top or shap_share:  # keep the columns with the largest mean |SHAP|, judged on the training part only
+        cols = shap_select(tr[cols].iloc[trn], y[trn], shap_top, seed, threads, share=shap_share)
     # n_models > 1: average of LightGBM fits with seeds seed, seed + 1000, ... (the first one is the usual fit)
     ps, trees, imp = [], [], 0
     for i in range(n_models):
-        bst = fit(tr[cols].iloc[trn], y[trn], seed + 1000 * i, threads, lr)
+        bst = fit(tr[cols].iloc[trn], y[trn], seed + 1000 * i, threads, lr, params)
         ps.append(bst.predict(tr[cols].iloc[va], num_iteration=bst.best_iteration))
         trees.append(bst.best_iteration)
         imp = imp + pd.Series(bst.feature_importance("gain"), index=cols)
@@ -70,31 +75,50 @@ def main() -> None:
     ap.add_argument("--n-models", type=int, default=1, help="average this many LightGBM fits per fold (seed averaging)")
     ap.add_argument("--shap-top", type=int, default=None, help="in each training fold, keep only the K columns "
                     "with the largest mean |SHAP| (homecredit.models.lgbm.shap_select)")
-    ap.add_argument("--exclude", default=None, help="leave out columns starting with this prefix (e.g. stk_bb_)")
+    ap.add_argument("--shap-share", type=float, default=None, help="in each training fold, keep the fewest columns "
+                    "whose mean |SHAP| adds up to this share of the total (e.g. 0.95)")
+    ap.add_argument("--exclude", default=None, help="leave out columns starting with these prefixes (comma list, e.g. stk_bb_)")
     ap.add_argument("--drop", default=None, help="leave out sensitive attributes, e.g. gender,family,age "
                     "(fairness step); use with a new --name")
+    ap.add_argument("--final-only", action="store_true", help="only the final model of an earlier exploratory run")
+    ap.add_argument("--monotone", default=None, help="JSON file of monotone constraints (pipeline/monotone_v3.json)")
+    ap.add_argument("--params", default=None, help="JSON file of LightGBM settings that replace the defaults "
+                    "(from experiments/tune_lgbm.py); the SHAP selection keeps the default settings")
     add_out_root(ap)
     args = ap.parse_args()
     P = Paths(args.out_root)
-    if P.oof(args.name).exists():
+    if args.final_only:
+        if P.test_preds(args.name).exists():
+            ap.error(f"{P.test_preds(args.name)} exists: saved results are never overwritten")
+        if not P.oof(args.name).exists():
+            ap.error(f"--final-only needs the exploratory run {args.name} first")
+    elif P.oof(args.name).exists():
         ap.error(f"{P.oof(args.name)} exists: saved results are never overwritten; choose a new --name")
     if (args.drop or args.add or args.features != "v1" or args.learning_rate or args.n_models > 1) \
             and args.name == "lgbm_v1":
         ap.error("--drop / --add / --features need a new --name, so the saved lgbm_v1 results are not overwritten")
+    args.params = json.loads(Path(args.params).read_text())["params"] if args.params else None
+    if args.monotone:  # monotone constraints on named columns (pipeline/monotone_v3.json)
+        args.params = {**(args.params or {}), "monotone": json.loads(Path(args.monotone).read_text())}
     seeds = [int(s) for s in args.seeds.split(",")]
     ks = [int(k) for k in args.folds_only.split(",")]
     t0 = time.time()
 
     tr, te, cols = load_features(P, args.features, categories=True)
     cols = drop_columns(select_groups(cols, args.add), args.drop)
-    cols = [c for c in cols if not (args.exclude and c.startswith(args.exclude))]
+    cols = exclude_prefixes(cols, args.exclude)
     y = tr.TARGET.values.astype(int)
     cash = scopes(tr.NAME_CONTRACT_TYPE)["cash"]
+    if args.final_only:
+        folds_df = pd.read_csv(P.results / "lgbm" / f"{args.name}_folds.csv")
+        print(f"final model only, from {len(folds_df)} saved fold choices of {args.name}", flush=True)
+        final_model(P, args, tr, te, cols, y, folds_df, t0)
+        return
     print(f"{len(cols)} columns; {len(seeds) * len(ks)} fold fits", flush=True)
 
     res = Parallel(n_jobs=args.jobs)(
         delayed(run_fold)(args.out_root, s, k, args.threads, args.drop, args.features, args.add, args.exclude,
-                          args.learning_rate, args.n_models, args.shap_top)
+                          args.learning_rate, args.n_models, args.shap_top, args.shap_share, args.params)
         for s in seeds for k in ks)
     oof = pd.DataFrame({"SK_ID_CURR": tr.SK_ID_CURR})
     rows, imps = [], []
@@ -117,7 +141,7 @@ def main() -> None:
     imp = pd.concat(imps, axis=1).mean(axis=1)  # with --shap-top: mean over the folds that kept the column
     imp_df = pd.DataFrame({"variable": imp.index, "mean_gain": imp.values,
                            "share_pct": (100 * imp / imp.sum()).round(2).values})
-    if args.shap_top:
+    if args.shap_top or args.shap_share:
         kept = pd.Series([c for i in imps for c in i.index]).value_counts()
         imp_df["kept_in_folds"] = imp_df.variable.map(kept).values
         imp_df["folds"] = len(imps)
@@ -128,13 +152,16 @@ def main() -> None:
     seed_means = folds_df.groupby("seed")[["auc_all", "auc_cash"]].mean()
     print("5-fold mean per seed:\n", seed_means.round(5).to_string())
     print("sd of seed means:", seed_means.std().round(5).to_dict())
+    final_model(P, args, tr, te, cols, y, folds_df, t0)
 
+
+def final_model(P, args, tr, te, cols, y, folds_df, t0) -> None:
     # Final model on all of train for test predictions: trees = median of the CV fold choices x 1.1 (more data).
     n_final = int(np.median(folds_df.trees) * 1.1)
-    if args.shap_top:  # same selection rule on all of train
-        cols = shap_select(tr[cols], y, args.shap_top, 0, args.jobs * args.threads)
+    if args.shap_top or args.shap_share:  # same selection rule on all of train
+        cols = shap_select(tr[cols], y, args.shap_top, 0, args.jobs * args.threads, share=args.shap_share)
     boosters = [fit_fixed(tr[cols], y, n_final, seed=1000 * i, threads=args.jobs * args.threads,
-                          learning_rate=args.learning_rate) for i in range(args.n_models)]
+                          learning_rate=args.learning_rate, params=args.params) for i in range(args.n_models)]
     bst = boosters[0]
     P.preds_dir.mkdir(parents=True, exist_ok=True)
     pd.DataFrame({"SK_ID_CURR": te.SK_ID_CURR, "TARGET": np.mean([b.predict(te[cols]) for b in boosters], axis=0)}).to_parquet(
